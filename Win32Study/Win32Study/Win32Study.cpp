@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "Win32Study.h"
 
+#include "CCore.h"
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -46,7 +48,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// 기본 메시지 루프입니다:
 	while (true)
 	{
-		// 메세지가 있어도, 없어도 항상 반환됨
+		// Peekmessage: 메세지가 있어도, 없어도 항상 반환됨
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
@@ -59,6 +61,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
+		}
+		// 메세지가 없는 동안
+		else
+		{
+
 		}
 	}
 
@@ -182,6 +189,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case VK_DOWN:
 		{
+
 			InvalidateRect(hWnd, nullptr, true);
 			break;
 		}
