@@ -4,7 +4,8 @@
 #include "framework.h"
 #include "Win32Study.h"
 
-#include "CCore.h"
+#include "pch.h"
+#include "GameCore.h"
 
 #define MAX_LOADSTRING 100
 
@@ -12,6 +13,7 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+HWND globalMainHWND;							// 메인 윈도우 핸들
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -40,6 +42,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	{
 		return FALSE;
 	}
+	
+	// gameCore 초기화
+	GameCore* gameCore = GameCore::GetInstance();
+	if (FAILED(GameCore::GetInstance()->Init(globalMainHWND, POINT{1280, 720})))
+	{
+		MessageBox(nullptr, L"Core Init Failed", L"ERROR", MB_OK);
+
+		return FALSE;
+	}
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WIN32STUDY));
 
@@ -65,7 +76,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		// 메세지가 없는 동안
 		else
 		{
-
+			GameCore::GetInstance()->Progress();
 		}
 	}
 
@@ -114,21 +125,21 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+	globalMainHWND = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-	if (!hWnd)
+	if (!globalMainHWND)
 	{
 		return FALSE;
 	}
 
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
+	ShowWindow(globalMainHWND, nCmdShow);
+	UpdateWindow(globalMainHWND);
 
 	return TRUE;
 }
 
-//
+// My
 struct ObjInfo
 {
 	POINT objPos;
