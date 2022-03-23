@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "GameCore.h"
+#include "GameObject.h"
 
 #define MAX_LOADSTRING 100
 
@@ -139,26 +140,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	return TRUE;
 }
 
-// My
-struct ObjInfo
-{
-	POINT objPos;
-	POINT objScale;
-
-	ObjInfo(POINT _ltPos, POINT _rbPos)
-	{
-		this->objScale.x = (_rbPos.x - _ltPos.x) / 2;
-		this->objScale.y = (_rbPos.y - _ltPos.y) / 2;
-
-		this->objPos.x = _ltPos.x + this->objScale.x;
-		this->objPos.y = _ltPos.y + this->objScale.y;
-	}
-};
-
-std::vector<ObjInfo*> objectList;
-POINT ltPos;
-POINT rbPos;
-bool isLButtonDown = false;
 
 //
 //  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
@@ -192,87 +173,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	break;
 
-	// 키보드
-	case WM_KEYDOWN:
-	{
-		// wParam: 키보드
-		switch (wParam)
-		{
-		case VK_DOWN:
-		{
-
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_UP:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_LEFT:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_RIGHT:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		}
-		break;
-	}
-	case WM_KEYUP:
-	{
-		switch (wParam)
-		{
-		case VK_DOWN:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_UP:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_LEFT:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		case VK_RIGHT:
-		{
-			InvalidateRect(hWnd, nullptr, true);
-			break;
-		}
-		}
-		break;
-	} // WM_KEYUP
-
 	// 마우스
 	case WM_LBUTTONDOWN:
 	{
-		ltPos.x = LOWORD(lParam); // x좌표
-		ltPos.y = HIWORD(lParam); // y좌표
-		isLButtonDown = true;
-		InvalidateRect(hWnd, nullptr, true);
 		break;
 	}
 	case WM_MOUSEMOVE:
 	{
-		rbPos.x = LOWORD(lParam); // x좌표
-		rbPos.y = HIWORD(lParam); // y좌표
-		InvalidateRect(hWnd, nullptr, true);
 		break;
 	}
 	case WM_LBUTTONUP:
 	{
-		rbPos.x = LOWORD(lParam); // x좌표
-		rbPos.y = HIWORD(lParam); // y좌표
-		isLButtonDown = false;
-		objectList.push_back(new ObjInfo(ltPos, rbPos));
-		InvalidateRect(hWnd, nullptr, true);
 		break;
 	}
 	case WM_PAINT:
@@ -280,28 +191,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
 		// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-		HBRUSH hCurrentBrush = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
-		SelectObject(hdc, hCurrentBrush);
-
-		// 미리 보기
-		if (isLButtonDown)
-		{
-			Rectangle(hdc,
-				ltPos.x,
-				ltPos.y,
-				rbPos.x,
-				rbPos.y);
-		}
-
-		// 리스트에 있는거 그리기
-		for (int i = 0; i < objectList.size(); i++)
-		{
-			Rectangle(hdc,
-				objectList[i]->objPos.x - objectList[i]->objScale.x,
-				objectList[i]->objPos.y - objectList[i]->objScale.y,
-				objectList[i]->objPos.x + objectList[i]->objScale.x,
-				objectList[i]->objPos.y + objectList[i]->objScale.y);
-		}
 
 		EndPaint(hWnd, &ps);
 	}

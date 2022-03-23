@@ -10,9 +10,12 @@ private:
 	HWND mainHWND;
 	POINT mainResolution;
 	HDC mainHDC;
+	GameObject gameObject;
 
 	GameCore();
 	~GameCore();
+	void Update();
+	void Render();
 
 public:
 	// static 함수나 변수는 객체가 없어도 접근 가능

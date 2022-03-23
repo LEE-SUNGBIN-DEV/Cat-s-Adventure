@@ -20,6 +20,9 @@
     <Filter Include="Engine\03. Manager">
       <UniqueIdentifier>{85eba541-c7b3-48da-b768-4e57223929ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. GameObject">
+      <UniqueIdentifier>{ef91879d-f291-4daf-8bf0-f32a11b13f61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -46,6 +49,9 @@
     <ClInclude Include="pch.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\04. GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -54,6 +60,9 @@
     <ClCompile Include="Win32Study.cpp" />
     <ClCompile Include="GameCore.cpp">
       <Filter>Engine\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\04. GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

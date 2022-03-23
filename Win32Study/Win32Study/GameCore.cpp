@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GameCore.h"
+#include "GameObject.h"
 
 GameCore::GameCore()
 {
@@ -28,9 +29,48 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 
 	return S_OK;
 }
+void GameCore::Update()
+{
+	// 키보드
+	// 0x8000: 눌렸는지 확인
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
 
+	}
+
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+
+	}
+
+	else if (GetAsyncKeyState(VK_UP) & 0x8000)
+	{
+
+	}
+
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	{
+
+	}
+
+}
+void GameCore::Render()
+{
+	// 그리기
+	Rectangle(this->mainHDC,
+		gameObject.GetPos().x - gameObject.GetScale().x,
+		gameObject.GetPos().y - gameObject.GetScale().y,
+		gameObject.GetPos().x + gameObject.GetScale().x,
+		gameObject.GetPos().y + gameObject.GetScale().y);
+
+	InvalidateRect(this->mainHWND, nullptr, true);
+}
 void GameCore::Progress()
 {
-	// Paint
-	InvalidateRect(this->mainHWND);
+	// update()
+	Update();
+
+	// render
+	Render();
+
 }
