@@ -45,7 +45,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	
 	// gameCore 초기화
-	GameCore* gameCore = GameCore::GetInstance();
 	if (FAILED(GameCore::GetInstance()->Init(globalMainHWND, POINT{1280, 720})))
 	{
 		MessageBox(nullptr, L"Core Init Failed", L"ERROR", MB_OK);

@@ -1,22 +1,23 @@
 #pragma once
+#include "GameObject.h"
 
 class GameObject
 {
 private:
-	POINT pos;
-	POINT scale;
+	Vector2f pos;
+	Vector2f scale;
 
 public:
 	// »ý¼ºÀÚ
 	GameObject();
-	GameObject(POINT _ltPos, POINT _rbPos) :GameObject;
+	GameObject(Vector2f _ltPos, Vector2f _rbPos);
 
 	// get
-	POINT GetPos();
-	POINT GetScale();
+	Vector2f GetPos() { return this->pos; }
+	Vector2f GetScale() { return this->scale; }
 
 	// set
-	void SetPos(POINT _pos);
-	void SetScale(POINT _scale);
+	void SetPos(Vector2f _pos) { this->pos = _pos; return; }
+	void SetScale(Vector2f _scale) { this->scale = _scale;	return; }
 };
 

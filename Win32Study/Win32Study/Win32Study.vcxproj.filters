@@ -52,6 +52,12 @@
     <ClInclude Include="GameObject.h">
       <Filter>Engine\04. GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>Engine\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -63,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Engine\04. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>Engine\03. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
