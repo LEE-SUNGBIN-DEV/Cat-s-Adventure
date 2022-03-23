@@ -1,7 +1,8 @@
 #pragma once
 class TimeManager
 {
-// 프레임당 시간: Delta Time
+	// 시간 동기화!
+	// 프레임당 시간: Delta Time
 private:
 	LARGE_INTEGER curCount;
 	LARGE_INTEGER prevCount;

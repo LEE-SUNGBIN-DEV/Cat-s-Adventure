@@ -1,8 +1,6 @@
 ﻿  GameCore.cpp
-C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(59,32): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(64,32): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(69,32): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(74,32): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  TimeManager.cpp
-  Win32Study.cpp
+C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(65,35): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(70,35): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\VisualProject\Win32Study\Win32Study\Win32Study\GameCore.cpp(75,35): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  KeyManager.cpp
   Win32Study.vcxproj -> C:\VisualProject\Win32Study\Win32Study\x64\Debug\Win32Study.exe

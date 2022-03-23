@@ -52,28 +52,29 @@ void GameCore::Update()
 {
 	// 키보드
 	// 0x8000: 눌렸는지 확인
-	Vector2f move = this->gameObject->GetPos();
+	Vector2f movePos = this->gameObject->GetPos();
 
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_LEFT)
+		== KEY_STATE::KEY_STATE_DOWN)
 	{
-		move.x -= 100.0f * DELTA_TIME;
+		movePos.x -= 100.0f;
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		move.x += 100.0f * DELTA_TIME;
+		movePos.x += 100.0f * DELTA_TIME;
 	}
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
-		move.y -= 100.0f * DELTA_TIME;
+		movePos.y -= 100.0f * DELTA_TIME;
 	}
 
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
-		move.y += 100.0f * DELTA_TIME;
+		movePos.y += 100.0f * DELTA_TIME;
 	}
-	gameObject->SetPos(move);
+	gameObject->SetPos(movePos);
 }
 void GameCore::Render()
 {
