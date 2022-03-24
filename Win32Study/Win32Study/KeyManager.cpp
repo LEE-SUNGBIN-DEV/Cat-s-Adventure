@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "KeyManager.h"
+#include "GameCore.h"
+
 
 int mappingVK[(int)KEY::KEY_SIZE] =
 {
@@ -48,36 +50,51 @@ void KeyManager::Init()
 
 void KeyManager::Update()
 {
-	for (int i = 0; i < (int)KEY::KEY_SIZE; ++i)
+	HWND hwnd = GetFocus();
+
+	// Focusing check
+	if (hwnd != nullptr)
 	{
-		if (GetAsyncKeyState(mappingVK[i]) & 0x8000)
+		for (int i = 0; i < (int)KEY::KEY_SIZE; ++i)
 		{
-			if (this->keyInfo[i].prevPress)
+			if (GetAsyncKeyState(mappingVK[i]) & 0x8000)
 			{
-				this->keyInfo[i].state = KEY_STATE::KEY_STATE_HOLD;
+				if (this->keyInfo[i].prevPress)
+				{
+					this->keyInfo[i].state = KEY_STATE::KEY_STATE_HOLD;
+				}
+
+				else
+				{
+					this->keyInfo[i].state = KEY_STATE::KEY_STATE_DOWN;
+				}
+
+				this->keyInfo[i].prevPress = true;
 			}
 
 			else
 			{
-				this->keyInfo[i].state = KEY_STATE::KEY_STATE_DOWN;
-			}
+				if (this->keyInfo[i].prevPress)
+				{
+					this->keyInfo[i].state = KEY_STATE::KEY_STATE_UP;
+				}
 
-			this->keyInfo[i].prevPress = true;
+				else
+				{
+					this->keyInfo[i].state = KEY_STATE::KEY_STATE_NONE;
+				}
+
+				this->keyInfo[i].prevPress = false;
+			}
 		}
+	}
 
-		else
+	else
+	{
+		for (int i = 0; i < (int)KEY::KEY_SIZE; ++i)
 		{
-			if (this->keyInfo[i].prevPress)
-			{
-				this->keyInfo[i].state = KEY_STATE::KEY_STATE_UP;
-			}
-
-			else
-			{
-				this->keyInfo[i].state = KEY_STATE::KEY_STATE_NONE;
-			}
-
 			this->keyInfo[i].prevPress = false;
+			this->keyInfo[i].state = KEY_STATE::KEY_STATE_UP;
 		}
 	}
 }

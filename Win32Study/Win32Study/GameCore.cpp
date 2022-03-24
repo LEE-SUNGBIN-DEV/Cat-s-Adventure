@@ -55,24 +55,27 @@ void GameCore::Update()
 	Vector2f movePos = this->gameObject->GetPos();
 
 	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_LEFT)
+		== KEY_STATE::KEY_STATE_HOLD)
+	{
+		movePos.x -= 100.0f * (float)DELTA_TIME;
+	}
+
+	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_RIGHT)
+		== KEY_STATE::KEY_STATE_HOLD)
+	{
+		movePos.x += 100.0f * (float)DELTA_TIME;
+	}
+
+	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_UP)
 		== KEY_STATE::KEY_STATE_DOWN)
 	{
-		movePos.x -= 100.0f;
+		movePos.y -= 20.0f;
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_DOWN)
+		== KEY_STATE::KEY_STATE_HOLD)
 	{
-		movePos.x += 100.0f * DELTA_TIME;
-	}
-
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-	{
-		movePos.y -= 100.0f * DELTA_TIME;
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-	{
-		movePos.y += 100.0f * DELTA_TIME;
+		movePos.y += 100.0f * (float)DELTA_TIME;
 	}
 	gameObject->SetPos(movePos);
 }
@@ -82,12 +85,20 @@ void GameCore::Render()
 	Rectangle(this->bitMapHDC, -1, -1, this->mainResolution.x + 1, this->mainResolution.y + 1);
 	
 	// ----------------------Draw
+	// Map
+	Rectangle(this->bitMapHDC,
+		0,
+		this->mainResolution.y-100,
+		this->mainResolution.x,
+		this->mainResolution.y);
+	// Player
 	Rectangle(this->bitMapHDC,
 		(int)(this->gameObject->GetPos().x - this->gameObject->GetScale().x),
 		(int)(this->gameObject->GetPos().y - this->gameObject->GetScale().y),
 		(int)(this->gameObject->GetPos().x + this->gameObject->GetScale().x),
 		(int)(this->gameObject->GetPos().y + this->gameObject->GetScale().y));
 
+	// Monster
 	// ----------------------Copy to MainWindow
 	BitBlt(this->mainHDC, 0, 0, this->mainResolution.x, this->mainResolution.y
 	, this->bitMapHDC, 0, 0, SRCCOPY);
