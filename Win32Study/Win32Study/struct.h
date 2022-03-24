@@ -9,11 +9,18 @@ struct Vector2f
 	{
 	}
 
-	Vector2f(float _x, float _y) : x(_x), y(_y)
+	Vector2f(float _x, float _y)
+		: x(_x), y(_y)
 	{
 	}
 
-	Vector2f(int _x, int _y) : x((float)_x), y((float)_y)
+	Vector2f(int _x, int _y)
+		: x((float)_x), y((float)_y)
+	{
+	}
+
+	Vector2f(POINT _point)
+		: x((float)_point.x), y((float)_point.y)
 	{
 	}
 };

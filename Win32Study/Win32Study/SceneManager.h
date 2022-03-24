@@ -23,7 +23,9 @@ public:
 	void Render(HDC _bitmapDC);
 
 	// get
+	GameScene* GetCurrentScene() { return this->mCurrentScene; }
+	
 	// set
-
+	void SetCurrentScene(GameScene* _currentScene) { this->mCurrentScene = _currentScene; }
 };
 

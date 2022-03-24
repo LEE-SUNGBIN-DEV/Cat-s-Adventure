@@ -28,5 +28,6 @@ public:
 	void SetSpeed(float _speed) { this->mSpeed = _speed; }
 	void SetMoveDirection(int _moveDirection) { this->mMoveDirection = _moveDirection; }
 	void SetOriginalPosition(Vector2f _originalPosition) { this->mOriginalPosition = _originalPosition; }
+	void SetPatrolDistance(float _patrolDistance) { this->mPatrolDistance = _patrolDistance; }
 };
 

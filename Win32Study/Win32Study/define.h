@@ -11,6 +11,7 @@ type();\
 ~type();
 
 #define DELTA_TIME TimeManager::GetInstance()->GetDeltaTime()
+#define KEY_CHECK(_keyInput, _keyState) KeyManager::GetInstance()->GetKeyState(_keyInput) == _keyState
 
 enum class OBJECT_TYPE
 {

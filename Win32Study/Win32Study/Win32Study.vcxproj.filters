@@ -26,6 +26,21 @@
     <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{ef91879d-f291-4daf-8bf0-f32a11b13f61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\01. Player">
+      <UniqueIdentifier>{3aeddf97-577d-4718-b781-42002c398bfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\03. Projectile">
+      <UniqueIdentifier>{1a8f4487-5293-4aaf-b0a2-00995c4ad341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\02. Monster">
+      <UniqueIdentifier>{26dac3f6-2685-47c0-80ce-6765cef46e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\03. Projectile\01. Bullet">
+      <UniqueIdentifier>{993753d5-1fc3-4660-af8e-2277f913d529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\03. Projectile\02. Missile">
+      <UniqueIdentifier>{55970d18-cac1-4ea4-9776-dd41ca8961c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -71,10 +86,19 @@
       <Filter>Engine\05. Scene</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\01. Player</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\02. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Engine\04. Object\03. Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Engine\04. Object\03. Projectile\01. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Engine\04. Object\03. Projectile\02. Missile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,14 +123,23 @@
     <ClCompile Include="GameSceneStart.cpp">
       <Filter>Engine\05. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Engine\04. Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Engine\04. Object</Filter>
-    </ClCompile>
     <ClCompile Include="Win32Study.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Engine\04. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Engine\04. Object\02. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Engine\04. Object\03. Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Engine\04. Object\03. Projectile\01. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Engine\04. Object\03. Projectile\02. Missile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

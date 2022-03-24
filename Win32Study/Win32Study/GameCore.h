@@ -34,5 +34,6 @@ public:
 
 	// get
 	HWND GetMainHWND() { return this->mainHWND; }
+	POINT GetMainResolution() { return this->mainResolution; }
 };
 

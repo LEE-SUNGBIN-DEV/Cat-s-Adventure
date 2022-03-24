@@ -18,10 +18,10 @@ Monster::~Monster()
 
 void Monster::Update()
 {
-	Vector2f currentPosition = GetPos();
+	Vector2f currentPosition = GetPosition();
 
 	currentPosition.x += this->mSpeed * this->mMoveDirection * (float)DELTA_TIME;
-	SetPos(currentPosition);
+	SetPosition(currentPosition);
 	
 	// 방향 전환
 	if (mPatrolDistance < abs(currentPosition.x - mOriginalPosition.x)
@@ -40,8 +40,8 @@ void Monster::Update()
 void Monster::Render(HDC _bitmapDC)
 {
 	Rectangle(_bitmapDC,
-		this->GetPos().x - this->GetScale().x,
-		this->GetPos().y - this->GetScale().y,
-		this->GetPos().x + this->GetScale().x,
-		this->GetPos().y + this->GetScale().y);
+		this->GetPosition().x - this->GetScale().x,
+		this->GetPosition().y - this->GetScale().y,
+		this->GetPosition().x + this->GetScale().x,
+		this->GetPosition().y + this->GetScale().y);
 }

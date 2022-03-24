@@ -17,11 +17,11 @@ public:
 	virtual void Render(HDC _bitmapDC) = 0;
 
 	// get
-	Vector2f GetPos() { return this->mPosition; }
+	Vector2f GetPosition() { return this->mPosition; }
 	Vector2f GetScale() { return this->mScale; }
 
 	// set
-	void SetPos(Vector2f _position) { this->mPosition = _position; return; }
+	void SetPosition(Vector2f _position) { this->mPosition = _position; return; }
 	void SetScale(Vector2f _scale) { this->mScale = _scale;	return; }
 };
 
