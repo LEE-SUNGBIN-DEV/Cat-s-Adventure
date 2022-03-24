@@ -3,7 +3,7 @@
 #include "TimeManager.h"
 
 Projectile::Projectile()
-	: mDirection(1), mSpeed(100.f)
+	: mTheta(0.f), mSpeed(100.f)
 {
 }
 

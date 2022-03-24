@@ -1,5 +1,6 @@
 ﻿  Player.cpp
 D:\VisualProject\Win32Study\Win32Study\Win32Study\Projectile.h(20,33): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VisualProject\Win32Study\Win32Study\Win32Study\Projectile.h(23,48): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 D:\VisualProject\Win32Study\Win32Study\Win32Study\Projectile.h(24,48): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 D:\VisualProject\Win32Study\Win32Study\Win32Study\Player.cpp(56,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 D:\VisualProject\Win32Study\Win32Study\Win32Study\Player.cpp(55,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.

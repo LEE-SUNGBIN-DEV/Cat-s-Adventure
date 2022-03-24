@@ -4,7 +4,7 @@ class Projectile :
     public GameObject
 {
 private:
-    int mDirection;
+    float mTheta;
 
     float mSpeed;
 
@@ -16,11 +16,11 @@ public:
     virtual void Render(HDC _bitmapDC) = 0;
 
     // get
-    int GetDirection() { return this->mDirection; }
+    float GetTheta() { return this->mTheta; }
     int GetSpeed() { return this->mSpeed; }
 
     // set
-    void SetDirection(int _direction) { this->mDirection = _direction; }
+    void SetTheta(int _theta) { this->mTheta = _theta; }
     void SetSpeed(int _speed) { this->mSpeed = _speed; }
 };
 
