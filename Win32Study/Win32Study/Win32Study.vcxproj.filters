@@ -20,7 +20,10 @@
     <Filter Include="Engine\03. Manager">
       <UniqueIdentifier>{85eba541-c7b3-48da-b768-4e57223929ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. GameObject">
+    <Filter Include="Engine\05. Scene">
+      <UniqueIdentifier>{21edaf92-3772-4f71-8af4-8d9a4fa6b0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{ef91879d-f291-4daf-8bf0-f32a11b13f61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -50,13 +53,22 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Engine\04. GameObject</Filter>
+      <Filter>Engine\04. Object</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>Engine\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Engine\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSceneStart.h">
+      <Filter>Engine\05. Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,10 +80,19 @@
       <Filter>Engine\02. Core</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Engine\04. GameObject</Filter>
+      <Filter>Engine\04. Object</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>Engine\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Engine\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneStart.cpp">
+      <Filter>Engine\05. Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
-HWND globalMainHWND;							// 메인 윈도우 핸들
+HWND gMainHWND;							// 메인 윈도우 핸들
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -45,7 +45,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	
 	// gameCore 초기화
-	if (FAILED(GameCore::GetInstance()->Init(globalMainHWND, POINT{1280, 720})))
+	if (FAILED(GameCore::GetInstance()->Init(gMainHWND, POINT{1280, 720})))
 	{
 		MessageBox(nullptr, L"Core Init Failed", L"ERROR", MB_OK);
 
@@ -125,16 +125,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
 	hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-	globalMainHWND = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+	gMainHWND = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-	if (!globalMainHWND)
+	if (!gMainHWND)
 	{
 		return FALSE;
 	}
 
-	ShowWindow(globalMainHWND, nCmdShow);
-	UpdateWindow(globalMainHWND);
+	ShowWindow(gMainHWND, nCmdShow);
+	UpdateWindow(gMainHWND);
 
 	return TRUE;
 }

@@ -3,20 +3,18 @@
 #include "GameObject.h"
 #include "TimeManager.h"
 #include "KeyManager.h"
+#include "SceneManager.h"
 
 GameCore::GameCore()
-	:mainHWND(nullptr), mainHDC(nullptr), mainResolution(),
-	bitMapHDC(nullptr), bitMap()
+	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
+	bitmapDC(nullptr), bitmap()
 {
-	Vector2f tmpLT(100,100), tmpRB(200, 200);
-	this->gameObject = new GameObject(tmpLT, tmpRB);
 }
 GameCore::~GameCore()
 {
-	ReleaseDC(this->mainHWND, this->mainHDC);
-	DeleteDC(this->bitMapHDC);
-	DeleteObject(this->bitMap);
-	delete this->gameObject;
+	ReleaseDC(this->mainHWND, this->mainDC);
+	DeleteDC(this->bitmapDC);
+	DeleteObject(this->bitmap);
 }
 
 int GameCore::Init(HWND _hwnd, POINT _resolution)
@@ -26,94 +24,46 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 	
 	// ---------------------- Set Window
 	RECT winRect = { 0, 0, this->mainResolution.x, this->mainResolution.y };
-	// 메뉴, 테두리 굵기를 포함한 값을 계산해서 winRect에 다시 돌려줌
+	// 메뉴, 테두리 굵기를 포함한 값을 계산해서 winRect에 return
 	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, true);
 	SetWindowPos(this->mainHWND, nullptr,
 		100, 100, winRect.right - winRect.left, winRect.bottom - winRect.top,
 		0);
 
 	// ---------------------- for Paint, Bring Main Device Context
-	this->mainHDC = GetDC(this->mainHWND);
+	this->mainDC = GetDC(this->mainHWND);
 
 	// ---------------------- for Double Buffering
-	this->bitMap = CreateCompatibleBitmap(this->mainHDC, this->mainResolution.x, this->mainResolution.y);
-	this->bitMapHDC = CreateCompatibleDC(this->mainHDC);
+	this->bitmap = CreateCompatibleBitmap(this->mainDC, this->mainResolution.x, this->mainResolution.y);
+	this->bitmapDC = CreateCompatibleDC(this->mainDC);
 
-	HBITMAP prevBitMap = (HBITMAP)SelectObject(this->bitMapHDC, this->bitMap);
+	HBITMAP prevBitMap = (HBITMAP)SelectObject(this->bitmapDC, this->bitmap);
 	DeleteObject(prevBitMap);
 
 	// ---------------------- Init Manager
 	TimeManager::GetInstance()->Init();
 	KeyManager::GetInstance()->Init();
+	SceneManager::GetInstance()->Init();
 
 	return S_OK;
-}
-void GameCore::Update()
-{
-	// 키보드
-	// 0x8000: 눌렸는지 확인
-	Vector2f movePos = this->gameObject->GetPos();
-
-	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_LEFT)
-		== KEY_STATE::KEY_STATE_HOLD)
-	{
-		movePos.x -= 100.0f * (float)DELTA_TIME;
-	}
-
-	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_RIGHT)
-		== KEY_STATE::KEY_STATE_HOLD)
-	{
-		movePos.x += 100.0f * (float)DELTA_TIME;
-	}
-
-	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_UP)
-		== KEY_STATE::KEY_STATE_DOWN)
-	{
-		movePos.y -= 20.0f;
-	}
-
-	if (KeyManager::GetInstance()->GetKeyState(KEY::KEY_DOWN)
-		== KEY_STATE::KEY_STATE_HOLD)
-	{
-		movePos.y += 100.0f * (float)DELTA_TIME;
-	}
-	gameObject->SetPos(movePos);
-}
-void GameCore::Render()
-{
-	// ----------------------Refresh
-	Rectangle(this->bitMapHDC, -1, -1, this->mainResolution.x + 1, this->mainResolution.y + 1);
-	
-	// ----------------------Draw
-	// Map
-	Rectangle(this->bitMapHDC,
-		0,
-		this->mainResolution.y-100,
-		this->mainResolution.x,
-		this->mainResolution.y);
-	// Player
-	Rectangle(this->bitMapHDC,
-		(int)(this->gameObject->GetPos().x - this->gameObject->GetScale().x),
-		(int)(this->gameObject->GetPos().y - this->gameObject->GetScale().y),
-		(int)(this->gameObject->GetPos().x + this->gameObject->GetScale().x),
-		(int)(this->gameObject->GetPos().y + this->gameObject->GetScale().y));
-
-	// Monster
-	// ----------------------Copy to MainWindow
-	BitBlt(this->mainHDC, 0, 0, this->mainResolution.x, this->mainResolution.y
-	, this->bitMapHDC, 0, 0, SRCCOPY);
 }
 
 void GameCore::Progress()
 {
-	// Manager Update
+	// ====================== Manager Update
 	TimeManager::GetInstance()->Update();
 	KeyManager::GetInstance()->Update();
+	SceneManager::GetInstance()->Update();
 
-	// update
-	Update();
+	// ====================== Render
+	// ---------------------- Refresh
+	Rectangle(this->bitmapDC, -1, -1, this->mainResolution.x + 1, this->mainResolution.y + 1);
 
-	// render
-	Render();
+	// ---------------------- Draw
+	SceneManager::GetInstance()->Render(this->bitmapDC);
+
+	// ---------------------- Copy to MainWindow
+	BitBlt(this->mainDC, 0, 0, this->mainResolution.x, this->mainResolution.y
+		, this->bitmapDC, 0, 0, SRCCOPY);
 
 }

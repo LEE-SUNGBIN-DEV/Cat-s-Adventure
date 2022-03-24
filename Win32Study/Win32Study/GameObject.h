@@ -11,6 +11,10 @@ public:
 	// »ý¼ºÀÚ
 	GameObject();
 	GameObject(Vector2f _ltPos, Vector2f _rbPos);
+	virtual ~GameObject();
+
+	void Update();
+	void Render(HDC _bitmapDC);
 
 	// get
 	Vector2f GetPos() { return this->pos; }

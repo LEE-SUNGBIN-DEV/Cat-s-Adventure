@@ -9,17 +9,14 @@ class GameObject;
 class GameCore
 {
 private:
+	// main
 	HWND mainHWND;
-	HDC mainHDC;
+	HDC mainDC;
 	POINT mainResolution;
 
-	HDC bitMapHDC;
-	HBITMAP bitMap;
-
-	GameObject* gameObject;
-
-	void Update();
-	void Render();
+	// bitmap
+	HDC bitmapDC;
+	HBITMAP bitmap;
 
 	GameCore();
 	~GameCore();
@@ -31,6 +28,7 @@ public:
 		static GameCore manager;
 		return &manager;
 	}
+
 	int Init(HWND _hwnd, POINT _resolution);
 	void Progress();
 
