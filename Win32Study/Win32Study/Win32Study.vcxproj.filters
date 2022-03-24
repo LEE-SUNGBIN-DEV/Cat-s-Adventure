@@ -70,12 +70,17 @@
     <ClInclude Include="GameSceneStart.h">
       <Filter>Engine\05. Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
       <Filter>Engine\03. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Win32Study.cpp" />
     <ClCompile Include="GameCore.cpp">
       <Filter>Engine\02. Core</Filter>
     </ClCompile>
@@ -93,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="GameSceneStart.cpp">
       <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Study.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

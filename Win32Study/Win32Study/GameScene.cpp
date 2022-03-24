@@ -10,9 +10,9 @@ GameScene::~GameScene()
 {
 	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
 	{
-		for (size_t j = 0; j < this->gameObjectList[i].size(); ++j)
+		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
-			delete this->gameObjectList[i][j];
+			delete this->mGameObjectList[i][j];
 		}
 	}
 }
@@ -21,9 +21,9 @@ void GameScene::Update()
 {
 	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
 	{
-		for (size_t j = 0; j < this->gameObjectList[i].size(); ++j)
+		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
-			this->gameObjectList[i][j]->Update();
+			this->mGameObjectList[i][j]->Update();
 		}
 	}
 }
@@ -32,9 +32,9 @@ void GameScene::Render(HDC _bitmapDC)
 {
 	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
 	{
-		for (size_t j = 0; j < this->gameObjectList[i].size(); ++j)
+		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
-			this->gameObjectList[i][j]->Render(_bitmapDC);
+			this->mGameObjectList[i][j]->Render(_bitmapDC);
 		}
 	}
 }

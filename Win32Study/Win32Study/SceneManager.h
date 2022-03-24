@@ -4,8 +4,8 @@ class GameScene;
 class SceneManager
 {
 private:
-	GameScene* gameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_SIZE];
-	GameScene* curScene;
+	GameScene* mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_SIZE];
+	GameScene* mCurrentScene;
 
 	SceneManager();
 	~SceneManager();

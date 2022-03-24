@@ -2,7 +2,6 @@
 #include "KeyManager.h"
 #include "GameCore.h"
 
-
 int mappingVK[(int)KEY::KEY_SIZE] =
 {
 	VK_LEFT,	// KEY_LEFT

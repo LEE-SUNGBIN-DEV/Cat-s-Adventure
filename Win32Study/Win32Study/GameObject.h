@@ -4,24 +4,24 @@
 class GameObject
 {
 private:
-	Vector2f pos;
-	Vector2f scale;
+	Vector2f mPosition;
+	Vector2f mScale;
 
 public:
 	// »ý¼ºÀÚ
 	GameObject();
-	GameObject(Vector2f _ltPos, Vector2f _rbPos);
+	GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition);
 	virtual ~GameObject();
 
-	void Update();
-	void Render(HDC _bitmapDC);
+	virtual void Update() = 0;
+	virtual void Render(HDC _bitmapDC) = 0;
 
 	// get
-	Vector2f GetPos() { return this->pos; }
-	Vector2f GetScale() { return this->scale; }
+	Vector2f GetPos() { return this->mPosition; }
+	Vector2f GetScale() { return this->mScale; }
 
 	// set
-	void SetPos(Vector2f _pos) { this->pos = _pos; return; }
-	void SetScale(Vector2f _scale) { this->scale = _scale;	return; }
+	void SetPos(Vector2f _position) { this->mPosition = _position; return; }
+	void SetScale(Vector2f _scale) { this->mScale = _scale;	return; }
 };
 

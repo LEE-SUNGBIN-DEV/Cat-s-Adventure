@@ -3,7 +3,7 @@
 #include "GameSceneStart.h"
 
 SceneManager::SceneManager()
-	:gameSceneList(), curScene(nullptr)
+	:mGameSceneList(), mCurrentScene(nullptr)
 {
 
 }
@@ -12,9 +12,9 @@ SceneManager::~SceneManager()
 {
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::SCENE_TYPE_SIZE; i++)
 	{
-		if (gameSceneList != nullptr)
+		if (mGameSceneList != nullptr)
 		{
-			delete gameSceneList[i];
+			delete mGameSceneList[i];
 		}
 	}
 }
@@ -22,20 +22,20 @@ SceneManager::~SceneManager()
 void SceneManager::Init()
 {
 	// Scene 생성
-	this->gameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START] = new GameSceneStart();
-	this->gameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START]->SetName(L"Start Scene");
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START] = new GameSceneStart();
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START]->SetName(L"Start Scene");
 	
 	// 현재 씬 저장
-	this->curScene = gameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START];
-	this->curScene->EnterScene();
+	this->mCurrentScene = mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START];
+	this->mCurrentScene->EnterScene();
 }
 
 void SceneManager::Update()
 {
-	this->curScene->Update();
+	this->mCurrentScene->Update();
 }
 
 void SceneManager::Render(HDC _bitmapDC)
 {
-	this->curScene->Render(_bitmapDC);
+	this->mCurrentScene->Render(_bitmapDC);
 }

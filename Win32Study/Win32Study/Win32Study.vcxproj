@@ -148,7 +148,9 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneStart.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="struct.h" />
@@ -162,6 +164,8 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneStart.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Win32Study.cpp" />

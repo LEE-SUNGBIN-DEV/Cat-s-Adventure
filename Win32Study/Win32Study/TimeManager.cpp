@@ -3,8 +3,8 @@
 #include "GameCore.h"
 
 TimeManager::TimeManager()
-	: curCount(), prevCount(), frequency(),
-	deltaTime(0.), accumulate(0.), callCount(0), FPS(0)
+	: mCurrentCount(), mPrevCount(), mFrequency(),
+	mDeltaTime(0.), mAccumulate(0.), mCallCount(0), mFPS(0)
 {
 }
 
@@ -15,34 +15,34 @@ TimeManager::~TimeManager()
 void TimeManager::Init()
 {
 	// 현재 카운트
-	QueryPerformanceCounter(&prevCount);
+	QueryPerformanceCounter(&mPrevCount);
 	// 초당 카운트 수
-	QueryPerformanceFrequency(&frequency);
+	QueryPerformanceFrequency(&mFrequency);
 }
 
 void TimeManager::Update()
 {
-	QueryPerformanceCounter(&curCount);
+	QueryPerformanceCounter(&mCurrentCount);
 	// 카운트 값의 차이
-	deltaTime = (double)(curCount.QuadPart - prevCount.QuadPart) / (double)frequency.QuadPart;
+	mDeltaTime = (double)(mCurrentCount.QuadPart - mPrevCount.QuadPart) / (double)mFrequency.QuadPart;
 
 	// 카운트 값 갱신
-	prevCount = curCount;
+	mPrevCount = mCurrentCount;
 
 	// update 함수 호출 횟수
-	++callCount;
+	++mCallCount;
 
 	// 단위 시간 누적
-	accumulate += deltaTime;
+	mAccumulate += mDeltaTime;
 
-	if (accumulate >= 1.)
+	if (mAccumulate >= 1.)
 	{
-		FPS = callCount;
-		accumulate = 0.;
-		callCount = 0;
+		mFPS = mCallCount;
+		mAccumulate = 0.;
+		mCallCount = 0;
 
 		wchar_t buffer[255] = {};
-		swprintf_s(buffer, L"FPS: %d, DT: %f", FPS, deltaTime);
+		swprintf_s(buffer, L"FPS: %d, DT: %f", mFPS, mDeltaTime);
 		SetWindowText(GameCore::GetInstance()->GetMainHWND(), buffer);
 	}
 }
