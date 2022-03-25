@@ -148,6 +148,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameResource.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneStart.h" />
     <ClInclude Include="KeyManager.h" />
@@ -158,8 +159,10 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Win32Study.h" />
   </ItemGroup>
@@ -167,6 +170,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameResource.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneStart.cpp" />
     <ClCompile Include="KeyManager.cpp" />
@@ -175,6 +179,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Win32Study.cpp" />
   </ItemGroup>

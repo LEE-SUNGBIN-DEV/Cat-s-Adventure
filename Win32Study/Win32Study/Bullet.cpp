@@ -16,8 +16,8 @@ void Bullet::Update()
 
 	Vector2f projectilePosition = GetPosition();
 
-	projectilePosition.x += cosf(this->GetTheta()) * this->GetSpeed() * (float)DELTA_TIME;
-	projectilePosition.y -= sinf(this->GetTheta()) * this->GetSpeed() * (float)DELTA_TIME;
+	projectilePosition.x += this->GetDirection().x * this->GetSpeed() * (float)DELTA_TIME;
+	projectilePosition.y -= this->GetDirection().y * this->GetSpeed() * (float)DELTA_TIME;
 
 	SetPosition(projectilePosition);
 }

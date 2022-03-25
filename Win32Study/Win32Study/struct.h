@@ -23,4 +23,21 @@ struct Vector2f
 		: x((float)_point.x), y((float)_point.y)
 	{
 	}
+
+	float Length()
+	{
+		return sqrt(float(this->x * this->x + this->y * this->y));
+	}
+
+	Vector2f& Normalize()
+	{
+		float length = this->Length();
+
+		assert(length != 0.f);
+
+		this->x /= length;
+		this->y /= length;
+
+		return *this;
+	}
 };

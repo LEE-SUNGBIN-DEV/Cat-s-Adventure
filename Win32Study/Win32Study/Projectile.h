@@ -5,8 +5,9 @@ class Projectile :
 {
 private:
     float mTheta;
-
     float mSpeed;
+
+    Vector2f mDirection;
 
 public:
     Projectile();
@@ -17,10 +18,12 @@ public:
 
     // get
     float GetTheta() { return this->mTheta; }
-    int GetSpeed() { return this->mSpeed; }
+    float GetSpeed() { return this->mSpeed; }
+    Vector2f GetDirection() { return this->mDirection; }
 
     // set
     void SetTheta(int _theta) { this->mTheta = _theta; }
     void SetSpeed(int _speed) { this->mSpeed = _speed; }
+    void SetDirection(Vector2f _direction);
 };
 

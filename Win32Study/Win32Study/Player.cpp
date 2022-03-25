@@ -67,6 +67,7 @@ void Player::CreateBullet()
 	bullet->SetScale(Vector2f(20.0f, 20.0f));
 	bullet->SetSpeed(400.f);
 	bullet->SetTheta(0);
+	bullet->SetDirection(Vector2f(1.f, 0.f));
 
 	GameScene* currentScene = SceneManager::GetInstance()->GetCurrentScene();
 	currentScene->AddGameObject(bullet, OBJECT_TYPE::OBJECT_TYPE_PROJECTILE);
