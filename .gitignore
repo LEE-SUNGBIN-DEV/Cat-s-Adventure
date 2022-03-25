@@ -31,5 +31,7 @@
 *.out
 *.app
 *.ipch
-Win32Study/.vs/
-Win32Study/CatsAdventure/x64/
+CatsAdventure/.vs/
+CatsAdventure/CatsAdventure/x64/
+CatsAdventure/CatsAdventure/Debug/
+CatsAdventure/Output/BinaryDebug
