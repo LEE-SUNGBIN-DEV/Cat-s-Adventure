@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\VisualProject\CatsAdventure\Win32Study\Output\BinaryDebug\CatsAdventure.exe</FullPath>
+      <FullPath>D:\VisualProject\CatsAdventure\CatsAdventure\Output\BinaryDebug\CatsAdventure.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

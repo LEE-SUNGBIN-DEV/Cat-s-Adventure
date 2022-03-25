@@ -3,6 +3,7 @@
 #include "GameObject.h"
 
 GameScene::GameScene()
+	:mTexture(nullptr)
 {
 
 }
@@ -24,6 +25,17 @@ void GameScene::Update()
 		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
 			this->mGameObjectList[i][j]->Update();
+		}
+	}
+}
+
+void GameScene::LateUpdate()
+{
+	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
+	{
+		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
+		{
+			this->mGameObjectList[i][j]->LateUpdate();
 		}
 	}
 }

@@ -5,15 +5,17 @@
 #include "Texture.h"
 
 Monster::Monster()
-	:mSpeed(100.f),
+	:mSpeed(100.f), mHP(100),
 	mOriginalPosition(Vector2f(900.f, 0.f)),
 	mPatrolDistance(300.f),
 	mMoveDirection(1),
 	mReturnOriginalPosition(false)
 {
 	// Load Texture
-	this->mTexture
-		= ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse.bmp");
+	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
+
+	// Create Collider
+	this->CreateCollider();
 }
 Monster::~Monster()
 {
@@ -43,8 +45,8 @@ void Monster::Update()
 
 void Monster::Render(HDC _bitmapDC)
 {
-	int width = (int)this->mTexture->GetBitmapInfoWidth();
-	int height = (int)this->mTexture->GetBitmapInfoHeight();
+	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
+	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
 
 	// 특정 색상 제외하고 복사
@@ -52,7 +54,7 @@ void Monster::Render(HDC _bitmapDC)
 		int(position.x - width / 2),
 		int(position.y - width / 2),
 		width, height,
-		mTexture->GetDC(),
+		GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);

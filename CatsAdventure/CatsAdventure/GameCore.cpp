@@ -8,14 +8,21 @@
 
 GameCore::GameCore()
 	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
-	bitmapDC(nullptr), bitmap()
+	bitmapDC(nullptr), bitmap(),
+	mBrushType{}, mPenType{}
 {
+	this->CreateBrushAndPen();
 }
 GameCore::~GameCore()
 {
 	ReleaseDC(this->mainHWND, this->mainDC);
 	DeleteDC(this->bitmapDC);
 	DeleteObject(this->bitmap);
+
+	for (UINT i = 0; i < (UINT)PEN_TYPE::PEN_TYPE_SIZE; i++)
+	{
+		delete mPenType[i];
+	}
 }
 
 int GameCore::Init(HWND _hwnd, POINT _resolution)
@@ -40,6 +47,7 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 
 	HBITMAP prevBitMap = (HBITMAP)SelectObject(this->bitmapDC, this->bitmap);
 	DeleteObject(prevBitMap);
+
 
 	// ---------------------- Init Manager
 	PathManager::GetInstance()->Init();
@@ -68,4 +76,13 @@ void GameCore::Progress()
 	BitBlt(this->mainDC, 0, 0, this->mainResolution.x, this->mainResolution.y
 		, this->bitmapDC, 0, 0, SRCCOPY);
 
+}
+
+void GameCore::CreateBrushAndPen()
+{
+	mBrushType[(UINT)BRUSH_TYPE::BRUSH_TYPE_HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	
+	mPenType[(UINT)PEN_TYPE::PEN_TYPE_RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	mPenType[(UINT)PEN_TYPE::PEN_TYPE_GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	mPenType[(UINT)PEN_TYPE::PEN_TYPE_BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 }

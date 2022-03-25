@@ -34,3 +34,19 @@ enum class SCENE_TYPE
 
 	SCENE_TYPE_SIZE
 };
+
+enum class BRUSH_TYPE
+{
+	BRUSH_TYPE_HOLLOW,
+
+	BRUSH_TYPE_SIZE
+};
+
+enum class PEN_TYPE
+{
+	PEN_TYPE_RED,
+	PEN_TYPE_GREEN,
+	PEN_TYPE_BLUE,
+
+	PEN_TYPE_SIZE
+};

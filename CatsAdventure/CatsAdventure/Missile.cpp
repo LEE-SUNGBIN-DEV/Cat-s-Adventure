@@ -1,10 +1,17 @@
 #include "pch.h"
 #include "Missile.h"
 #include "TimeManager.h"
+#include "ResourceManager.h"
+#include "Texture.h"
 
 Missile::Missile()
-	: mDamage(1)
+	: mDamage(10)
 {
+	// Load Texture
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SHARK_MISSILE", L"\\texture\\sharkMissile_right.bmp"));
+	
+	// Create Collider
+	this->CreateCollider();
 }
 
 Missile::~Missile()
@@ -23,4 +30,17 @@ void Missile::Update()
 
 void Missile::Render(HDC _bitmapDC)
 {
+	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
+	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
+	Vector2f position = GetPosition();
+
+	// 특정 색상 제외하고 복사
+	TransparentBlt(_bitmapDC,
+		int(position.x - width / 2),
+		int(position.y - width / 2),
+		width, height,
+		this->GetTexture()->GetDC(),
+		0, 0, width, height,
+		RGB(255, 0, 255)
+	);
 }

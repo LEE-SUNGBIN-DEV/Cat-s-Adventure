@@ -6,15 +6,15 @@ class Monster :
 	public GameObject
 {
 private:
+	int mHP;
+	int mMoveDirection;
+
 	float mSpeed;
 	float mPatrolDistance;
 	
-	int mMoveDirection;
-
 	bool mReturnOriginalPosition;
 
 	Vector2f mOriginalPosition;
-	Texture* mTexture;
 
 public:
 	Monster();
@@ -24,11 +24,13 @@ public:
 	virtual void Render(HDC _bitmapDC);
 
 	// get
+	int GetHP() { return this->mHP; }
 	float GetSpeed() { return this->mSpeed; }
 	float GetPatrolDistance() { return this->mPatrolDistance; }
 	int GetMoveDirection() { return this->mMoveDirection; }
 
 	// set
+	void SetHP(int _hp) { this->mHP = _hp; };
 	void SetSpeed(float _speed) { this->mSpeed = _speed; }
 	void SetMoveDirection(int _moveDirection) { this->mMoveDirection = _moveDirection; }
 	void SetOriginalPosition(Vector2f _originalPosition) { this->mOriginalPosition = _originalPosition; }

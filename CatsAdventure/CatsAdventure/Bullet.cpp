@@ -8,8 +8,10 @@ Bullet::Bullet()
 	: mDamage(1)
 {
 	// Load Texture
-	this->mTexture
-		= ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet.bmp");
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
+	
+	// Create Collider
+	this->CreateCollider();
 }
 
 Bullet::~Bullet()
@@ -29,8 +31,8 @@ void Bullet::Update()
 
 void Bullet::Render(HDC _bitmapDC)
 {
-	int width = (int)this->mTexture->GetBitmapInfoWidth();
-	int height = (int)this->mTexture->GetBitmapInfoHeight();
+	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
+	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
 
 	// 특정 색상 제외하고 복사
@@ -38,7 +40,7 @@ void Bullet::Render(HDC _bitmapDC)
 		int(position.x - width / 2),
 		int(position.y - width / 2),
 		width, height,
-		mTexture->GetDC(),
+		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);

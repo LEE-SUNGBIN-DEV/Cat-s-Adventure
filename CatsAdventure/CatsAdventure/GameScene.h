@@ -21,6 +21,7 @@ public:
 	virtual void ExitScene() = 0;
 
 	void Update();
+	void LateUpdate();
 	virtual void Render(HDC _bitmapDC);
 
 	void AddGameObject(GameObject* _gameObject, OBJECT_TYPE _objectType)

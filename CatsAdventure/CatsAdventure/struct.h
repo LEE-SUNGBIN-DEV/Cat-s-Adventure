@@ -26,7 +26,7 @@ struct Vector2f
 
 	float Length()
 	{
-		return (float)sqrt(float(this->x * this->x + this->y * this->y));
+		return (float)sqrt((float)this->x * (float)this->x + (float)this->y * (float)this->y);
 	}
 
 	Vector2f& Normalize()
@@ -39,5 +39,29 @@ struct Vector2f
 		this->y /= length;
 
 		return *this;
+	}
+
+	Vector2f& operator = (POINT _point)
+	{
+		this->x = (float)_point.x;
+		this->y = (float)_point.y;
+	}
+
+	Vector2f operator + (Vector2f _vector)
+	{
+		return Vector2f(this->x + _vector.x, this->y + _vector.y);
+	}
+	Vector2f operator - (Vector2f _vector)
+	{
+		return Vector2f(this->x - _vector.x, this->y - _vector.y);
+	}
+	Vector2f operator * (Vector2f _vector)
+	{
+		return Vector2f(this->x * _vector.x, this->y * _vector.y);
+	}
+	Vector2f operator / (Vector2f _vector)
+	{
+		assert (_vector.x == 0.f || _vector.y == 0.f);
+		return Vector2f(this->x / _vector.x, this->y / _vector.y);
 	}
 };

@@ -33,6 +33,7 @@ void SceneManager::Init()
 void SceneManager::Update()
 {
 	this->mCurrentScene->Update();
+	this->mCurrentScene->LateUpdate();
 }
 
 void SceneManager::Render(HDC _bitmapDC)

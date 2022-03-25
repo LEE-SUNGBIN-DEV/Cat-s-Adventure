@@ -1,14 +1,11 @@
 #pragma once
 #include "Projectile.h"
 
-class Texture;
-
 class Bullet :
     public Projectile
 {
 private:
     int mDamage;
-    Texture* mTexture;
 
 public:
     Bullet();
