@@ -9,9 +9,9 @@
 #define IDD_ABOUTBOX			103
 #define IDM_ABOUT				104
 #define IDM_EXIT				105
-#define IDI_WIN32STUDY			107
+#define IDI_WINMAIN				107
 #define IDI_SMALL				108
-#define IDC_WIN32STUDY			109
+#define IDC_WINMAIN				109
 #define IDC_MYICON				2
 #ifndef IDC_STATIC
 #define IDC_STATIC				-1

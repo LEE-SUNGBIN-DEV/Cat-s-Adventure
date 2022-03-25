@@ -6,9 +6,13 @@
 #include "Monster.h"
 #include "Texture.h"
 #include "PathManager.h"
+#include "ResourceManager.h"
+#include "Texture.h"
 
 GameSceneStart::GameSceneStart()
 {
+	// Load Texture
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"BACKGROUND", L"\\texture\\background.bmp"));
 
 }
 GameSceneStart::~GameSceneStart()
@@ -43,11 +47,21 @@ void GameSceneStart::ExitScene()
 {
 }
 
-void Render()
+void GameSceneStart::Render(HDC _bitmapDC)
 {
-	BitBlt(this->bitmapDC,
-		-1, -1,
+	Texture* texture = GetTexture();
+
+	int width = texture->GetBitmapInfoWidth();
+	int height = texture->GetBitmapInfoHeight();
+
+	// 특정 색상 제외하고 복사
+	BitBlt(_bitmapDC,
+		0, 0,
 		width, height,
-		mTexture->GetDC(),
-		0, 0, SRCCOPY);
+		texture->GetDC(),
+		0, 0,
+		SRCCOPY);
+
+	// 오브젝트
+	GameScene::Render(_bitmapDC);
 }

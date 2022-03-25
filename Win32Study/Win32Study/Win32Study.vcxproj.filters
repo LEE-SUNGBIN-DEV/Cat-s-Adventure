@@ -61,7 +61,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="Win32Study.h">
+    <ClInclude Include="WinMain.h">
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
@@ -147,7 +147,7 @@
     <ClCompile Include="GameSceneStart.cpp">
       <Filter>Engine\05. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Win32Study.cpp">
+    <ClCompile Include="WinMain.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -182,7 +182,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Win32Study.rc">
+    <ResourceCompile Include="WinMain.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -190,7 +190,7 @@
     <Image Include="small.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="Win32Study.ico">
+    <Image Include="WinMain.ico">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

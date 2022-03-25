@@ -19,8 +19,6 @@ private:
 	HDC bitmapDC;
 	HBITMAP bitmap;
 
-	Texture* mTexture;
-
 	GameCore();
 	~GameCore();
 
