@@ -30,9 +30,6 @@
 *.exe
 *.out
 *.app
-Win32Study/.vs/Win32Study/v16/.suo
-Win32Study/.vs/Win32Study/v16/Browse.VC.db
-Win32Study/.vs/Win32Study/v16/Browse.VC.db-shm
-Win32Study/.vs/Win32Study/v16/Browse.VC.db-wal
-Win32Study/.vs/Win32Study/v16/Browse.VC.opendb
 *.ipch
+Win32Study/.vs/
+Win32Study/CatsAdventure/x64/
