@@ -4,6 +4,7 @@
 // 객체의 개수를 1개로 제한
 // 언제 어디서든 쉽게 접근 가능해야함
 
+class Texture;
 class GameObject;
 
 class GameCore
@@ -17,6 +18,8 @@ private:
 	// bitmap
 	HDC bitmapDC;
 	HBITMAP bitmap;
+
+	Texture* mTexture;
 
 	GameCore();
 	~GameCore();
@@ -34,6 +37,7 @@ public:
 
 	// get
 	HWND GetMainHWND() { return this->mainHWND; }
+	HDC GetMainDC() { return this->mainDC; }
 	POINT GetMainResolution() { return this->mainResolution; }
 };
 

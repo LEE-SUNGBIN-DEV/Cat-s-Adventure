@@ -22,8 +22,8 @@ public:
     Vector2f GetDirection() { return this->mDirection; }
 
     // set
-    void SetTheta(int _theta) { this->mTheta = _theta; }
-    void SetSpeed(int _speed) { this->mSpeed = _speed; }
+    void SetTheta(float _theta) { this->mTheta = _theta; }
+    void SetSpeed(float _speed) { this->mSpeed = _speed; }
     void SetDirection(Vector2f _direction);
 };
 

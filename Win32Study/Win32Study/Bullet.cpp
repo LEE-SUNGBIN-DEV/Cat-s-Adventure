@@ -1,10 +1,15 @@
 #include "pch.h"
 #include "Bullet.h"
 #include "TimeManager.h"
+#include "ResourceManager.h"
+#include "Texture.h"
 
 Bullet::Bullet()
 	: mDamage(1)
 {
+	// Load Texture
+	this->mTexture
+		= ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet.bmp");
 }
 
 Bullet::~Bullet()
@@ -24,9 +29,17 @@ void Bullet::Update()
 
 void Bullet::Render(HDC _bitmapDC)
 {
-	Ellipse(_bitmapDC,
-		this->GetPosition().x - this->GetScale().x,
-		this->GetPosition().y - this->GetScale().y,
-		this->GetPosition().x + this->GetScale().x,
-		this->GetPosition().y + this->GetScale().y);
+	int width = (int)this->mTexture->GetBitmapInfoWidth();
+	int height = (int)this->mTexture->GetBitmapInfoHeight();
+	Vector2f position = GetPosition();
+
+	// 특정 색상 제외하고 복사
+	TransparentBlt(_bitmapDC,
+		int(position.x - width / 2),
+		int(position.y - width / 2),
+		width, height,
+		mTexture->GetDC(),
+		0, 0, width, height,
+		RGB(255, 0, 255)
+	);
 }

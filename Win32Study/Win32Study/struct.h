@@ -26,7 +26,7 @@ struct Vector2f
 
 	float Length()
 	{
-		return sqrt(float(this->x * this->x + this->y * this->y));
+		return (float)sqrt(float(this->x * this->x + this->y * this->y));
 	}
 
 	Vector2f& Normalize()

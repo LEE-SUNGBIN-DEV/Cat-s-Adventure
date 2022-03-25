@@ -1,18 +1,31 @@
 #include "pch.h"
 #include "Player.h"
+
 #include "KeyManager.h"
+
 #include "TimeManager.h"
+
 #include "SceneManager.h"
 #include "GameScene.h"
+
+#include "ResourceManager.h"
+#include "PathManager.h"
+#include "Texture.h"
+
 #include "Bullet.h"
 
 Player::Player()
-	: mSpeed(100.f), mJumpHeight(20.f)
+	: mSpeed(100.f), mJumpHeight(20.f), mTexture(nullptr)
 {
+	// Load Texture
+	this->mTexture
+		= ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\player.bmp");
 }
 
 Player::~Player()
 {
+	if(this->mTexture != nullptr)
+		delete this->mTexture;
 }
 
 void Player::Update()
@@ -49,11 +62,19 @@ void Player::Update()
 
 void Player::Render(HDC _bitmapDC)
 {
-	Rectangle(_bitmapDC,
-		this->GetPosition().x - this->GetScale().x,
-		this->GetPosition().y - this->GetScale().y,
-		this->GetPosition().x + this->GetScale().x,
-		this->GetPosition().y + this->GetScale().y);
+	int width = (int)this->mTexture->GetBitmapInfoWidth();
+	int height = (int)this->mTexture->GetBitmapInfoHeight();
+	Vector2f position = GetPosition();
+
+	// 특정 색상 제외하고 복사
+	TransparentBlt(_bitmapDC,
+		int(position.x - width / 2),
+		int(position.y - width / 2),
+		width, height,
+		mTexture->GetDC(),
+		0, 0, width, height,
+		RGB(255, 0, 255)
+		);
 }
 
 void Player::CreateBullet()

@@ -4,11 +4,18 @@
 #include "TimeManager.h"
 #include "KeyManager.h"
 #include "SceneManager.h"
+#include "PathManager.h"
+#include "ResourceManager.h"
+#include "Texture.h"
 
 GameCore::GameCore()
 	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
 	bitmapDC(nullptr), bitmap()
 {
+	// Load Texture
+	this->mTexture
+		= ResourceManager::GetInstance()->LoadTexture(L"BACKGROUND", L"\\texture\\background.bmp");
+
 }
 GameCore::~GameCore()
 {
@@ -41,6 +48,7 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 	DeleteObject(prevBitMap);
 
 	// ---------------------- Init Manager
+	PathManager::GetInstance()->Init();
 	TimeManager::GetInstance()->Init();
 	KeyManager::GetInstance()->Init();
 	SceneManager::GetInstance()->Init();

@@ -11,7 +11,11 @@ using std::string;
 using std::wstring;
 #include <vector>
 using std::vector;
+#include <map>
+using std::map;
+using std::make_pair;
 
+#pragma comment(lib, "msimg32.lib")
 
 #include "define.h"
 #include "struct.h"

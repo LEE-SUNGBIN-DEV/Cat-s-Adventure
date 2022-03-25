@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Monster.h"
+#include "Texture.h"
+#include "PathManager.h"
 
 GameSceneStart::GameSceneStart()
 {
@@ -39,4 +41,13 @@ void GameSceneStart::EnterScene()
 
 void GameSceneStart::ExitScene()
 {
+}
+
+void Render()
+{
+	BitBlt(this->bitmapDC,
+		-1, -1,
+		width, height,
+		mTexture->GetDC(),
+		0, 0, SRCCOPY);
 }

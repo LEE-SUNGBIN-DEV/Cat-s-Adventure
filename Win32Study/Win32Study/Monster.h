@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+class Texture;
+
 class Monster :
 	public GameObject
 {
@@ -12,6 +14,8 @@ private:
 	bool mReturnOriginalPosition;
 
 	Vector2f mOriginalPosition;
+	Texture* mTexture;
+
 public:
 	Monster();
 	~Monster();

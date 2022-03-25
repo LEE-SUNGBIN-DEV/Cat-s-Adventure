@@ -118,6 +118,12 @@
     <ClInclude Include="Sound.h">
       <Filter>Engine\06. Resource\02. Sound</Filter>
     </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>Engine\03. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Engine\03. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -159,14 +165,20 @@
     <ClCompile Include="Missile.cpp">
       <Filter>Engine\04. Object\03. Projectile\02. Missile</Filter>
     </ClCompile>
-    <ClCompile Include="GameResource.cpp">
-      <Filter>Engine\06. Resource</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Engine\06. Resource\01. Texture</Filter>
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Engine\06. Resource\02. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>Engine\03. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameResource.cpp">
+      <Filter>Engine\06. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Engine\03. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

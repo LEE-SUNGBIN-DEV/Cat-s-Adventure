@@ -23,9 +23,4 @@ void Missile::Update()
 
 void Missile::Render(HDC _bitmapDC)
 {
-	Ellipse(_bitmapDC,
-		this->GetPosition().x - this->GetScale().x,
-		this->GetPosition().y - this->GetScale().y,
-		this->GetPosition().x + this->GetScale().x,
-		this->GetPosition().y + this->GetScale().y);
 }
