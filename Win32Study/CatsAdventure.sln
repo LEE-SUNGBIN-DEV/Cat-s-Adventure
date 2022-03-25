@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Study", "Win32Study\Win32Study.vcxproj", "{1F089559-7455-4AF9-919C-7C42E8DBF5B0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CatsAdventure", "CatsAdventure\CatsAdventure.vcxproj", "{1F089559-7455-4AF9-919C-7C42E8DBF5B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
