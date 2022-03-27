@@ -133,6 +133,12 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Engine\03. Game Manager</Filter>
     </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Engine\03. Game Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFunction.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -194,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Engine\03. Game Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Engine\03. Game Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFunction.cpp">
+      <Filter>Engine\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,10 +2,21 @@
 
 class Collider;
 
+union COLLIDER_ID
+{
+	struct
+	{
+		UINT mLeftID;
+		UINT mRightID;
+	};
+	ULONGLONG ID;
+};
+
 class CollisionManager
 {
 private:
-	UINT	mCollisionMatrix[(UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE];
+	map<ULONGLONG, bool>	mCollisionInfo;
+	UINT					mCollisionMatrix[(UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE];
 
 	CollisionManager();
 	~CollisionManager();
@@ -21,7 +32,7 @@ public:
 	void Update();
 	void ConnectCollisionMatrix(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB);
 	void ClearCollisionMatrix();
-	void GenerateCollision(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB);
+	void CheckCollisionCondition(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB);
 	bool IsCollision(Collider* _objectA, Collider* _objectB);
 };
 

@@ -17,6 +17,8 @@ public:
 	}
 
 	void Init();
+
+	// get
 	const wchar_t* GetContentPath() { return this->mContentPath; }
 };
 

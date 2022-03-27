@@ -24,7 +24,10 @@ void GameScene::Update()
 	{
 		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
-			this->mGameObjectList[i][j]->Update();
+			if (this->mGameObjectList[i][j]->GetIsAlive() == true)
+			{
+				this->mGameObjectList[i][j]->Update();
+			}
 		}
 	}
 }
@@ -44,9 +47,20 @@ void GameScene::Render(HDC _bitmapDC)
 {
 	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
 	{
-		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
+		vector<GameObject*>::iterator iter = this->mGameObjectList[i].begin();
+
+		for (; iter != this->mGameObjectList[i].end();)
 		{
-			this->mGameObjectList[i][j]->Render(_bitmapDC);
+			if ((*iter)->GetIsAlive())
+			{
+				(*iter)->Render(_bitmapDC);
+				++iter;
+			}
+
+			else
+			{
+				iter = this->mGameObjectList[i].erase(iter);
+			}
 		}
 	}
 }

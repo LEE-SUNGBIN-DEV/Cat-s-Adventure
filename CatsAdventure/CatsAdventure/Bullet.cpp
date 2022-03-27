@@ -4,10 +4,12 @@
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "Collider.h"
+#include "Monster.h"
 
 Bullet::Bullet()
-	: mDamage(1)
+	: mDamage(2)
 {
+	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	this->SetScale(Vector2f(20.f, 20.f));
 	this->SetSpeed(700.f);
 	// Load Texture
@@ -51,4 +53,26 @@ void Bullet::Render(HDC _bitmapDC)
 	);
 
 	this->ComponentRender(_bitmapDC);
+}
+
+void Bullet::OnCollision(Collider* _opponent)
+{
+}
+
+void Bullet::OnCollisionEnter(Collider* _opponent)
+{
+	switch (_opponent->GetOwner()->GetObjectType())
+	{
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
+	{
+		Monster* monster = (Monster*)_opponent->GetOwner();
+		monster->SetHP(monster->GetHP() - this->mDamage);
+		RemoveGameObject(this);
+	}
+	break;
+	}
+}
+
+void Bullet::OnCollisionExit(Collider* _opponent)
+{
 }

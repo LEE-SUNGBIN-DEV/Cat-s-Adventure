@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "PathManager.h"
 #include "CollisionManager.h"
+#include "EventManager.h"
 
 GameCore::GameCore()
 	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
@@ -64,22 +65,28 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 void GameCore::Progress()
 {
 	// ====================== Manager Update
+	// time
 	TimeManager::GetInstance()->Update();
+	// key
 	KeyManager::GetInstance()->Update();
+	// scene
 	SceneManager::GetInstance()->Update();
+	// collision
 	CollisionManager::GetInstance()->Update();
 
 	// ====================== Render
-	// ---------------------- Refresh
+	// Refresh
 	Rectangle(this->bitmapDC, -1, -1, this->mainResolution.x + 1, this->mainResolution.y + 1);
 
-	// ---------------------- Draw
+	// Draw
 	SceneManager::GetInstance()->Render(this->bitmapDC);
 
-	// ---------------------- Copy to MainWindow
+	// Copy to MainWindow
 	BitBlt(this->mainDC, 0, 0, this->mainResolution.x, this->mainResolution.y
 		, this->bitmapDC, 0, 0, SRCCOPY);
 
+	// ====================== Event Delay
+	EventManager::GetInstance()->Update();
 }
 
 void GameCore::CreateBrushAndPen()

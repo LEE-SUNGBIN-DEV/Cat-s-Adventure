@@ -33,15 +33,15 @@ public:
 		return &manager;
 	}
 
-	int Init(HWND _hwnd, POINT _resolution);
-	void Progress();
-	void CreateBrushAndPen();
+	int		Init(HWND _hwnd, POINT _resolution);
+	void	Progress();
+	void	CreateBrushAndPen();
 
 	// get
-	HWND GetMainHWND() { return this->mainHWND; }
-	HDC GetMainDC() { return this->mainDC; }
-	POINT GetMainResolution() { return this->mainResolution; }
-	HBRUSH GetBrush(BRUSH_TYPE _brushType) { return this->mBrushType[(UINT)_brushType]; }
-	HPEN GetPen(PEN_TYPE _penType) { return this->mPenType[(UINT)_penType]; }
+	HWND	GetMainHWND() { return this->mainHWND; }
+	HDC		GetMainDC() { return this->mainDC; }
+	POINT	GetMainResolution() { return this->mainResolution; }
+	HBRUSH	GetBrush(BRUSH_TYPE _brushType) { return this->mBrushType[(UINT)_brushType]; }
+	HPEN	GetPen(PEN_TYPE _penType) { return this->mPenType[(UINT)_penType]; }
 };
 

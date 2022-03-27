@@ -24,8 +24,9 @@ public:
 		static TimeManager manager;
 		return &manager;
 	}
-	void Init();
-	void Update();
+
+	void	Init();
+	void	Update();
 
 	// get
 	double GetDeltaTime() { return this->mDeltaTime; };

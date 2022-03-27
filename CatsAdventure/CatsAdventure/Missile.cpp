@@ -4,10 +4,12 @@
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "Collider.h"
+#include "Monster.h"
 
 Missile::Missile()
 	: mDamage(10)
 {
+	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	this->SetScale(Vector2f(30.f, 30.f));
 	this->SetSpeed(300.f);
 	// Load Texture
@@ -50,4 +52,26 @@ void Missile::Render(HDC _bitmapDC)
 	);
 
 	this->ComponentRender(_bitmapDC);
+}
+
+void Missile::OnCollision(Collider* _opponent)
+{
+}
+
+void Missile::OnCollisionEnter(Collider* _opponent)
+{
+	switch (_opponent->GetOwner()->GetObjectType())
+	{
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
+	{
+		Monster* monster = (Monster*)_opponent->GetOwner();
+		monster->SetHP(monster->GetHP() - this->mDamage);
+		RemoveGameObject(this);
+	}
+	break;
+	}
+}
+
+void Missile::OnCollisionExit(Collider* _opponent)
+{
 }

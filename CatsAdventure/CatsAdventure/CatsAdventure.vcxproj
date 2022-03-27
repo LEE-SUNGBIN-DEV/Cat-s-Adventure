@@ -155,9 +155,11 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameFunction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameResource.h" />
     <ClInclude Include="GameScene.h" />
@@ -183,7 +185,9 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameResource.cpp" />
     <ClCompile Include="GameScene.cpp" />

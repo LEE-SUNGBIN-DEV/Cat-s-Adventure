@@ -56,6 +56,7 @@ public:
 		static KeyManager manager;
 		return &manager;
 	}
+	
 	void Init();
 	void Update();
 

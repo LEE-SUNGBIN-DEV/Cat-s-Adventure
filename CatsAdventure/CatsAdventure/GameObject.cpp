@@ -6,7 +6,8 @@
 
 // »ý¼ºÀÚ
 GameObject::GameObject()
-	: mOffset(), mScale(),
+	: mObjectName{}, mObjectType(OBJECT_TYPE::OBJECT_TYPE_DEFALUT),
+	mOffset(), mScale(), mIsAlive(true),
 	mTexture(nullptr), mCollider(nullptr)
 {
 }
@@ -47,6 +48,18 @@ void GameObject::Render(HDC _bitmapDC)
 		int(position.y + this->GetScale().y));
 
 	this->ComponentRender(_bitmapDC);
+}
+
+void GameObject::OnCollision(Collider* _opponent)
+{
+}
+
+void GameObject::OnCollisionEnter(Collider* _opponent)
+{
+}
+
+void GameObject::OnCollisionExit(Collider* _opponent)
+{
 }
 
 void GameObject::ComponentRender(HDC _bitmapDC)

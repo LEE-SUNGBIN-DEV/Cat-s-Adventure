@@ -11,6 +11,12 @@ Collider::Collider()
 {
 }
 
+Collider::Collider(const Collider& _origin)
+	: mID(generateID++), mOwner(nullptr),
+	mPosition(_origin.mPosition), mOffset(_origin.mOffset), mScale(_origin.mScale)
+{
+}
+
 Collider::~Collider()
 {
 }
@@ -41,4 +47,19 @@ void Collider::Render(HDC _bitmapDC)
 
 	SelectObject(_bitmapDC, prevPen);
 	SelectObject(_bitmapDC, prevBrush);
+}
+
+void Collider::OnCollision(Collider* _opponent)
+{
+	this->mOwner->OnCollision(_opponent);
+}
+
+void Collider::OnCollisionEnter(Collider* _opponent)
+{
+	this->mOwner->OnCollisionEnter(_opponent);
+}
+
+void Collider::OnCollisionExit(Collider* _opponent)
+{
+	this->mOwner->OnCollisionExit(_opponent);
 }

@@ -6,13 +6,14 @@
 #include "Collider.h"
 
 Monster::Monster()
-	:mSpeed(100.f), mHP(100),
+	:mSpeed(100.f), mHP(20),
 	mOriginalPosition(Vector2f(900.f, 0.f)),
 	mPatrolDistance(300.f),
 	mMoveDirection(1),
 	mReturnOriginalPosition(false)
 {
-	this->SetScale(Vector2f(50.f,50.f));
+	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+	this->SetScale(Vector2f(30.f,30.f));
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
 
@@ -64,4 +65,16 @@ void Monster::Render(HDC _bitmapDC)
 	);
 
 	this->ComponentRender(_bitmapDC);
+}
+
+void Monster::OnCollision(Collider* _opponent)
+{
+}
+
+void Monster::OnCollisionEnter(Collider* _opponent)
+{
+}
+
+void Monster::OnCollisionExit(Collider* _opponent)
+{
 }

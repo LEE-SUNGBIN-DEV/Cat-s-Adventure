@@ -23,14 +23,25 @@ public:
 	virtual void Update();
 	virtual void Render(HDC _bitmapDC);
 
+	virtual void OnCollision(Collider* _opponent);
+	virtual void OnCollisionEnter(Collider* _opponent);
+	virtual void OnCollisionExit(Collider* _opponent);
+
 	// get
-	int GetHP() { return this->mHP; }
-	float GetSpeed() { return this->mSpeed; }
-	float GetPatrolDistance() { return this->mPatrolDistance; }
-	int GetMoveDirection() { return this->mMoveDirection; }
+	int		GetHP() { return this->mHP; }
+	int		GetMoveDirection() { return this->mMoveDirection; }
+	float	GetSpeed() { return this->mSpeed; }
+	float	GetPatrolDistance() { return this->mPatrolDistance; }
 
 	// set
-	void SetHP(int _hp) { this->mHP = _hp; };
+	void SetHP(int _hp)
+	{
+		this->mHP = _hp;
+		if (this->mHP <= 0)
+		{
+			RemoveGameObject(this);
+		}
+	};
 	void SetSpeed(float _speed) { this->mSpeed = _speed; }
 	void SetMoveDirection(int _moveDirection) { this->mMoveDirection = _moveDirection; }
 	void SetOriginalPosition(Vector2f _originalPosition) { this->mOriginalPosition = _originalPosition; }

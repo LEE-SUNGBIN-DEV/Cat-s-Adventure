@@ -2,9 +2,7 @@
 #include "Player.h"
 
 #include "KeyManager.h"
-
 #include "TimeManager.h"
-
 #include "SceneManager.h"
 #include "GameScene.h"
 
@@ -20,6 +18,7 @@
 Player::Player()
 	: mSpeed(200.f), mJumpHeight(20.f), mHP(100)
 {
+	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 	this->SetScale(playerScale);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\player_right.bmp"));
@@ -91,6 +90,18 @@ void Player::Render(HDC _bitmapDC)
 	this->ComponentRender(_bitmapDC);
 }
 
+void Player::OnCollision(Collider* _opponent)
+{
+}
+
+void Player::OnCollisionEnter(Collider* _opponent)
+{
+}
+
+void Player::OnCollisionExit(Collider* _opponent)
+{
+}
+
 void Player::CreateBullet()
 {
 	Bullet* bullet = new Bullet;
@@ -103,8 +114,7 @@ void Player::CreateBullet()
 	bullet->SetTheta(0);
 	bullet->SetDirection(Vector2f(1.f, 0.f));
 
-	GameScene* currentScene = SceneManager::GetInstance()->GetCurrentScene();
-	currentScene->AddGameObject(bullet, OBJECT_TYPE::OBJECT_TYPE_PROJECTILE);
+	CreateGameObject(bullet, OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 }
 
 void Player::CreateMissile()
@@ -119,6 +129,5 @@ void Player::CreateMissile()
 	missile->SetTheta(0);
 	missile->SetDirection(Vector2f(1.f, 0.f));
 
-	GameScene* currentScene = SceneManager::GetInstance()->GetCurrentScene();
-	currentScene->AddGameObject(missile, OBJECT_TYPE::OBJECT_TYPE_PROJECTILE);
+	CreateGameObject(missile, OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 }

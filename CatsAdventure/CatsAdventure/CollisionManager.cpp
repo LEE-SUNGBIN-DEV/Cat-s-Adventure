@@ -26,39 +26,104 @@ void CollisionManager::Update()
 		{
 			if (mCollisionMatrix[row] & (1 << col))
 			{
-				GenerateCollision((OBJECT_TYPE)row, (OBJECT_TYPE)col);
+				CheckCollisionCondition((OBJECT_TYPE)row, (OBJECT_TYPE)col);
 			}
 		}
 	}
 }
 
-void CollisionManager::GenerateCollision(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB)
+void CollisionManager::CheckCollisionCondition(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB)
 {
 	GameScene* currentScene = SceneManager::GetInstance()->GetCurrentScene();
 	
 	const vector<GameObject*>& objectTypeA = currentScene->GetGameObjectList(_objectTypeA);
 	const vector<GameObject*>& objectTypeB = currentScene->GetGameObjectList(_objectTypeB);
+	
+	COLLIDER_ID CombinationID;
+	map<ULONGLONG, bool>::iterator iter;
+	Collider* colliderA = nullptr;
+	Collider* colliderB = nullptr;
 
 	for (size_t i = 0; i < objectTypeA.size(); ++i)
 	{
+		colliderA = objectTypeA[i]->GetCollider();
 		// Collider를 보유하지 않은 경우
-		if (objectTypeA[i]->GetCollider() == nullptr)
+		if (colliderA == nullptr)
 		{
 			continue;
 		}
 
 		for (size_t j = 0; j < objectTypeB.size(); ++j)
 		{
-			// Collider를 보유하지 않은 경우, 자기 자신일 경우
-			if (objectTypeB[j]->GetCollider() == nullptr
+			colliderB = objectTypeB[j]->GetCollider();
+
+			// Collider를 보유하지 않은 경우, 혹은 자기 자신일 경우
+			if (colliderB == nullptr
 				|| objectTypeA[i] == objectTypeB[j])
 			{
 				continue;
 			}
 
-			if (this->IsCollision(objectTypeA[i]->GetCollider(), objectTypeB[j]->GetCollider()))
+			// Collider 간의 ID를 조합
+			CombinationID.mLeftID = colliderA->GetID();
+			CombinationID.mRightID = colliderB->GetID();
+			
+			iter = mCollisionInfo.find(CombinationID.ID);
+			
+			// First Collision, Add Info to Map
+			if (iter == mCollisionInfo.end())
 			{
+				mCollisionInfo.insert(make_pair(CombinationID.ID, false));
+				iter = mCollisionInfo.find(CombinationID.ID);
+			}
 
+			// Collision 발생
+			if (this->IsCollision(colliderA, colliderB))
+			{
+				// 이전 프레임에 Collision 발생
+				if (iter->second)
+				{
+					// 오브젝트가 Remove 상태일 경우
+					if (objectTypeA[i]->GetIsAlive() == false
+						|| objectTypeB[j]->GetIsAlive() == false)
+					{
+						colliderA->OnCollisionExit(colliderB);
+						colliderB->OnCollisionExit(colliderA);
+						iter->second = false;
+					}
+
+					else
+					{
+						colliderA->OnCollision(colliderB);
+						colliderB->OnCollision(colliderA);
+						iter->second = true;
+					}
+				}
+
+				// 이전 프레임에 Collision 발생하지 않음
+				else
+				{
+					if (objectTypeA[i]->GetIsAlive()
+						&& objectTypeB[j]->GetIsAlive())
+					{
+
+						colliderA->OnCollisionEnter(colliderB);
+						colliderB->OnCollisionEnter(colliderA);
+						iter->second = true;
+					}
+				}
+			}
+
+			// Collision 발생하지 않음
+			else
+			{
+				// 이전 프레임에 Collision 발생
+				if (iter->second)
+				{
+					colliderA->OnCollisionExit(colliderB);
+					colliderB->OnCollisionExit(colliderA);
+					iter->second = false;
+				}
 			}
 		}
 	}
@@ -67,8 +132,21 @@ void CollisionManager::GenerateCollision(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _
 
 bool CollisionManager::IsCollision(Collider* _objectA, Collider* _objectB)
 {
+	Vector2f positionA = _objectA->GetPosition();
+	Vector2f positionB = _objectB->GetPosition();
+	Vector2f scaleA = _objectA->GetScale();
+	Vector2f scaleB = _objectB->GetScale();
 
-	return false;
+	if (abs(positionA.x - positionB.x) < abs(scaleA.x + scaleB.x)
+		&& abs(positionA.y - positionB.y) < abs(scaleA.y + scaleB.y))
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
 }
 
 void CollisionManager::ConnectCollisionMatrix(OBJECT_TYPE _objectTypeA, OBJECT_TYPE _objectTypeB)

@@ -16,16 +16,23 @@ private:
 
 public:
 	Collider();
+	Collider(const Collider& _origin);
 	~Collider();
+	Collider& operator = (Collider& _origin) = delete;
 
 	void LateUpdate();
 	void Render(HDC _bitmapDC);
 
+	void OnCollision(Collider* _opponent);
+	void OnCollisionEnter(Collider* _opponent);
+	void OnCollisionExit(Collider* _opponent);
+
 	// get
-	GameObject* GetOwner() { return this->mOwner; }
-	Vector2f GetPosition() { return this->mPosition; }
-	Vector2f GetOffset() { return this->mOffset; }
-	Vector2f GetScale() { return this->mScale; }
+	GameObject*	GetOwner() { return this->mOwner; }
+	Vector2f	GetPosition() { return this->mPosition; }
+	Vector2f	GetOffset() { return this->mOffset; }
+	Vector2f	GetScale() { return this->mScale; }
+	UINT		GetID() { return this->mID; }
 
 	// set
 	void SetOwner(GameObject* _owner) { this->mOwner = _owner; }
