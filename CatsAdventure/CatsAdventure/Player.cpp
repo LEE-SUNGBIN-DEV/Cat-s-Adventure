@@ -18,7 +18,7 @@
 #include "Collider.h"
 
 Player::Player()
-	: mSpeed(100.f), mJumpHeight(20.f), mHP(100)
+	: mSpeed(200.f), mJumpHeight(20.f), mHP(100)
 {
 	this->SetScale(playerScale);
 	// Load Texture
@@ -100,7 +100,6 @@ void Player::CreateBullet()
 
 	bullet->SetPosition(bulletPosition);
 	bullet->SetScale(Vector2f(20.0f, 20.0f));
-	bullet->SetSpeed(500.f);
 	bullet->SetTheta(0);
 	bullet->SetDirection(Vector2f(1.f, 0.f));
 
@@ -117,7 +116,6 @@ void Player::CreateMissile()
 
 	missile->SetPosition(bulletPosition);
 	missile->SetScale(Vector2f(20.0f, 20.0f));
-	missile->SetSpeed(300.f);
 	missile->SetTheta(0);
 	missile->SetDirection(Vector2f(1.f, 0.f));
 

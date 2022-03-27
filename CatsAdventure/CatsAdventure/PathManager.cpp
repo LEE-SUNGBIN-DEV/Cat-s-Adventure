@@ -15,7 +15,7 @@ void PathManager::Init()
 	// 현재 디렉토리
 	GetCurrentDirectory(255, mContentPath);
 
-	int CurrentDirectoryLength = wcslen(mContentPath);
+	int CurrentDirectoryLength = (int)wcslen(mContentPath);
 
 	// 상위 폴더로 이동
 	for (int i = CurrentDirectoryLength - 1; i >= 0; --i)

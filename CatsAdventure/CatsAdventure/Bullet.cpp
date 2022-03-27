@@ -3,15 +3,20 @@
 #include "TimeManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "Collider.h"
 
 Bullet::Bullet()
 	: mDamage(1)
 {
+	this->SetScale(Vector2f(20.f, 20.f));
+	this->SetSpeed(700.f);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
 	
 	// Create Collider
 	this->CreateCollider();
+	this->GetCollider()->SetPosition(this->GetPosition());
+	this->GetCollider()->SetScale(this->GetScale());
 }
 
 Bullet::~Bullet()
@@ -44,4 +49,6 @@ void Bullet::Render(HDC _bitmapDC)
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);
+
+	this->ComponentRender(_bitmapDC);
 }

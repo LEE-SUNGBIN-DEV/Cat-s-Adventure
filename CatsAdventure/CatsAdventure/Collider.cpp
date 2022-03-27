@@ -3,9 +3,11 @@
 #include "GameObject.h"
 #include "GameCore.h"
 
+UINT Collider::generateID = 0;
+
 Collider::Collider()
-	:mOwner(nullptr), mOffset(0.f, 0.f),
-	mPosition(0.f, 0.f), mScale(0.f, 0.f)
+	: mID(generateID++), mOwner(nullptr),
+	mPosition(0.f, 0.f), mOffset(0.f, 0.f), mScale(0.f, 0.f)
 {
 }
 
@@ -23,13 +25,13 @@ void Collider::LateUpdate()
 
 void Collider::Render(HDC _bitmapDC)
 {
-	HPEN redPen = GameCore::GetInstance()->GetPen(PEN_TYPE::PEN_TYPE_RED);
-	HPEN prevPen = (HPEN)SelectObject(_bitmapDC, redPen);
+	HPEN greenPen = GameCore::GetInstance()->GetPen(PEN_TYPE::PEN_TYPE_GREEN);
+	HPEN prevPen = (HPEN)SelectObject(_bitmapDC, greenPen);
 
 	HBRUSH hollowBrush = GameCore::GetInstance()->GetBrush(BRUSH_TYPE::BRUSH_TYPE_HOLLOW);
 	HBRUSH prevBrush = (HBRUSH)SelectObject(_bitmapDC, hollowBrush);
 
-	Vector2f position = GetPosition();
+	Vector2f position = this->GetPosition();
 
 	Rectangle(_bitmapDC,
 		int(position.x - mScale.x),

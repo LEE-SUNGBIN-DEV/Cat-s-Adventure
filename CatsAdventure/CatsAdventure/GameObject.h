@@ -7,14 +7,16 @@ class Collider;
 class GameObject
 {
 private:
-	Vector2f mOffset;
-	Vector2f mScale;
+	Vector2f	mOffset;
+	Vector2f	mScale;
 
-	Texture* mTexture;
-	Collider* mCollider;
+	// Texture
+	Texture*	mTexture;
+
+	// Component
+	Collider*	mCollider;
 
 public:
-	// »ý¼ºÀÚ
 	GameObject();
 	GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition);
 	virtual ~GameObject();

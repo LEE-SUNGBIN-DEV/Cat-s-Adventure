@@ -9,9 +9,9 @@ class Player :
 	public GameObject
 {
 private:
-	int mHP;
-	float mSpeed;
-	float mJumpHeight;
+	int		mHP;
+	float	mSpeed;
+	float	mJumpHeight;
 
 public:
 	Player();

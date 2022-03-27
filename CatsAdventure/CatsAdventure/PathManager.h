@@ -2,12 +2,13 @@
 class PathManager
 {
 private:
-	wchar_t mContentPath[255];
+	wchar_t	mContentPath[255];
 
 	PathManager();
 	~PathManager();
 
 public:
+	// Singleton
 	static PathManager* GetInstance()
 	{
 		static PathManager manager;

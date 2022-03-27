@@ -6,8 +6,8 @@ class Monster :
 	public GameObject
 {
 private:
-	int mHP;
-	int mMoveDirection;
+	int	mHP;
+	int	mMoveDirection;
 
 	float mSpeed;
 	float mPatrolDistance;

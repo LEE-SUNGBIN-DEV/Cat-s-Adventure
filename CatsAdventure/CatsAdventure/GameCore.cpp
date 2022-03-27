@@ -5,6 +5,7 @@
 #include "KeyManager.h"
 #include "SceneManager.h"
 #include "PathManager.h"
+#include "CollisionManager.h"
 
 GameCore::GameCore()
 	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
@@ -13,6 +14,7 @@ GameCore::GameCore()
 {
 	this->CreateBrushAndPen();
 }
+
 GameCore::~GameCore()
 {
 	ReleaseDC(this->mainHWND, this->mainDC);
@@ -54,6 +56,7 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 	TimeManager::GetInstance()->Init();
 	KeyManager::GetInstance()->Init();
 	SceneManager::GetInstance()->Init();
+	CollisionManager::GetInstance()->Init();
 
 	return S_OK;
 }
@@ -64,6 +67,7 @@ void GameCore::Progress()
 	TimeManager::GetInstance()->Update();
 	KeyManager::GetInstance()->Update();
 	SceneManager::GetInstance()->Update();
+	CollisionManager::GetInstance()->Update();
 
 	// ====================== Render
 	// ---------------------- Refresh

@@ -3,6 +3,7 @@
 #include "TimeManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "Collider.h"
 
 Monster::Monster()
 	:mSpeed(100.f), mHP(100),
@@ -11,11 +12,14 @@ Monster::Monster()
 	mMoveDirection(1),
 	mReturnOriginalPosition(false)
 {
+	this->SetScale(Vector2f(50.f,50.f));
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
 
 	// Create Collider
 	this->CreateCollider();
+	this->GetCollider()->SetPosition(this->GetPosition());
+	this->GetCollider()->SetScale(this->GetScale());
 }
 Monster::~Monster()
 {
@@ -58,4 +62,6 @@ void Monster::Render(HDC _bitmapDC)
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);
+
+	this->ComponentRender(_bitmapDC);
 }

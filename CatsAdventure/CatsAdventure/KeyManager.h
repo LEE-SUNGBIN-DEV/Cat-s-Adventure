@@ -44,13 +44,13 @@ class KeyManager
 
 	// 2. 다양한 상황에서 키 이벤트 처리
 private:
-	vector<KeyInfo> keyInfo;
+	vector<KeyInfo>	keyInfo;
 
 	KeyManager();
 	~KeyManager();
 
 public:
-	// 싱글톤
+	// Singleton
 	static KeyManager* GetInstance()
 	{
 		static KeyManager manager;

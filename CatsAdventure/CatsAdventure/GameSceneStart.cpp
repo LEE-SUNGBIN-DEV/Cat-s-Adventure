@@ -8,6 +8,7 @@
 #include "PathManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "CollisionManager.h"
 
 GameSceneStart::GameSceneStart()
 {
@@ -22,9 +23,6 @@ GameSceneStart::~GameSceneStart()
 
 void GameSceneStart::EnterScene()
 {
-	// 메인 해상도
-	Vector2f resolution = GameCore::GetInstance()->GetMainResolution();
-
 	// Player
 	GameObject* player = new Player;
 
@@ -40,11 +38,14 @@ void GameSceneStart::EnterScene()
 	monster->SetOriginalPosition(monster->GetPosition());
 	AddGameObject(monster, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
-	
+	// Collision Check
+	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PROJECTILE);
 }
 
 void GameSceneStart::ExitScene()
 {
+	CollisionManager::GetInstance()->ClearCollisionMatrix();
 }
 
 void GameSceneStart::Render(HDC _bitmapDC)
@@ -54,7 +55,7 @@ void GameSceneStart::Render(HDC _bitmapDC)
 	int width = texture->GetBitmapInfoWidth();
 	int height = texture->GetBitmapInfoHeight();
 
-	// 특정 색상 제외하고 복사
+	// 복사
 	BitBlt(_bitmapDC,
 		0, 0,
 		width, height,

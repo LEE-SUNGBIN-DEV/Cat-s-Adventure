@@ -4,13 +4,14 @@ class GameScene;
 class SceneManager
 {
 private:
-	GameScene* mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_SIZE];
-	GameScene* mCurrentScene;
+	GameScene*	mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_SIZE];
+	GameScene*	mCurrentScene;
 
 	SceneManager();
 	~SceneManager();
 
 public:
+	// Singleton
 	static SceneManager* GetInstance()
 	{
 		static SceneManager manager;

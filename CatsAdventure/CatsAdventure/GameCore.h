@@ -10,24 +10,23 @@ class GameObject;
 class GameCore
 {
 private:
-	GameCore();
-	~GameCore();
-
-	// main
+	// Main Window Infomation
 	HWND	mainHWND;
 	HDC		mainDC;
 	POINT	mainResolution;
 
-	// bitmap
+	// Bitmap Infromation
 	HDC		bitmapDC;
 	HBITMAP	bitmap;
 
-	// Brush&Pen
+	// Brush & Pen
 	HBRUSH	mBrushType[(UINT)BRUSH_TYPE::BRUSH_TYPE_SIZE];
 	HPEN	mPenType[(UINT)PEN_TYPE::PEN_TYPE_SIZE];
 
+	GameCore();
+	~GameCore();
 public:
-	// ½Ì±ÛÅæ
+	// Singleton
 	static GameCore* GetInstance()
 	{
 		static GameCore manager;
@@ -42,7 +41,6 @@ public:
 	HWND GetMainHWND() { return this->mainHWND; }
 	HDC GetMainDC() { return this->mainDC; }
 	POINT GetMainResolution() { return this->mainResolution; }
-	
 	HBRUSH GetBrush(BRUSH_TYPE _brushType) { return this->mBrushType[(UINT)_brushType]; }
 	HPEN GetPen(PEN_TYPE _penType) { return this->mPenType[(UINT)_penType]; }
 };

@@ -4,9 +4,9 @@ class Texture :
 	public GameResource
 {
 private:
-	HDC	mDC;
-	HBITMAP mBitmap;
-	BITMAP mBitmapInfo;
+	HDC		mDC;
+	HBITMAP	mBitmap;
+	BITMAP	mBitmapInfo;
 
 public:
 	Texture();

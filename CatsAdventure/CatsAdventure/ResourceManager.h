@@ -5,13 +5,13 @@ class Texture;
 class ResourceManager
 {
 private:
+	map<wstring, Texture*>	mMapTexture;
+
 	ResourceManager();
 	~ResourceManager();
 
-	map<wstring, Texture*> mMapTexture;
-
-
 public:
+	// Singleton
 	static ResourceManager* GetInstance()
 	{
 		static ResourceManager manager;

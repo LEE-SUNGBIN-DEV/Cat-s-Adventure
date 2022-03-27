@@ -3,15 +3,20 @@
 #include "TimeManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "Collider.h"
 
 Missile::Missile()
 	: mDamage(10)
 {
+	this->SetScale(Vector2f(30.f, 30.f));
+	this->SetSpeed(300.f);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SHARK_MISSILE", L"\\texture\\sharkMissile_right.bmp"));
 	
 	// Create Collider
 	this->CreateCollider();
+	this->GetCollider()->SetPosition(this->GetPosition());
+	this->GetCollider()->SetScale(this->GetScale());
 }
 
 Missile::~Missile()
@@ -43,4 +48,6 @@ void Missile::Render(HDC _bitmapDC)
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);
+
+	this->ComponentRender(_bitmapDC);
 }
