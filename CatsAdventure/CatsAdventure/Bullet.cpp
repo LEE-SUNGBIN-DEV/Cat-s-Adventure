@@ -11,7 +11,7 @@ Bullet::Bullet()
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	this->SetScale(Vector2f(20.f, 20.f));
-	this->SetSpeed(700.f);
+	this->SetSpeed(800.f);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
 	

@@ -5,9 +5,12 @@
 #include "Texture.h"
 #include "Collider.h"
 #include "Monster.h"
+#include "SceneManager.h"
+#include "GameScene.h"
 
 Missile::Missile()
-	: mDamage(10)
+	: mDamage(10), mMissileState(MISSILE_STATE_UP),
+	mUpHeight(0.f)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	this->SetScale(Vector2f(30.f, 30.f));
@@ -27,12 +30,40 @@ Missile::~Missile()
 
 void Missile::Update()
 {
-	Vector2f projectilePosition = GetPosition();
+	Vector2f updatePosition = this->GetPosition();
+	const vector<GameObject*>& gameObjectList = SceneManager::GetInstance()->GetCurrentScene()->GetGameObjectList(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
-	projectilePosition.x += this->GetDirection().x * this->GetSpeed() * (float)DELTA_TIME;
-	projectilePosition.y -= this->GetDirection().y * this->GetSpeed() * (float)DELTA_TIME;
+	if (this->mMissileState == MISSILE_STATE_UP)
+	{
+		this->mUpHeight += MISSILE_UP_SPEED * (float)DELTA_TIME;
+		updatePosition.y -= MISSILE_UP_SPEED * (float)DELTA_TIME;
 
-	SetPosition(projectilePosition);
+		if (this->mUpHeight >= MISSILE_UP_HEIGHT)
+		{
+			this->mUpHeight = 0.f;
+			this->mMissileState = MISSILE_STATE_GUIDED;
+		}
+	}
+
+	else if (this->mMissileState == MISSILE_STATE_GUIDED)
+	{
+		if (!gameObjectList.empty())
+		{
+			Vector2f targetPosition = gameObjectList[0]->GetPosition();
+			targetPosition = targetPosition - updatePosition;
+			this->SetDirection(targetPosition);
+		}
+		
+		else
+		{
+			this->SetDirection(Vector2f(1.f, 0.f));
+		}
+
+		updatePosition.x += this->GetDirection().x * MISSILE_GUIDED_SPEED * (float)DELTA_TIME;
+		updatePosition.y += this->GetDirection().y * MISSILE_GUIDED_SPEED * (float)DELTA_TIME;
+	}
+
+	SetPosition(updatePosition);
 }
 
 void Missile::Render(HDC _bitmapDC)

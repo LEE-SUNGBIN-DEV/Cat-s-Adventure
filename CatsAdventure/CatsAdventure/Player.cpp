@@ -16,7 +16,8 @@
 #include "Collider.h"
 
 Player::Player()
-	: mSpeed(200.f), mJumpHeight(20.f), mHP(100)
+	: mHP(100), mSpeed(200.f),
+	mJumpHeight(0.f), mIsJump(PLAYER_JUMP_NONE)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 	this->SetScale(playerScale);
@@ -41,6 +42,9 @@ void Player::Update()
 	// Player Move Position
 	Vector2f updatePosition = this->GetPosition();
 
+	// 점프 테스트 버전
+	JumpChecking(&updatePosition);
+
 	// Left
 	if (KEY_CHECK(KEY::KEY_LEFT, KEY_STATE::KEY_STATE_HOLD))
 	{
@@ -54,9 +58,12 @@ void Player::Update()
 	}
 
 	// Jump
-	if (KEY_CHECK(KEY::KEY_UP, KEY_STATE::KEY_STATE_DOWN))
+	if (KEY_CHECK(KEY::KEY_C, KEY_STATE::KEY_STATE_DOWN))
 	{
-		updatePosition.y -= mJumpHeight;
+		if (mIsJump == PLAYER_JUMP_NONE)
+		{
+			mIsJump = PLAYER_JUMP_PROGRESS;
+		}
 	}
 	this->SetPosition(updatePosition);
 
@@ -100,6 +107,32 @@ void Player::OnCollisionEnter(Collider* _opponent)
 
 void Player::OnCollisionExit(Collider* _opponent)
 {
+}
+
+void Player::JumpChecking(Vector2f* _updatePosition)
+{
+	if (this->mIsJump == PLAYER_JUMP_PROGRESS)
+	{
+		this->mJumpHeight += PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+		_updatePosition->y -= PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+
+		if (this->mJumpHeight >= PLAYER_JUMP_POWER)
+		{
+			this->mIsJump = 2;
+		}
+	}
+
+	else if (this->mIsJump == PLAYER_JUMP_FALL)
+	{
+		this->mJumpHeight -= PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+		_updatePosition->y += PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+
+		if (this->mJumpHeight <= 0)
+		{
+			this->mJumpHeight = 0;
+			this->mIsJump = PLAYER_JUMP_NONE;
+		}
+	}
 }
 
 void Player::CreateBullet()

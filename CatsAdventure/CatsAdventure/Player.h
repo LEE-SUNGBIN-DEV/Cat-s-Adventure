@@ -1,7 +1,16 @@
 #pragma once
 #include "GameObject.h"
 
+#define PLAYER_JUMP_POWER 100.f
+#define PLAYER_JUMP_SPEED 400.f
 const Vector2f playerScale = { 64.f, 64.f };
+
+enum
+{
+	PLAYER_JUMP_NONE,
+	PLAYER_JUMP_PROGRESS,
+	PLAYER_JUMP_FALL
+};
 
 class Texture;
 
@@ -12,6 +21,8 @@ private:
 	int		mHP;
 	float	mSpeed;
 	float	mJumpHeight;
+
+	int		mIsJump; // 0: 동작 없음, 1: 점프중, 2: 하강중
 
 public:
 	Player();
@@ -24,6 +35,7 @@ public:
 	virtual void OnCollisionEnter(Collider* _opponent);
 	virtual void OnCollisionExit(Collider* _opponent);
 
+	void JumpChecking(Vector2f* _updatePosition);
 	void CreateBullet();
 	void CreateMissile();
 
