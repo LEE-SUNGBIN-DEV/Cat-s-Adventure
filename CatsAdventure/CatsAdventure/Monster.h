@@ -27,6 +27,8 @@ public:
 	virtual void OnCollisionEnter(Collider* _opponent);
 	virtual void OnCollisionExit(Collider* _opponent);
 
+	virtual Monster* Clone() { return new Monster(*this); }
+
 	// get
 	int		GetHP() { return this->mHP; }
 	int		GetMoveDirection() { return this->mMoveDirection; }

@@ -35,6 +35,8 @@ public:
 	virtual void OnCollisionEnter(Collider* _opponent);
 	virtual void OnCollisionExit(Collider* _opponent);
 
+	virtual Player* Clone() { return new Player(*this); }
+
 	void JumpChecking(Vector2f* _updatePosition);
 	void CreateBullet();
 	void CreateMissile();

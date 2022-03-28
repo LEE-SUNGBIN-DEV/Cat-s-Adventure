@@ -22,9 +22,11 @@ private:
 
 	// EventManager 클래스를 통해서만 조작 가능
 	void SetIsAlive(bool _isAlive) { this->mIsAlive = _isAlive; }
+
 public:
 	GameObject();
 	GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition);
+	GameObject(const GameObject& _origin);
 	virtual ~GameObject();
 
 	virtual void LateUpdate() final;
@@ -37,6 +39,8 @@ public:
 
 	void ComponentRender(HDC _bitmapDC);
 	void CreateCollider();
+
+	virtual GameObject* Clone() = 0;
 
 	// get
 	Vector2f		GetPosition() { return this->mOffset; }

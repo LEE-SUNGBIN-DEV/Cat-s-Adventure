@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "GameSceneStart.h"
+#include "SceneStart.h"
 #include "SceneTool.h"
 
 SceneManager::SceneManager()
@@ -23,7 +23,7 @@ SceneManager::~SceneManager()
 void SceneManager::Init()
 {
 	// Scene »ý¼º
-	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START] = new GameSceneStart();
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START] = new SceneStart();
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START]->SetName(L"Start Scene");
 	
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL] = new SceneTool;

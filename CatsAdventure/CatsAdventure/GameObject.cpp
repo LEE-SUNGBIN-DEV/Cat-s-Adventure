@@ -21,6 +21,20 @@ GameObject::GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition)
 	this->mOffset.y = _LeftTopPosition.y + this->mScale.y;
 }
 
+// 복사 생성자
+GameObject::GameObject(const GameObject& _origin)
+	:mObjectType(_origin.mObjectType),
+	mObjectName(_origin.mObjectName),
+	mOffset(_origin.mOffset),
+	mScale(_origin.mScale),
+	mIsAlive(true),
+	mTexture(_origin.mTexture),
+	mCollider(nullptr)
+{
+	this->mCollider = new Collider(*_origin.mCollider);
+	this->mCollider->SetOwner(this);
+}
+
 GameObject::~GameObject()
 {
 	if (this->mCollider != nullptr)

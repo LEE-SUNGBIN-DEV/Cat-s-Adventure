@@ -53,6 +53,15 @@
     <Filter Include="Engine\07. Game Component">
       <UniqueIdentifier>{958c8084-14aa-464b-978e-11f33a14517e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\Mouse">
+      <UniqueIdentifier>{3b6a6641-d4e7-45fd-b34d-fbce91897392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\Spider">
+      <UniqueIdentifier>{c8a2e22c-2448-443a-9a60-76912cd5f87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\03. Projectile\03. Web">
+      <UniqueIdentifier>{9655f2c0-64ab-4faf-9b54-b95e7318712c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -92,9 +101,6 @@
       <Filter>Engine\03. Game Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSceneStart.h">
       <Filter>Engine\05. Game Scene</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -142,6 +148,21 @@
     <ClInclude Include="SceneTool.h">
       <Filter>Engine\05. Game Scene</Filter>
     </ClInclude>
+    <ClInclude Include="SceneStage01.h">
+      <Filter>Engine\05. Game Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStart.h">
+      <Filter>Engine\05. Game Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterMouse.h">
+      <Filter>Engine\04. Game Object\02. Monster\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterSpider.h">
+      <Filter>Engine\04. Game Object\02. Monster\Spider</Filter>
+    </ClInclude>
+    <ClInclude Include="Web.h">
+      <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -160,9 +181,6 @@
       <Filter>Engine\03. Game Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameSceneStart.cpp">
       <Filter>Engine\05. Game Scene</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
@@ -212,6 +230,21 @@
     </ClCompile>
     <ClCompile Include="SceneTool.cpp">
       <Filter>Engine\05. Game Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStage01.cpp">
+      <Filter>Engine\05. Game Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStart.cpp">
+      <Filter>Engine\05. Game Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterMouse.cpp">
+      <Filter>Engine\04. Game Object\02. Monster\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterSpider.cpp">
+      <Filter>Engine\04. Game Object\02. Monster\Spider</Filter>
+    </ClCompile>
+    <ClCompile Include="Web.cpp">
+      <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

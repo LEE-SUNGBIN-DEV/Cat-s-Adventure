@@ -18,6 +18,8 @@ public:
     virtual void OnCollisionEnter(Collider* _opponent);
     virtual void OnCollisionExit(Collider* _opponent);
 
+    virtual Bullet* Clone() { return new Bullet(*this); }
+
     // get
     int GetDamage() { return this->mDamage; }
     

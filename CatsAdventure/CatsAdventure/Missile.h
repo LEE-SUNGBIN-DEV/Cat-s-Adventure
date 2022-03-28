@@ -32,6 +32,8 @@ public:
     virtual void OnCollisionEnter(Collider* _opponent);
     virtual void OnCollisionExit(Collider* _opponent);
 
+    virtual Missile* Clone() { return new Missile(*this); }
+
     // get
     int GetDamage() { return this->mDamage; }
 
