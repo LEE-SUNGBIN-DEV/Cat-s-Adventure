@@ -15,23 +15,18 @@ public:
 	GameScene();
 	virtual ~GameScene();
 
-	virtual void	EnterScene() = 0;
-	virtual void	ExitScene() = 0;
+	virtual void	Enter() = 0;
+	virtual void	Exit() = 0;
 	virtual void	Render(HDC _bitmapDC);
+	virtual void	Update();
 
-	void			Update();
 	void			LateUpdate();
-	void			AddGameObject(GameObject* _gameObject, OBJECT_TYPE _objectType)
-	{
-		this->mGameObjectList[(UINT)_objectType].push_back(_gameObject);
-	}
-
+	void			AddGameObject(GameObject* _gameObject, OBJECT_TYPE _objectType) { this->mGameObjectList[(UINT)_objectType].push_back(_gameObject); }
+	void			RemoveObject(OBJECT_TYPE _objectType);
+	void			RemoveAll();
 	// get
 	const wstring&				GetName() { return this->mSceneName; }
-	const vector<GameObject*>&	GetGameObjectList(OBJECT_TYPE _objectType)
-	{
-		return this->mGameObjectList[(UINT)_objectType];
-	}
+	const vector<GameObject*>&	GetGameObjectList(OBJECT_TYPE _objectType) { return this->mGameObjectList[(UINT)_objectType]; }
 	Texture*					GetTexture() { return this->mTexture; }
 	
 	// set

@@ -9,6 +9,8 @@
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "CollisionManager.h"
+#include "KeyManager.h"
+#include "SceneManager.h"
 
 GameSceneStart::GameSceneStart()
 {
@@ -21,7 +23,7 @@ GameSceneStart::~GameSceneStart()
 
 }
 
-void GameSceneStart::EnterScene()
+void GameSceneStart::Enter()
 {
 	// Player
 	GameObject* player = new Player;
@@ -45,9 +47,21 @@ void GameSceneStart::EnterScene()
 	
 }
 
-void GameSceneStart::ExitScene()
+void GameSceneStart::Exit()
 {
+	RemoveAll();
 	CollisionManager::GetInstance()->ClearCollisionMatrix();
+}
+
+void GameSceneStart::Update()
+{
+	GameScene::Update();
+
+	if (KEY_CHECK(KEY::KEY_ENTER, KEY_STATE::KEY_STATE_DOWN))
+	{
+		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_TOOL);
+	}
+		
 }
 
 void GameSceneStart::Render(HDC _bitmapDC)

@@ -174,6 +174,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneTool.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SceneTool.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimeManager.cpp" />

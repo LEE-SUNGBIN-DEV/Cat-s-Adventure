@@ -21,6 +21,7 @@ Player::Player()
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 	this->SetScale(playerScale);
+
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\player_right.bmp"));
 
@@ -32,8 +33,8 @@ Player::Player()
 
 Player::~Player()
 {
-	if(this->GetTexture() != nullptr)
-		delete this->GetTexture();
+	//if(this->GetTexture() != nullptr)
+	//	delete this->GetTexture();
 }
 
 void Player::Update()

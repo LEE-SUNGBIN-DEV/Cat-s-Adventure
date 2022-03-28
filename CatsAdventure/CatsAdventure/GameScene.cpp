@@ -43,6 +43,20 @@ void GameScene::LateUpdate()
 	}
 }
 
+void GameScene::RemoveObject(OBJECT_TYPE _objectType)
+{
+	RemoveVector(this->mGameObjectList[(UINT)_objectType]);
+
+}
+
+void GameScene::RemoveAll()
+{
+	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)
+	{
+		RemoveObject((OBJECT_TYPE)i);
+	}
+}
+
 void GameScene::Render(HDC _bitmapDC)
 {
 	for (UINT i = 0; i < (UINT)OBJECT_TYPE::OBJECT_TYPE_SIZE; ++i)

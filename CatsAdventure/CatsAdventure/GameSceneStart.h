@@ -10,7 +10,8 @@ public:
 	~GameSceneStart();
 
 	virtual void Render(HDC _bitmapDC);
-	virtual void EnterScene();
-	virtual void ExitScene();
+	virtual void Enter();
+	virtual void Exit();
+	virtual void Update();
 };
 

@@ -63,9 +63,13 @@ void EventManager::Execute(const EventMessage& _eventMessage)
 		break;
 
 	case EVENT_TYPE::EVENT_TYPE_CHANGE_SCENE:
+	{
+		// lParameter: Scene Adress
+		// wParameter: Scene Type
+		SCENE_TYPE sceneType = (SCENE_TYPE)_eventMessage.lParameter;
 
-
-
+		SceneManager::GetInstance()->ChangeScene((SCENE_TYPE)_eventMessage.lParameter);
+	}
 		break;
 	}
 }

@@ -139,6 +139,9 @@
     <ClInclude Include="GameFunction.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="SceneTool.h">
+      <Filter>Engine\05. Game Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -206,6 +209,9 @@
     </ClCompile>
     <ClCompile Include="GameFunction.cpp">
       <Filter>Engine\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTool.cpp">
+      <Filter>Engine\05. Game Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

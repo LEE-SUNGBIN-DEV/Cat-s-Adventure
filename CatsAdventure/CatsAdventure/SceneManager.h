@@ -9,6 +9,7 @@ private:
 
 	SceneManager();
 	~SceneManager();
+	void ChangeScene(SCENE_TYPE _sceneType);
 
 public:
 	// Singleton
@@ -25,8 +26,10 @@ public:
 
 	// get
 	GameScene* GetCurrentScene() { return this->mCurrentScene; }
-	
+
 	// set
 	void SetCurrentScene(GameScene* _currentScene) { this->mCurrentScene = _currentScene; }
+
+	friend class EventManager;
 };
 
