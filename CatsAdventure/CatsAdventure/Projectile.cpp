@@ -5,6 +5,7 @@
 Projectile::Projectile()
 	: mTheta(0.f), mSpeed(200.f), mDirection(Vector2f(1.f, 1.f))
 {
+	this->SetObjectName(L"Projectile");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	this->mDirection.Normalize();
 }

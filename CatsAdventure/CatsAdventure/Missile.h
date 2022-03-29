@@ -1,9 +1,14 @@
 #pragma once
 #include "Projectile.h"
 
-#define MISSILE_UP_HEIGHT 150.f
-#define MISSILE_UP_SPEED 400.f
-#define MISSILE_GUIDED_SPEED 600.f
+const Vector2f missileBitmapScale = { 60.f, 60.f };
+const Vector2f missileColliderScale = { 30.f, 30.f };
+const float missileSpeed = 300.f;
+const float missileDamage = 10.f;
+
+const float missileUpHeight = 150.f;
+const float missileUpSpeed = 400.f;
+const float missileGuidedSpeed = 600.f;
 
 enum
 {

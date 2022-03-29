@@ -16,11 +16,13 @@
 #include "Collider.h"
 
 Player::Player()
-	: mHP(100), mSpeed(200.f),
-	mJumpHeight(0.f), mIsJump(PLAYER_JUMP_NONE)
+	: mHP(100),
+	mSpeed(300.f),
+	mJumpHeight(0.f),
+	mIsJump(PLAYER_JUMP_NONE)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
-	this->SetScale(playerScale);
+	this->SetScale(playerBitmapScale);
 
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\player_right.bmp"));
@@ -28,7 +30,7 @@ Player::Player()
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(playerColliderScale);
 }
 
 Player::~Player()
@@ -114,10 +116,10 @@ void Player::JumpChecking(Vector2f* _updatePosition)
 {
 	if (this->mIsJump == PLAYER_JUMP_PROGRESS)
 	{
-		this->mJumpHeight += PLAYER_JUMP_SPEED * (float)DELTA_TIME;
-		_updatePosition->y -= PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+		this->mJumpHeight += playerJumpSpeed * (float)DELTA_TIME;
+		_updatePosition->y -= playerJumpSpeed * (float)DELTA_TIME;
 
-		if (this->mJumpHeight >= PLAYER_JUMP_POWER)
+		if (this->mJumpHeight >= playerJumpPower)
 		{
 			this->mIsJump = 2;
 		}
@@ -125,8 +127,8 @@ void Player::JumpChecking(Vector2f* _updatePosition)
 
 	else if (this->mIsJump == PLAYER_JUMP_FALL)
 	{
-		this->mJumpHeight -= PLAYER_JUMP_SPEED * (float)DELTA_TIME;
-		_updatePosition->y += PLAYER_JUMP_SPEED * (float)DELTA_TIME;
+		this->mJumpHeight -= playerJumpSpeed * (float)DELTA_TIME;
+		_updatePosition->y += playerJumpSpeed * (float)DELTA_TIME;
 
 		if (this->mJumpHeight <= 0)
 		{

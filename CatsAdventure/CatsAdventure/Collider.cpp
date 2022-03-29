@@ -6,14 +6,21 @@
 UINT Collider::generateID = 0;
 
 Collider::Collider()
-	: mID(generateID++), mOwner(nullptr),
-	mPosition(0.f, 0.f), mOffset(0.f, 0.f), mScale(0.f, 0.f)
+	: mID(generateID++),
+	mOwner(nullptr),
+	mPosition(0.f, 0.f),
+	mOffset(0.f, 0.f),
+	mScale(0.f, 0.f)
 {
 }
 
+// 복사 생성자
 Collider::Collider(const Collider& _origin)
-	: mID(generateID++), mOwner(nullptr),
-	mPosition(_origin.mPosition), mOffset(_origin.mOffset), mScale(_origin.mScale)
+	: mID(generateID++),
+	mOwner(nullptr),
+	mPosition(_origin.mPosition),
+	mOffset(_origin.mOffset),
+	mScale(_origin.mScale)
 {
 }
 

@@ -163,6 +163,9 @@
     <ClInclude Include="Web.h">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
     </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Engine\07. Game Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -245,6 +248,9 @@
     </ClCompile>
     <ClCompile Include="Web.cpp">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Engine\07. Game Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

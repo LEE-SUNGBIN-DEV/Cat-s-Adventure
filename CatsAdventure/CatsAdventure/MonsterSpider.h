@@ -1,13 +1,14 @@
 #pragma once
 #include "Monster.h"
 
-#define SPIDER_ATTACK_DELAY 2.0f
+const Vector2f monsterSpiderBitmapScale = { 50.f, 50.f };
+const Vector2f monsterSpiderColliderScale = { 25.f, 25.f };
+const float spiderAttackDelay = 3.0f;
 
 class MonsterSpider :
 	public Monster
 {
 private:
-	float mAttackDelay;
 
 public:
 	MonsterSpider();
@@ -23,11 +24,5 @@ public:
 	virtual MonsterSpider* Clone() { return new MonsterSpider(*this); }
 
 	void CreateWeb();
-
-	// get
-	float GetAttackDelay() { return this->mAttackDelay; }
-
-	// set
-	void SetAttackDelay(float _attackDelay) { this->mAttackDelay = _attackDelay; }
 };
 

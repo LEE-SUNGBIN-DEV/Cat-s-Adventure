@@ -1,24 +1,25 @@
 #include "pch.h"
 #include "MonsterMouse.h"
-
-#include "pch.h"
-#include "Monster.h"
+#include "Player.h"
 #include "TimeManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "Collider.h"
 
 MonsterMouse::MonsterMouse()
+	:mDamage(10)
 {
+	this->SetObjectName(L"Mouse");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
-	this->SetScale(Vector2f(30.f, 30.f));
+	this->SetScale(monsterMouseBitmapScale);
+
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
 
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(monsterMouseColliderScale);
 }
 MonsterMouse::~MonsterMouse()
 {
@@ -58,6 +59,11 @@ void MonsterMouse::OnCollision(Collider* _opponent)
 
 void MonsterMouse::OnCollisionEnter(Collider* _opponent)
 {
+	if (_opponent->GetOwner()->GetObjectType == OBJECT_TYPE::OBJECT_TYPE_PLAYER)
+	{
+		Player* player = (Player*)_opponent->GetOwner();
+		player->SetHP(player->GetHP() - this->mDamage);
+	}
 }
 
 void MonsterMouse::OnCollisionExit(Collider* _opponent)

@@ -28,11 +28,11 @@ public:
 	void OnCollisionExit(Collider* _opponent);
 
 	// get
+	UINT		GetID() { return this->mID; }
 	GameObject*	GetOwner() { return this->mOwner; }
 	Vector2f	GetPosition() { return this->mPosition; }
 	Vector2f	GetOffset() { return this->mOffset; }
 	Vector2f	GetScale() { return this->mScale; }
-	UINT		GetID() { return this->mID; }
 
 	// set
 	void SetOwner(GameObject* _owner) { this->mOwner = _owner; }

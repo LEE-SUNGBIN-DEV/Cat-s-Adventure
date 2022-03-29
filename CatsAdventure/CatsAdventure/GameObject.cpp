@@ -3,12 +3,18 @@
 #include "KeyManager.h"
 #include "timeManager.h"
 #include "Collider.h"
+#include "GameTimer.h"
 
 // »ý¼ºÀÚ
 GameObject::GameObject()
-	: mObjectName{}, mObjectType(OBJECT_TYPE::OBJECT_TYPE_DEFALUT),
-	mOffset(), mScale(), mIsAlive(true),
-	mTexture(nullptr), mCollider(nullptr)
+	: mObjectName{},
+	mObjectType(OBJECT_TYPE::OBJECT_TYPE_DEFALUT),
+	mOffset(),
+	mScale(),
+	mIsAlive(true),
+	mTexture(nullptr),
+	mCollider(nullptr),
+	mTimer(nullptr)
 {
 }
 GameObject::GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition)
@@ -29,10 +35,14 @@ GameObject::GameObject(const GameObject& _origin)
 	mScale(_origin.mScale),
 	mIsAlive(true),
 	mTexture(_origin.mTexture),
-	mCollider(nullptr)
+	mCollider(nullptr),
+	mTimer(nullptr)
 {
 	this->mCollider = new Collider(*_origin.mCollider);
 	this->mCollider->SetOwner(this);
+
+	this->mTimer = new GameTimer(*_origin.mTimer);
+	this->mTimer->SetOwner(this);
 }
 
 GameObject::~GameObject()
@@ -89,4 +99,10 @@ void GameObject::CreateCollider()
 {
 	this->mCollider = new Collider;
 	this->mCollider->SetOwner(this);
+}
+
+void GameObject::CreateTimer()
+{
+	this->mTimer = new GameTimer;
+	this->mTimer->SetOwner(this);
 }

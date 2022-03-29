@@ -9,9 +9,13 @@
 #include "EventManager.h"
 
 GameCore::GameCore()
-	:mainHWND(nullptr), mainDC(nullptr), mainResolution(),
-	bitmapDC(nullptr), bitmap(),
-	mBrushType{}, mPenType{}
+	:mainHWND(nullptr),
+	mainDC(nullptr),
+	mainResolution(),
+	bitmapDC(nullptr),
+	bitmap(),
+	mBrushType{},
+	mPenType{}
 {
 	this->CreateBrushAndPen();
 }
@@ -35,6 +39,7 @@ int GameCore::Init(HWND _hwnd, POINT _resolution)
 	
 	// ---------------------- Set Window
 	RECT winRect = { 0, 0, this->mainResolution.x, this->mainResolution.y };
+
 	// 메뉴, 테두리 굵기를 포함한 값을 계산해서 winRect에 return
 	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, true);
 	SetWindowPos(this->mainHWND, nullptr,

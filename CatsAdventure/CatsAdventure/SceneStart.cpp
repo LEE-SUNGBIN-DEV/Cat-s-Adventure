@@ -31,21 +31,16 @@ void SceneStart::Enter()
 	GameObject* player = new Player;
 
 	player->SetPosition(Vector2f(50.f, 621.f));
-	player->SetScale(Vector2f(50.f, 50.f));
 	AddGameObject(player, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
 	// Monster
 	MonsterMouse* monsterMouse = new MonsterMouse;
-
 	monsterMouse->SetPosition(Vector2f(900.f, 621.f));
-	monsterMouse->SetScale(Vector2f(50.f, 50.f));
 	monsterMouse->SetOriginalPosition(monsterMouse->GetPosition());
 	AddGameObject(monsterMouse, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
 	MonsterSpider* monsterSpider = new MonsterSpider;
-
 	monsterSpider->SetPosition(Vector2f(900.f, 100.f));
-	monsterSpider->SetScale(Vector2f(50.f, 50.f));
 	monsterSpider->SetOriginalPosition(monsterSpider->GetPosition());
 	AddGameObject(monsterSpider, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 

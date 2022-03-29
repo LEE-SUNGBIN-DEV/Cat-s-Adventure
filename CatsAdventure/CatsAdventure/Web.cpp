@@ -9,18 +9,19 @@
 #include "Player.h"
 
 Web::Web()
-	: mDamage(50)
+	: mDamage(webDamage)
 {
+	this->SetObjectName(L"Web");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE);
-	this->SetScale(Vector2f(30.f, 30.f));
-	this->SetSpeed(500.f);
+	this->SetScale(webBitmapScale);
+	this->SetSpeed(webSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER_WEB", L"\\texture\\spider_web.bmp"));
 
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(webColliderScale);
 }
 
 Web::~Web()

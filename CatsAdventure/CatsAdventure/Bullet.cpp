@@ -7,18 +7,19 @@
 #include "Monster.h"
 
 Bullet::Bullet()
-	: mDamage(2)
+	: mDamage(bulletDamage)
 {
+	this->SetObjectName(L"Bullet");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	this->SetScale(Vector2f(20.f, 20.f));
-	this->SetSpeed(800.f);
+	this->SetScale(bulletBitmapScale);
+	this->SetSpeed(bulletSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
 	
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(bulletColliderScale);
 }
 
 Bullet::~Bullet()

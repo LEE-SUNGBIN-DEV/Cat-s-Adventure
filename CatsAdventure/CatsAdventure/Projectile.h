@@ -2,7 +2,6 @@
 #include "GameObject.h"
 
 // ≈ıªÁ√º
-
 class Projectile :
     public GameObject
 {

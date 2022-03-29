@@ -9,19 +9,21 @@
 #include "GameScene.h"
 
 Missile::Missile()
-	: mDamage(10), mMissileState(MISSILE_STATE_UP),
+	: mDamage(missileDamage),
+	mMissileState(MISSILE_STATE_UP),
 	mUpHeight(0.f)
 {
+	this->SetObjectName(L"Missile");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	this->SetScale(Vector2f(30.f, 30.f));
-	this->SetSpeed(300.f);
+	this->SetScale(missileBitmapScale);
+	this->SetSpeed(missileSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SHARK_MISSILE", L"\\texture\\sharkMissile_right.bmp"));
 	
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(missileColliderScale);
 }
 
 Missile::~Missile()
@@ -35,10 +37,10 @@ void Missile::Update()
 
 	if (this->mMissileState == MISSILE_STATE_UP)
 	{
-		this->mUpHeight += MISSILE_UP_SPEED * (float)DELTA_TIME;
-		updatePosition.y -= MISSILE_UP_SPEED * (float)DELTA_TIME;
+		this->mUpHeight += missileUpSpeed * (float)DELTA_TIME;
+		updatePosition.y -= missileUpSpeed * (float)DELTA_TIME;
 
-		if (this->mUpHeight >= MISSILE_UP_HEIGHT)
+		if (this->mUpHeight >= missileUpHeight)
 		{
 			this->mUpHeight = 0.f;
 			this->mMissileState = MISSILE_STATE_GUIDED;
@@ -59,8 +61,8 @@ void Missile::Update()
 			this->SetDirection(Vector2f(1.f, 0.f));
 		}
 
-		updatePosition.x += this->GetDirection().x * MISSILE_GUIDED_SPEED * (float)DELTA_TIME;
-		updatePosition.y += this->GetDirection().y * MISSILE_GUIDED_SPEED * (float)DELTA_TIME;
+		updatePosition.x += this->GetDirection().x * missileGuidedSpeed * (float)DELTA_TIME;
+		updatePosition.y += this->GetDirection().y * missileGuidedSpeed * (float)DELTA_TIME;
 	}
 
 	SetPosition(updatePosition);

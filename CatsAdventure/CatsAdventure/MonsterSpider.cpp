@@ -7,19 +7,24 @@
 #include "Web.h"
 #include "SceneManager.h"
 #include "GameScene.h"
+#include "GameTimer.h"
 
 MonsterSpider::MonsterSpider()
-	: mAttackDelay(0.f)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
-	this->SetScale(Vector2f(30.f, 30.f));
+	this->SetScale(monsterSpiderBitmapScale);
+
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER", L"\\texture\\spider.bmp"));
 
 	// Create Collider
 	this->CreateCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetScale(monsterSpiderColliderScale);
+
+	// Create TImer
+	this->CreateTimer();
+	this->GetTimer()->SetTargetTime(spiderAttackDelay);
 }
 MonsterSpider::~MonsterSpider()
 {
@@ -32,16 +37,9 @@ void MonsterSpider::Update()
 
 	if (!gameObjectList.empty())
 	{
-		if (this->mAttackDelay == 0)
+		if (this->GetTimer()->Timer())
 		{
 			CreateWeb();
-		}
-
-		this->mAttackDelay += (float)DELTA_TIME;
-
-		if (this->mAttackDelay >= SPIDER_ATTACK_DELAY)
-		{
-			this->mAttackDelay = 0;
 		}
 	}
 }

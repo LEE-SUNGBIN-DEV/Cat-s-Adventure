@@ -3,8 +3,13 @@
 #include "GameCore.h"
 
 TimeManager::TimeManager()
-	: mCurrentCount(), mPrevCount(), mFrequency(),
-	mDeltaTime(0.), mAccumulate(0.), mCallCount(0), mFPS(0)
+	: mCurrentCount(),
+	mPrevCount(),
+	mFrequency(),
+	mDeltaTime(0),
+	mAccumulate(0),
+	mCallCount(0),
+	mFPS(0)
 {
 }
 

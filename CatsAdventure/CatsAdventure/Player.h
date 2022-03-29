@@ -1,9 +1,10 @@
 #pragma once
 #include "GameObject.h"
 
-#define PLAYER_JUMP_POWER 100.f
-#define PLAYER_JUMP_SPEED 400.f
-const Vector2f playerScale = { 64.f, 64.f };
+const float playerJumpPower = 100.f;
+const float playerJumpSpeed = 400.f;
+const Vector2f playerBitmapScale = { 64.f, 64.f };
+const Vector2f playerColliderScale = { 32.f, 32.f };
 
 enum
 {
@@ -19,10 +20,11 @@ class Player :
 {
 private:
 	int		mHP;
+
+	int		mIsJump; // 0: 동작 없음, 1: 점프 중, 2: 하강 중
 	float	mSpeed;
 	float	mJumpHeight;
 
-	int		mIsJump; // 0: 동작 없음, 1: 점프중, 2: 하강중
 
 public:
 	Player();

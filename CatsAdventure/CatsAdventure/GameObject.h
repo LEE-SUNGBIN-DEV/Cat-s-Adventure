@@ -3,6 +3,7 @@
 
 class Texture;
 class Collider;
+class GameTimer;
 
 class GameObject
 {
@@ -19,6 +20,7 @@ private:
 
 	// Component
 	Collider*	mCollider;
+	GameTimer*	mTimer;
 
 	// EventManager 클래스를 통해서만 조작 가능
 	void SetIsAlive(bool _isAlive) { this->mIsAlive = _isAlive; }
@@ -39,17 +41,19 @@ public:
 
 	void ComponentRender(HDC _bitmapDC);
 	void CreateCollider();
+	void CreateTimer();
 
 	virtual GameObject* Clone() = 0;
 
 	// get
+	const wstring& GetObjectName() { return this->mObjectName; }
+	OBJECT_TYPE		GetObjectType() { return this->mObjectType; }
 	Vector2f		GetPosition() { return this->mOffset; }
 	Vector2f		GetScale() { return this->mScale; }
+	bool			GetIsAlive() { return this->mIsAlive; }
 	Texture*		GetTexture() { return this->mTexture; }
 	Collider*		GetCollider() { return this->mCollider; }
-	OBJECT_TYPE		GetObjectType() { return this->mObjectType; }
-	const wstring&	GetObjectName() { return this->mObjectName; }
-	bool			GetIsAlive() { return this->mIsAlive; }
+	GameTimer*		GetTimer() { return this->mTimer; }
 
 	// set
 	void SetPosition(Vector2f _position) { this->mOffset = _position; return; }
