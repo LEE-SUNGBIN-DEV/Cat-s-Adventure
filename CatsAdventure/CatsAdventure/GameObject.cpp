@@ -4,6 +4,7 @@
 #include "timeManager.h"
 #include "Collider.h"
 #include "GameTimer.h"
+#include "Animator.h"
 
 // »ý¼ºÀÚ
 GameObject::GameObject()
@@ -14,7 +15,8 @@ GameObject::GameObject()
 	mIsAlive(true),
 	mTexture(nullptr),
 	mCollider(nullptr),
-	mTimer(nullptr)
+	mTimer(nullptr),
+	mAnimator(nullptr)
 {
 }
 GameObject::GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition)
@@ -36,13 +38,26 @@ GameObject::GameObject(const GameObject& _origin)
 	mIsAlive(true),
 	mTexture(_origin.mTexture),
 	mCollider(nullptr),
-	mTimer(nullptr)
+	mTimer(nullptr),
+	mAnimator(nullptr)
 {
-	this->mCollider = new Collider(*_origin.mCollider);
-	this->mCollider->SetOwner(this);
+	if (_origin.mCollider)
+	{
+		this->mCollider = new Collider(*_origin.mCollider);
+		this->mCollider->SetOwner(this);
+	}
 
-	this->mTimer = new GameTimer(*_origin.mTimer);
-	this->mTimer->SetOwner(this);
+	if (_origin.mTimer)
+	{
+		this->mTimer = new GameTimer(*_origin.mTimer);
+		this->mTimer->SetOwner(this);
+	}
+
+	if (_origin.mAnimator)
+	{
+		this->mAnimator = new Animator(*_origin.mAnimator);
+		this->mAnimator->SetOwner(this);
+	}
 }
 
 GameObject::~GameObject()
@@ -50,6 +65,16 @@ GameObject::~GameObject()
 	if (this->mCollider != nullptr)
 	{
 		delete this->mCollider;
+	}
+
+	if (this->mTimer != nullptr)
+	{
+		delete this->mTimer;
+	}
+
+	if (this->mAnimator != nullptr)
+	{
+		delete this->mAnimator;
 	}
 }
 
@@ -95,14 +120,20 @@ void GameObject::ComponentRender(HDC _bitmapDC)
 	}
 }
 
-void GameObject::CreateCollider()
+void GameObject::AddCollider()
 {
 	this->mCollider = new Collider;
 	this->mCollider->SetOwner(this);
 }
 
-void GameObject::CreateTimer()
+void GameObject::AddTimer()
 {
 	this->mTimer = new GameTimer;
 	this->mTimer->SetOwner(this);
+}
+
+void GameObject::AddAnimator()
+{
+	this->mAnimator = new Animator;
+	this->mAnimator->SetOwner(this);
 }

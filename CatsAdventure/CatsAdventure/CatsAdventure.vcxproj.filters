@@ -62,6 +62,12 @@
     <Filter Include="Engine\04. Game Object\03. Projectile\03. Web">
       <UniqueIdentifier>{9655f2c0-64ab-4faf-9b54-b95e7318712c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Game Component\Animator">
+      <UniqueIdentifier>{c124d135-d30c-4417-84a3-4c73019e9222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Game Component\Animator\Animation">
+      <UniqueIdentifier>{0dd4f7f9-0ab8-46e0-aecb-0071d992f1dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -166,6 +172,12 @@
     <ClInclude Include="GameTimer.h">
       <Filter>Engine\07. Game Component</Filter>
     </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Engine\07. Game Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Engine\07. Game Component\Animator\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyManager.cpp">
@@ -251,6 +263,12 @@
     </ClCompile>
     <ClCompile Include="GameTimer.cpp">
       <Filter>Engine\07. Game Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Engine\07. Game Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Engine\07. Game Component\Animator\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ MonsterMouse::MonsterMouse()
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
 
 	// Create Collider
-	this->CreateCollider();
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(monsterMouseColliderScale);
 }
@@ -59,7 +59,7 @@ void MonsterMouse::OnCollision(Collider* _opponent)
 
 void MonsterMouse::OnCollisionEnter(Collider* _opponent)
 {
-	if (_opponent->GetOwner()->GetObjectType == OBJECT_TYPE::OBJECT_TYPE_PLAYER)
+	if (_opponent->GetOwner()->GetObjectType() == OBJECT_TYPE::OBJECT_TYPE_PLAYER)
 	{
 		Player* player = (Player*)_opponent->GetOwner();
 		player->SetHP(player->GetHP() - this->mDamage);

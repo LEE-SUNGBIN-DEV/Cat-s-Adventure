@@ -21,7 +21,7 @@ Missile::Missile()
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SHARK_MISSILE", L"\\texture\\sharkMissile_right.bmp"));
 	
 	// Create Collider
-	this->CreateCollider();
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(missileColliderScale);
 }

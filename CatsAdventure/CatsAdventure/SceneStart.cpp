@@ -39,10 +39,20 @@ void SceneStart::Enter()
 	monsterMouse->SetOriginalPosition(monsterMouse->GetPosition());
 	AddGameObject(monsterMouse, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
-	MonsterSpider* monsterSpider = new MonsterSpider;
-	monsterSpider->SetPosition(Vector2f(900.f, 100.f));
-	monsterSpider->SetOriginalPosition(monsterSpider->GetPosition());
-	AddGameObject(monsterSpider, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+	MonsterSpider* monsterSpider00 = new MonsterSpider;
+	monsterSpider00->SetPosition(Vector2f(900.f, 25.f));
+	monsterSpider00->SetOriginalPosition(monsterSpider00->GetPosition());
+	AddGameObject(monsterSpider00, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+
+	MonsterSpider* monsterSpider01 = new MonsterSpider;
+	monsterSpider01->SetPosition(Vector2f(800.f, 25.f));
+	monsterSpider01->SetOriginalPosition(monsterSpider01->GetPosition());
+	AddGameObject(monsterSpider01, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+
+	MonsterSpider* monsterSpider02 = new MonsterSpider;
+	monsterSpider02->SetPosition(Vector2f(700.f, 25.f));
+	monsterSpider02->SetOriginalPosition(monsterSpider01->GetPosition());
+	AddGameObject(monsterSpider02, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
 	// Collision Check
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER);

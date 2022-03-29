@@ -17,7 +17,7 @@ Bullet::Bullet()
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
 	
 	// Create Collider
-	this->CreateCollider();
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(bulletColliderScale);
 }

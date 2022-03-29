@@ -14,6 +14,8 @@
 #include "Missile.h"
 
 #include "Collider.h"
+#include "Animator.h"
+#include "Animation.h"
 
 Player::Player()
 	: mHP(100),
@@ -25,12 +27,17 @@ Player::Player()
 	this->SetScale(playerBitmapScale);
 
 	// Load Texture
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\player_right.bmp"));
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\cat\\Idle_01.bmp"));
 
-	// Create Collider
-	this->CreateCollider();
+	// ==================== Create Component
+	// Collider
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(playerColliderScale);
+
+	// Animator
+	this->AddAnimator();
+	this->GetAnimator()->CreateAnimation(L"Idle", this->GetTexture(), 10);
 }
 
 Player::~Player()

@@ -18,12 +18,12 @@ MonsterSpider::MonsterSpider()
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER", L"\\texture\\spider.bmp"));
 
 	// Create Collider
-	this->CreateCollider();
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(monsterSpiderColliderScale);
 
 	// Create TImer
-	this->CreateTimer();
+	this->AddTimer();
 	this->GetTimer()->SetTargetTime(spiderAttackDelay);
 }
 MonsterSpider::~MonsterSpider()

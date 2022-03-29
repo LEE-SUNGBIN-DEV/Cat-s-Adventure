@@ -9,11 +9,7 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
-	map<wstring, Texture*>::iterator iter = mMapTexture.begin();
-	for (; iter != mMapTexture.end(); ++iter)
-	{
-		delete iter->second;
-	}
+	RemoveMap(this->mMapTexture);
 }
 
 Texture* ResourceManager::LoadTexture(const wstring& _key, const wstring& _relativePath)

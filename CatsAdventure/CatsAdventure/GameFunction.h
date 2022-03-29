@@ -19,3 +19,18 @@ void RemoveVector(vector<_type>& _vector)
 	}
 	_vector.clear();
 }
+
+template<typename _key, typename _type>
+void RemoveMap(map<_key, _type>& _map)
+{
+	typename map<_key, _type>::iterator iter = _map.begin();
+
+	for (; iter != _map.end(); ++iter)
+	{
+		if (iter->second != nullptr)
+		{
+			delete iter->second;
+		}
+	}
+	_map.clear();
+}

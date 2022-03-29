@@ -19,7 +19,7 @@ Web::Web()
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER_WEB", L"\\texture\\spider_web.bmp"));
 
 	// Create Collider
-	this->CreateCollider();
+	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(webColliderScale);
 }
