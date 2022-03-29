@@ -7,7 +7,7 @@ private:
 
 public:
 	GameResource();
-	~GameResource();
+	virtual ~GameResource();
 
 	// get
 	const wstring& GetKey() { return this->mKey; }

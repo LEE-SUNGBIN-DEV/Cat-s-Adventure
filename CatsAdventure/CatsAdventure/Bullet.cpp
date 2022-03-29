@@ -45,9 +45,9 @@ void Bullet::Render(HDC _bitmapDC)
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - width / 2),
-		int(position.y - width / 2),
-		width, height,
+		int(position.x - bulletBitmapScale.x / 2),
+		int(position.y - bulletBitmapScale.y / 2),
+		bulletBitmapScale.x, bulletBitmapScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

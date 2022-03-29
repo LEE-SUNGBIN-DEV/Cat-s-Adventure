@@ -6,14 +6,16 @@
 
 Animator::Animator()
 	: mOwner(nullptr),
-	mCurrentAnimation(nullptr)
+	mCurrentAnimation(nullptr),
+	mRepeat(false)
 {
 }
 
 // 복사 생성자
 Animator::Animator(const Animator& _origin)
 	: mOwner(nullptr),
-	mCurrentAnimation(_origin.mCurrentAnimation)
+	mCurrentAnimation(_origin.mCurrentAnimation),
+	mRepeat(_origin.mRepeat)
 {
 }
 
@@ -22,7 +24,7 @@ Animator::~Animator()
 	RemoveMap(this->mAnimationMap);
 }
 
-void Animator::CreateAnimation(const wstring& _name, Texture* _texture, UINT _frameCount)
+void Animator::CreateAnimation(const wstring& _name, Texture* _texture, Vector2f _leftTop, Vector2f _sliceSize, Vector2f _interval, float _duration, UINT _frameCount)
 {
 	Animation* animation = FindAnimation(_name);
 
@@ -31,22 +33,28 @@ void Animator::CreateAnimation(const wstring& _name, Texture* _texture, UINT _fr
 	animation = new Animation;
 	animation->SetName(_name);
 	animation->SetAnimator(this);
-	this->mAnimationMap.insert(make_pair(_name, animation));
+	animation->Create(_texture, _leftTop, _sliceSize, _interval, _duration, _frameCount);
 
-	animation->Create(_texture, _frameCount);
+	this->mAnimationMap.insert(make_pair(_name, animation));
 }
 
 Animation* Animator::FindAnimation(const wstring& _name)
 {
 	map<wstring, Animation*>::iterator iter = mAnimationMap.find(_name);
 	if (iter == this->mAnimationMap.end())
+	{
 		return nullptr;
+	}
 	else
-		iter->second;
+	{
+		return iter->second;
+	}
 }
 
-void Animator::Play()
+void Animator::Play(const wstring& _animationName, bool _repeat)
 {
+	this->mCurrentAnimation = this->FindAnimation(_animationName);
+	this->mRepeat = _repeat;
 }
 
 void Animator::Update()
@@ -54,13 +62,18 @@ void Animator::Update()
 	if (this->mCurrentAnimation != nullptr)
 	{
 		this->mCurrentAnimation->Update();
+
+		if (this->mRepeat && this->mCurrentAnimation->IsFinish())
+		{
+			this->mCurrentAnimation->SetFrame(0);
+		}
 	}
 }
 
-void Animator::Render()
+void Animator::Render(HDC _bitmapDC)
 {
 	if (this->mCurrentAnimation != nullptr)
 	{
-		this->mCurrentAnimation->Render();
+		this->mCurrentAnimation->Render(_bitmapDC);
 	}
 }

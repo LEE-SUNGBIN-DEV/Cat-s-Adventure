@@ -2,11 +2,9 @@
 #include "GameTimer.h"
 #include "TimeManager.h"
 
-UINT GameTimer::generateID = 0;
 
 GameTimer::GameTimer()
-	: mID(generateID++),
-	mOwner(nullptr),
+	: mOwner(nullptr),
 	mCountTime(0.f),
 	mTargetTime(0.f)
 {

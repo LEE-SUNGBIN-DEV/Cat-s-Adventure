@@ -64,4 +64,9 @@ struct Vector2f
 		assert (_vector.x == 0.f || _vector.y == 0.f);
 		return Vector2f(this->x / _vector.x, this->y / _vector.y);
 	}
+
+	Vector2f operator * (int _int)
+	{
+		return Vector2f(this->x * (float)_int, this->y * (float)_int);
+	}
 };

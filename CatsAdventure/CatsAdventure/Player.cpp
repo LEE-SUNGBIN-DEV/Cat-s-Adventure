@@ -27,17 +27,20 @@ Player::Player()
 	this->SetScale(playerBitmapScale);
 
 	// Load Texture
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"PLAYER", L"\\texture\\cat\\Idle_01.bmp"));
+	
+	// Animator
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_IDLE", L"\\texture\\cat\\cat_idle.bmp"));
+	this->AddAnimator();
+	this->GetAnimator()->CreateAnimation(L"IDLE", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
+	this->GetAnimator()->Play(L"IDLE", true);
 
-	// ==================== Create Component
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_JUMP", L"\\texture\\cat\\cat_jump.bmp"));
+	this->GetAnimator()->CreateAnimation(L"JUMP", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.3f, 8);
+	
 	// Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(playerColliderScale);
-
-	// Animator
-	this->AddAnimator();
-	this->GetAnimator()->CreateAnimation(L"Idle", this->GetTexture(), 10);
 }
 
 Player::~Player()
@@ -72,6 +75,7 @@ void Player::Update()
 	{
 		if (mIsJump == PLAYER_JUMP_NONE)
 		{
+			this->GetAnimator()->Play(L"JUMP", false);
 			mIsJump = PLAYER_JUMP_PROGRESS;
 		}
 	}
@@ -86,24 +90,12 @@ void Player::Update()
 	{
 		CreateMissile();
 	}
+
+	this->GetAnimator()->Update();
 }
 
 void Player::Render(HDC _bitmapDC)
 {
-	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
-	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
-	Vector2f position = GetPosition();
-
-	// 특정 색상 제외하고 복사
-	TransparentBlt(_bitmapDC,
-		int(position.x - width / 2),
-		int(position.y - width / 2),
-		width, height,
-		this->GetTexture()->GetDC(),
-		0, 0, width, height,
-		RGB(255, 0, 255)
-		);
-
 	this->ComponentRender(_bitmapDC);
 }
 

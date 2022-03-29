@@ -30,7 +30,7 @@ void SceneStart::Enter()
 	// Player
 	GameObject* player = new Player;
 
-	player->SetPosition(Vector2f(50.f, 621.f));
+	player->SetPosition(Vector2f(100.f, 621.f));
 	AddGameObject(player, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
 	// Monster

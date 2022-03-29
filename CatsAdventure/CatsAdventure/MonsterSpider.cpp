@@ -52,9 +52,9 @@ void MonsterSpider::Render(HDC _bitmapDC)
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - width / 2),
-		int(position.y - width / 2),
-		width, height,
+		int(position.x - monsterSpiderBitmapScale.x / 2),
+		int(position.y - monsterSpiderBitmapScale.y / 2),
+		monsterSpiderBitmapScale.x, monsterSpiderBitmapScale.y,
 		GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

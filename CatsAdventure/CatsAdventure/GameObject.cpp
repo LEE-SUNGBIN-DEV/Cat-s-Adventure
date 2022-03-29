@@ -118,6 +118,12 @@ void GameObject::ComponentRender(HDC _bitmapDC)
 	{
 		this->mCollider->Render(_bitmapDC);
 	}
+
+	// Animation
+	if (this->mAnimator != nullptr)
+	{
+		this->mAnimator->Render(_bitmapDC);
+	}
 }
 
 void GameObject::AddCollider()

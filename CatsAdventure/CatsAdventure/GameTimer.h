@@ -2,9 +2,6 @@
 class GameTimer
 {
 private:
-	static UINT generateID;
-
-	UINT		mID;
 	GameObject* mOwner;	// 이 컴포넌트의 소유자
 
 	float		mCountTime;
@@ -17,7 +14,6 @@ public:
 	bool Timer();
 
 	// get
-	UINT		GetID() { return this->mID; }
 	GameObject* GetOwner() { return this->mOwner; }
 
 	// set
