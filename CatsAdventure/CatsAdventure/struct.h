@@ -26,7 +26,8 @@ struct Vector2f
 
 	float Length()
 	{
-		return (float)sqrt((float)this->x * (float)this->x + (float)this->y * (float)this->y);
+		return (float)sqrt((double)this->x * (double)this->x
+			+ (double)this->y * (double)this->y);
 	}
 
 	Vector2f& Normalize()
@@ -41,19 +42,27 @@ struct Vector2f
 		return *this;
 	}
 
+	// Vector2f <-> Vector2f operator
 	Vector2f& operator = (POINT _point)
 	{
 		this->x = (float)_point.x;
 		this->y = (float)_point.y;
 	}
-
 	Vector2f operator + (Vector2f _vector)
 	{
 		return Vector2f(this->x + _vector.x, this->y + _vector.y);
 	}
+	Vector2f operator += (Vector2f _vector)
+	{
+		return Vector2f(this->x += _vector.x, this->y += _vector.y);
+	}
 	Vector2f operator - (Vector2f _vector)
 	{
 		return Vector2f(this->x - _vector.x, this->y - _vector.y);
+	}
+	Vector2f operator -= (Vector2f _vector)
+	{
+		return Vector2f(this->x -= _vector.x, this->y -= _vector.y);
 	}
 	Vector2f operator * (Vector2f _vector)
 	{
@@ -65,8 +74,27 @@ struct Vector2f
 		return Vector2f(this->x / _vector.x, this->y / _vector.y);
 	}
 
+	// Vector2f <-> int operator
 	Vector2f operator * (int _int)
 	{
 		return Vector2f(this->x * (float)_int, this->y * (float)_int);
+	}
+
+	Vector2f operator / (int _int)
+	{
+		assert(_int != 0);
+		return Vector2f(this->x / (float)_int, this->y / (float)_int);
+	}
+
+	// Vector2f <-> float operator
+	Vector2f operator * (float _float)
+	{
+		return Vector2f(this->x * _float, this->y * _float);
+	}
+
+	Vector2f operator / (float _float)
+	{
+		assert(_float != 0.f);
+		return Vector2f(this->x / _float, this->y / _float);
 	}
 };

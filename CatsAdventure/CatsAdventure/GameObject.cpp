@@ -88,13 +88,15 @@ void GameObject::LateUpdate()
 
 void GameObject::Render(HDC _bitmapDC)
 {
-	Vector2f position = GetPosition();
+	Vector2f renderPosition = GetPosition();
+	// ·»´õ¸µ ÁÂÇ¥(Ä«¸Þ¶ó ±âÁØ)
+	renderPosition = GameCamera::GetInstance()->GetRenderPosition(renderPosition);
 
 	Rectangle(_bitmapDC,
-		int(position.x - this->GetScale().x),
-		int(position.y - this->GetScale().y),
-		int(position.x + this->GetScale().x),
-		int(position.y + this->GetScale().y));
+		(int)(renderPosition.x - this->GetScale().x),
+		(int)(renderPosition.y - this->GetScale().y),
+		(int)(renderPosition.x + this->GetScale().x),
+		(int)(renderPosition.y + this->GetScale().y));
 
 	this->ComponentRender(_bitmapDC);
 }

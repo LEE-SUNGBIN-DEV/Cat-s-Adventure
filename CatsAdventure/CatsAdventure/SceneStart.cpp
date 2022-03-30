@@ -1,18 +1,20 @@
 #include "pch.h"
 #include "SceneStart.h"
+
 #include "GameCore.h"
 #include "GameObject.h"
 #include "Player.h"
 #include "Monster.h"
-#include "Texture.h"
+#include "MonsterMouse.h"
+#include "MonsterSpider.h"
+
 #include "PathManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "CollisionManager.h"
 #include "KeyManager.h"
 #include "SceneManager.h"
-#include "MonsterMouse.h"
-#include "MonsterSpider.h"
+#include "GameCamera.h"
 
 SceneStart::SceneStart()
 {
@@ -27,13 +29,14 @@ SceneStart::~SceneStart()
 
 void SceneStart::Enter()
 {
-	// Player
+	// Set Player
 	GameObject* player = new Player;
-
 	player->SetPosition(Vector2f(100.f, 621.f));
 	AddGameObject(player, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
-	// Monster
+	GameCamera::GetInstance()->SetTargetObject(player);
+
+	// Set Monster
 	MonsterMouse* monsterMouse = new MonsterMouse;
 	monsterMouse->SetPosition(Vector2f(900.f, 621.f));
 	monsterMouse->SetOriginalPosition(monsterMouse->GetPosition());
@@ -59,6 +62,10 @@ void SceneStart::Enter()
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
+
+	// Set Camera
+	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
+	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f);
 }
 
 void SceneStart::Exit()

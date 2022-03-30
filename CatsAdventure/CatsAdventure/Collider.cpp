@@ -45,6 +45,7 @@ void Collider::Render(HDC _bitmapDC)
 	HBRUSH prevBrush = (HBRUSH)SelectObject(_bitmapDC, hollowBrush);
 
 	Vector2f position = this->GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	Rectangle(_bitmapDC,
 		int(position.x - mScale.x),

@@ -73,12 +73,13 @@ void Missile::Render(HDC _bitmapDC)
 	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - missileBitmapScale.x / 2),
-		int(position.y - missileBitmapScale.y / 2),
-		missileBitmapScale.x, missileBitmapScale.y,
+		(int)position.x - (int)missileBitmapScale.x / 2,
+		(int)position.y - (int)missileBitmapScale.y / 2,
+		(int)missileBitmapScale.x, (int)missileBitmapScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

@@ -42,12 +42,13 @@ void Bullet::Render(HDC _bitmapDC)
 	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - bulletBitmapScale.x / 2),
-		int(position.y - bulletBitmapScale.y / 2),
-		bulletBitmapScale.x, bulletBitmapScale.y,
+		(int)position.x - (int)bulletBitmapScale.x / 2,
+		(int)position.y - (int)bulletBitmapScale.y / 2,
+		(int)bulletBitmapScale.x, (int)bulletBitmapScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

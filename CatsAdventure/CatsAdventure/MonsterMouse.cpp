@@ -39,12 +39,13 @@ void MonsterMouse::Render(HDC _bitmapDC)
 	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - monsterMouseBitmapScale.x / 2),
-		int(position.y - monsterMouseBitmapScale.y / 2),
-		monsterMouseBitmapScale.x, monsterMouseBitmapScale.y,
+		(int)position.x - (int)monsterMouseBitmapScale.x / 2,
+		(int)position.y - (int)monsterMouseBitmapScale.y / 2,
+		(int)monsterMouseBitmapScale.x, (int)monsterMouseBitmapScale.y,
 		GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

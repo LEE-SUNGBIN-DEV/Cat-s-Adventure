@@ -4,7 +4,7 @@
 const Vector2f missileBitmapScale = { 60.f, 60.f };
 const Vector2f missileColliderScale = { 30.f, 30.f };
 const float missileSpeed = 300.f;
-const float missileDamage = 10.f;
+const int missileDamage = 10;
 
 const float missileUpHeight = 150.f;
 const float missileUpSpeed = 400.f;

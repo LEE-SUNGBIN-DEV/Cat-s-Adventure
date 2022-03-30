@@ -78,6 +78,8 @@ void GameCore::Progress()
 	SceneManager::GetInstance()->Update();
 	// collision
 	CollisionManager::GetInstance()->Update();
+	// camera
+	GameCamera::GetInstance()->Update();
 
 	// ====================== Render
 	// Refresh

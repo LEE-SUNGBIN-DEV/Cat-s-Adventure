@@ -68,6 +68,42 @@
     <Filter Include="Engine\07. Game Component\Animator\Animation">
       <UniqueIdentifier>{0dd4f7f9-0ab8-46e0-aecb-0071d992f1dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Game Manager\Time Manager">
+      <UniqueIdentifier>{a7c13db2-e3ed-4d0e-ae62-86870a16be30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Scene Manager">
+      <UniqueIdentifier>{462c6705-274a-4d24-922e-176c58f2850c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Resource Manager">
+      <UniqueIdentifier>{e71291f5-5f91-448a-936c-eea909c76004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Path Manager">
+      <UniqueIdentifier>{a809d0ac-44f2-4f60-a218-87089f4648de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Collision Manager">
+      <UniqueIdentifier>{83f2b57a-8949-4697-9963-8e92f4b987d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Event Manager">
+      <UniqueIdentifier>{015e1ae2-d7a0-4ad3-b3cd-3ae7af17be65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Game Manager\Key Manager">
+      <UniqueIdentifier>{9d57d2fd-43f5-4e49-972c-9f96a531962f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\00. Game Object">
+      <UniqueIdentifier>{91e36a1f-e3cd-433d-b552-39e1d9c53aa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Game Component\Collider">
+      <UniqueIdentifier>{f3506344-26f8-46a0-bc01-3876d06b9faf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Game Component\Timer">
+      <UniqueIdentifier>{2ac0f84c-aa57-4feb-bd1b-0972adcdf4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\Scene Start">
+      <UniqueIdentifier>{2a3bd4fb-8436-4709-ae01-2749cd85e3c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\Scene Stage 01">
+      <UniqueIdentifier>{a156484d-cf04-4ca4-ae21-318290d008ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -85,26 +121,14 @@
     <ClInclude Include="define.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="KeyManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameCore.h">
       <Filter>Engine\02. Game Core</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Engine\04. Game Object</Filter>
-    </ClInclude>
     <ClInclude Include="struct.h">
       <Filter>Engine\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Engine\05. Game Scene</Filter>
@@ -133,31 +157,10 @@
     <ClInclude Include="Sound.h">
       <Filter>Engine\06. Game Resource\02. Sound</Filter>
     </ClInclude>
-    <ClInclude Include="PathManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Engine\07. Game Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameFunction.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="SceneTool.h">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStage01.h">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStart.h">
       <Filter>Engine\05. Game Scene</Filter>
     </ClInclude>
     <ClInclude Include="MonsterMouse.h">
@@ -169,31 +172,55 @@
     <ClInclude Include="Web.h">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
     </ClInclude>
-    <ClInclude Include="GameTimer.h">
-      <Filter>Engine\07. Game Component</Filter>
-    </ClInclude>
     <ClInclude Include="Animator.h">
       <Filter>Engine\07. Game Component\Animator</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Engine\07. Game Component\Animator\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Engine\03. Game Manager\Collision Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Engine\03. Game Manager\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>Engine\03. Game Manager\Key Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>Engine\03. Game Manager\Path Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Engine\03. Game Manager\Resource Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Engine\03. Game Manager\Scene Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>Engine\03. Game Manager\Time Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\04. Game Object\00. Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine\07. Game Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Engine\07. Game Component\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStart.h">
+      <Filter>Engine\05. Game Scene\Scene Start</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStage01.h">
+      <Filter>Engine\05. Game Scene\Scene Stage 01</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>Engine\03. Game Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="KeyManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClCompile>
     <ClCompile Include="GameCore.cpp">
       <Filter>Engine\02. Game Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Engine\04. Game Object</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Engine\05. Game Scene</Filter>
@@ -222,34 +249,13 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Engine\06. Game Resource\02. Sound</Filter>
     </ClCompile>
-    <ClCompile Include="PathManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClCompile>
     <ClCompile Include="GameResource.cpp">
       <Filter>Engine\06. Game Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Engine\07. Game Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Engine\03. Game Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameFunction.cpp">
       <Filter>Engine\01. Header</Filter>
     </ClCompile>
     <ClCompile Include="SceneTool.cpp">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStage01.cpp">
-      <Filter>Engine\05. Game Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStart.cpp">
       <Filter>Engine\05. Game Scene</Filter>
     </ClCompile>
     <ClCompile Include="MonsterMouse.cpp">
@@ -261,14 +267,50 @@
     <ClCompile Include="Web.cpp">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
     </ClCompile>
-    <ClCompile Include="GameTimer.cpp">
-      <Filter>Engine\07. Game Component</Filter>
-    </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>Engine\07. Game Component\Animator</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Engine\07. Game Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Engine\03. Game Manager\Collision Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Engine\03. Game Manager\Event Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>Engine\03. Game Manager\Key Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>Engine\03. Game Manager\Path Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Engine\03. Game Manager\Resource Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Engine\03. Game Manager\Scene Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>Engine\03. Game Manager\Time Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\04. Game Object\00. Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine\07. Game Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Engine\07. Game Component\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStart.cpp">
+      <Filter>Engine\05. Game Scene\Scene Start</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStage01.cpp">
+      <Filter>Engine\05. Game Scene\Scene Stage 01</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
+      <Filter>Engine\03. Game Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

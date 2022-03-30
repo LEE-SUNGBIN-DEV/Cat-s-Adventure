@@ -49,12 +49,13 @@ void MonsterSpider::Render(HDC _bitmapDC)
 	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - monsterSpiderBitmapScale.x / 2),
-		int(position.y - monsterSpiderBitmapScale.y / 2),
-		monsterSpiderBitmapScale.x, monsterSpiderBitmapScale.y,
+		(int)position.x - (int)monsterSpiderBitmapScale.x / 2,
+		(int)position.y - (int)monsterSpiderBitmapScale.y / 2,
+		(int)monsterSpiderBitmapScale.x, (int)monsterSpiderBitmapScale.y,
 		GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

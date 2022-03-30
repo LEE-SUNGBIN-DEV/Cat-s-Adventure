@@ -158,6 +158,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameCore.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="GameObject.cpp" />

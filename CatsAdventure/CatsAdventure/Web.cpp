@@ -43,12 +43,13 @@ void Web::Render(HDC _bitmapDC)
 	int width = (int)this->GetTexture()->GetBitmapInfoWidth();
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
+	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		int(position.x - webBitmapScale.x / 2),
-		int(position.y - webBitmapScale.y / 2),
-		webBitmapScale.x, webBitmapScale.y,
+		(int)position.x - (int)webBitmapScale.x / 2,
+		(int)position.y - (int)webBitmapScale.y / 2,
+		(int)webBitmapScale.x, (int)webBitmapScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

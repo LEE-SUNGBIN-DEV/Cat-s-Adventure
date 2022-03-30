@@ -7,6 +7,7 @@ struct AnimationFrame
 {
 	Vector2f	mLeftTop;
 	Vector2f	mSliceSize;
+	Vector2f	mOffset;
 	float		mDuration;
 };
 
@@ -35,6 +36,7 @@ public:
 	// get
 	const wstring&	GetName() { return this->mName; }
 	Animator*		GetAnimator() { return this->mAnimator; }
+	AnimationFrame& GetFrame(int _index) { return this->mFrameList[_index]; }
 	bool			IsFinish() { return this->mFinish; }
 
 	// set

@@ -26,21 +26,25 @@ Player::Player()
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 	this->SetScale(playerBitmapScale);
 
-	// Load Texture
-	
-	// Animator
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_IDLE", L"\\texture\\cat\\cat_idle.bmp"));
+	//======================================== Init Component
+	// ==================== Animator
 	this->AddAnimator();
+	// idel
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_IDLE", L"\\texture\\cat\\cat_idle.bmp"));
 	this->GetAnimator()->CreateAnimation(L"IDLE", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
+	// jump
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_JUMP", L"\\texture\\cat\\cat_jump.bmp"));
+	this->GetAnimator()->CreateAnimation(L"JUMP", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 8);
+	
 	this->GetAnimator()->Play(L"IDLE", true);
 
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_JUMP", L"\\texture\\cat\\cat_jump.bmp"));
-	this->GetAnimator()->CreateAnimation(L"JUMP", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.3f, 8);
-	
-	// Collider
+	// ==================== Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(playerColliderScale);
+
+	// camera
+	GameCamera::GetInstance()->SetCameraSpeed(this->mSpeed);
 }
 
 Player::~Player()
@@ -75,7 +79,7 @@ void Player::Update()
 	{
 		if (mIsJump == PLAYER_JUMP_NONE)
 		{
-			this->GetAnimator()->Play(L"JUMP", false);
+			this->GetAnimator()->Play(L"JUMP", true);
 			mIsJump = PLAYER_JUMP_PROGRESS;
 		}
 	}
@@ -120,7 +124,7 @@ void Player::JumpChecking(Vector2f* _updatePosition)
 
 		if (this->mJumpHeight >= playerJumpPower)
 		{
-			this->mIsJump = 2;
+			this->mIsJump = PLAYER_JUMP_FALL;
 		}
 	}
 
@@ -133,6 +137,7 @@ void Player::JumpChecking(Vector2f* _updatePosition)
 		{
 			this->mJumpHeight = 0;
 			this->mIsJump = PLAYER_JUMP_NONE;
+			this->GetAnimator()->Play(L"IDLE", true);
 		}
 	}
 }
