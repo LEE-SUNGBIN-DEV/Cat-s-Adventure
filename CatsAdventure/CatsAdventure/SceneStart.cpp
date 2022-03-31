@@ -19,7 +19,7 @@
 SceneStart::SceneStart()
 {
 	// Load Texture
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"BACKGROUND", L"\\texture\\backgroundStart.bmp"));
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"Back Ground", L"\\texture\\backgroundStart.bmp"));
 
 }
 SceneStart::~SceneStart()
@@ -79,7 +79,7 @@ void SceneStart::Update()
 
 	if (KEY_CHECK(KEY::KEY_ENTER, KEY_STATE::KEY_STATE_DOWN))
 	{
-		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_STAGE_01);
+		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_TOOL);
 	}
 
 	if (KEY_CHECK(KEY::KEY_MOUSE_LEFT_BUTTON, KEY_STATE::KEY_STATE_DOWN))

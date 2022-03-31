@@ -56,9 +56,16 @@ void EventManager::Execute(const EventMessage& _eventMessage)
 	case EVENT_TYPE::EVENT_TYPE_REMOVE_OBJECT:
 	{
 		// lParameter: Object Adress
-		// Object를 REMOVE 상태로 변경
 		GameObject* gameObject = (GameObject*)_eventMessage.lParameter;
 
+		// 이미 REMOVE 상태인 오브젝트일 경우 처리하지 않음
+		if (gameObject->IsAlive() == false)
+		{
+			return;;
+		}
+
+
+		// Object를 REMOVE 상태로 변경
 		gameObject->SetIsAlive(false);
 		this->mRemoveObjectList.push_back(gameObject);
 	}
@@ -78,17 +85,5 @@ void EventManager::Execute(const EventMessage& _eventMessage)
 
 void EventManager::AddEvent(const EventMessage& _eventMessage)
 {
-	// 동일한 오브젝트에 대한 삭제 요청이 이미 존재할 경우 (여러 번 지우는거 방지)
-	if (_eventMessage.mEventType == EVENT_TYPE::EVENT_TYPE_REMOVE_OBJECT)
-	{
-		for (UINT i = 0; i < this->mEventList.size(); ++i)
-		{
-			if (this->mEventList[i].lParameter == _eventMessage.lParameter)
-			{
-				return;
-			}
-		}
-	}
-
 	mEventList.push_back(_eventMessage);
 }

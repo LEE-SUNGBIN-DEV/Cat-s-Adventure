@@ -75,10 +75,10 @@ void Animation::Create(Texture* _texture, Vector2f _leftTop, Vector2f _sliceSize
 	this->mTexture = _texture; 
 
 	AnimationFrame animationFrame = {};
-	for (int i = 0; i < _frameCount; ++i)
+	for (UINT i = 0; i < _frameCount; ++i)
 	{
 		animationFrame.mDuration = _duration;
-		animationFrame.mLeftTop = _leftTop + _interval * i;
+		animationFrame.mLeftTop = _leftTop + _interval * (int)i;
 		animationFrame.mSliceSize = _sliceSize;
 		animationFrame.mOffset = Vector2f(0.f, 0.f);
 

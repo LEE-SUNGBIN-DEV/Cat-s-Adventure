@@ -84,8 +84,8 @@ void CollisionManager::CheckCollisionCondition(OBJECT_TYPE _objectTypeA, OBJECT_
 				if (iter->second)
 				{
 					// 오브젝트가 Remove 상태일 경우
-					if (objectTypeA[i]->GetIsAlive() == false
-						|| objectTypeB[j]->GetIsAlive() == false)
+					if (objectTypeA[i]->IsAlive() == false
+						|| objectTypeB[j]->IsAlive() == false)
 					{
 						colliderA->OnCollisionExit(colliderB);
 						colliderB->OnCollisionExit(colliderA);
@@ -103,8 +103,8 @@ void CollisionManager::CheckCollisionCondition(OBJECT_TYPE _objectTypeA, OBJECT_
 				// 이전 프레임에 Collision 발생하지 않음
 				else
 				{
-					if (objectTypeA[i]->GetIsAlive()
-						&& objectTypeB[j]->GetIsAlive())
+					if (objectTypeA[i]->IsAlive()
+						&& objectTypeB[j]->IsAlive())
 					{
 
 						colliderA->OnCollisionEnter(colliderB);

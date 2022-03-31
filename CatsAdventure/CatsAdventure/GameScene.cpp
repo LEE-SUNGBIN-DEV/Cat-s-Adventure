@@ -24,7 +24,7 @@ void GameScene::Update()
 	{
 		for (size_t j = 0; j < this->mGameObjectList[i].size(); ++j)
 		{
-			if (this->mGameObjectList[i][j]->GetIsAlive() == true)
+			if (this->mGameObjectList[i][j]->IsAlive() == true)
 			{
 				this->mGameObjectList[i][j]->Update();
 			}
@@ -65,7 +65,7 @@ void GameScene::Render(HDC _bitmapDC)
 
 		for (; iter != this->mGameObjectList[i].end();)
 		{
-			if ((*iter)->GetIsAlive())
+			if ((*iter)->IsAlive())
 			{
 				(*iter)->Render(_bitmapDC);
 				++iter;

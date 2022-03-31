@@ -46,7 +46,7 @@ void MonsterMouse::Render(HDC _bitmapDC)
 		(int)position.x - (int)monsterMouseBitmapScale.x / 2,
 		(int)position.y - (int)monsterMouseBitmapScale.y / 2,
 		(int)monsterMouseBitmapScale.x, (int)monsterMouseBitmapScale.y,
-		GetTexture()->GetDC(),
+		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)
 	);

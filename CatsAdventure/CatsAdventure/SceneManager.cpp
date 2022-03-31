@@ -12,7 +12,7 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	for (UINT i = 0; i < (UINT)SCENE_TYPE::SCENE_TYPE_SIZE; i++)
+	for (UINT i = 0; i < (UINT)SCENE_TYPE::SCENE_TYPE_SIZE; ++i)
 	{
 		if (mGameSceneList != nullptr)
 		{
@@ -34,7 +34,7 @@ void SceneManager::Init()
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL]->SetName(L"Scene Tool");
 
 	// ÇöÀç ¾À ÀúÀå
-	this->mCurrentScene = mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START];
+	this->mCurrentScene = mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL];
 	this->mCurrentScene->Enter();
 }
 

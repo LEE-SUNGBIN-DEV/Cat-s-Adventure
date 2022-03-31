@@ -55,7 +55,7 @@ public:
 	OBJECT_TYPE		GetObjectType() { return this->mObjectType; }
 	Vector2f		GetPosition() { return this->mOffset; }
 	Vector2f		GetScale() { return this->mScale; }
-	bool			GetIsAlive() { return this->mIsAlive; }
+	bool			IsAlive() { return this->mIsAlive; }
 	Texture*		GetTexture() { return this->mTexture; }
 	Collider*		GetCollider() { return this->mCollider; }
 	GameTimer*		GetTimer() { return this->mTimer; }

@@ -26,7 +26,7 @@ void GameCamera::Update()
 {
 	if (this->mTargetObject != nullptr)
 	{
-		if (this->mTargetObject->GetIsAlive() == false)
+		if (this->mTargetObject->IsAlive() == false)
 		{
 			this->mTargetObject = nullptr;
 		}
