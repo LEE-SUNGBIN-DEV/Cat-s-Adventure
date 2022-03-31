@@ -60,10 +60,14 @@ void MonsterMouse::OnCollision(Collider* _opponent)
 
 void MonsterMouse::OnCollisionEnter(Collider* _opponent)
 {
-	if (_opponent->GetOwner()->GetObjectType() == OBJECT_TYPE::OBJECT_TYPE_PLAYER)
+	switch (_opponent->GetOwner()->GetObjectType())
+	{
+	case OBJECT_TYPE::OBJECT_TYPE_PLAYER:
 	{
 		Player* player = (Player*)_opponent->GetOwner();
 		player->SetHP(player->GetHP() - this->mDamage);
+	}
+	break;
 	}
 }
 

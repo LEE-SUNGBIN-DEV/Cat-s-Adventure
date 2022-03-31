@@ -10,7 +10,8 @@ Collider::Collider()
 	mOwner(nullptr),
 	mPosition(0.f, 0.f),
 	mOffset(0.f, 0.f),
-	mScale(0.f, 0.f)
+	mScale(0.f, 0.f),
+	mIsCollision(0)
 {
 }
 
@@ -20,7 +21,8 @@ Collider::Collider(const Collider& _origin)
 	mOwner(nullptr),
 	mPosition(_origin.mPosition),
 	mOffset(_origin.mOffset),
-	mScale(_origin.mScale)
+	mScale(_origin.mScale),
+	mIsCollision(0)
 {
 }
 
@@ -30,6 +32,7 @@ Collider::~Collider()
 
 void Collider::LateUpdate()
 {
+	assert(this->mIsCollision >= 0);
 	// Trace Owner's Position + offset
 	Vector2f position = this->GetOwner()->GetPosition() + this->GetOffset();
 
@@ -38,8 +41,14 @@ void Collider::LateUpdate()
 
 void Collider::Render(HDC _bitmapDC)
 {
+	HPEN redPen = GameCore::GetInstance()->GetPen(PEN_TYPE::PEN_TYPE_RED);
 	HPEN greenPen = GameCore::GetInstance()->GetPen(PEN_TYPE::PEN_TYPE_GREEN);
-	HPEN prevPen = (HPEN)SelectObject(_bitmapDC, greenPen);
+	HPEN prevPen;
+
+	if (this->mIsCollision > 0)
+		prevPen = (HPEN)SelectObject(_bitmapDC, redPen);
+	else
+		prevPen = (HPEN)SelectObject(_bitmapDC, greenPen);
 
 	HBRUSH hollowBrush = GameCore::GetInstance()->GetBrush(BRUSH_TYPE::BRUSH_TYPE_HOLLOW);
 	HBRUSH prevBrush = (HBRUSH)SelectObject(_bitmapDC, hollowBrush);
@@ -64,10 +73,12 @@ void Collider::OnCollision(Collider* _opponent)
 
 void Collider::OnCollisionEnter(Collider* _opponent)
 {
+	++this->mIsCollision;
 	this->mOwner->OnCollisionEnter(_opponent);
 }
 
 void Collider::OnCollisionExit(Collider* _opponent)
 {
+	--this->mIsCollision;
 	this->mOwner->OnCollisionExit(_opponent);
 }

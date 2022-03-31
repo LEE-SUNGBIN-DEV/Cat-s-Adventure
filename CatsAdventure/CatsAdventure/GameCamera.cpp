@@ -9,7 +9,12 @@ GameCamera::GameCamera()
 	:mTargetObject(nullptr),
 	mDiffrence(0.f, 0.f),
 	mLookAtPosition(Vector2f(0.f, 0.f)),
-	mCameraSpeed(0.f)
+	mCurrentLookAtPosition(Vector2f(0.f, 0.f)),
+	mPrevLookAtPosition(Vector2f(0.f, 0.f)),
+	mCameraSpeedByKeyboard(1000.f),
+	mCameraSpeedByMouse(0.f),
+	mCameraMoveTimeByMouse(1.0f),
+	mAccumulatedTime(0.f)
 {
 }
 
@@ -28,22 +33,20 @@ void GameCamera::Update()
 
 		else
 		{
-			this->mLookAtPosition = this->mTargetObject->GetPosition();
+			//this->mLookAtPosition = this->mTargetObject->GetPosition();
 		}
-
-		this->mLookAtPosition = this->mTargetObject->GetPosition();
 	}
 
 	// Left
 	if (KEY_CHECK(KEY::KEY_D, KEY_STATE::KEY_STATE_HOLD))
 	{
-		this->mLookAtPosition.x -= this->mCameraSpeed * (float)DELTA_TIME;
+		this->mLookAtPosition.x -= this->mCameraSpeedByKeyboard * (float)DELTA_TIME;
 	}
 
 	// Right
 	if (KEY_CHECK(KEY::KEY_A, KEY_STATE::KEY_STATE_HOLD))
 	{
-		this->mLookAtPosition.x += this->mCameraSpeed * (float)DELTA_TIME;
+		this->mLookAtPosition.x += this->mCameraSpeedByKeyboard * (float)DELTA_TIME;
 	}
 
 	// 화면 중앙 좌표와 카메라 LookAt 좌표간의 차이값을 계산
@@ -52,8 +55,21 @@ void GameCamera::Update()
 
 void GameCamera::CalculateDifference()
 {
+	this->mAccumulatedTime += (float)DELTA_TIME;
+	if (this->mAccumulatedTime >= this->mCameraMoveTimeByMouse)
+	{
+		this->mCurrentLookAtPosition = this->mLookAtPosition;
+	}
+
+	else
+	{
+		Vector2f LookAtDirection = this->mLookAtPosition - this->mPrevLookAtPosition;
+		this->mCurrentLookAtPosition = this->mPrevLookAtPosition + LookAtDirection.Normalize() * this->mCameraSpeedByMouse * (float)DELTA_TIME;
+	}
+	
 	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
 	Vector2f centerPosition = mainResolution / 2.0f;
 
-	this->mDiffrence = this->mLookAtPosition - centerPosition;
+	this->mDiffrence = this->mCurrentLookAtPosition - centerPosition;
+	this->mPrevLookAtPosition = this->mCurrentLookAtPosition;
 }

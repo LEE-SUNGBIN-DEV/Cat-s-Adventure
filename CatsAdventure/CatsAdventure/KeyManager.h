@@ -21,6 +21,8 @@ enum class KEY
 	KEY_ALT, KEY_CTRL, KEY_SHIFT,
 	KEY_ENTER, KEY_SPACE, KEY_ESC,
 
+	KEY_MOUSE_LEFT_BUTTON, KEY_MOUSE_RIGHT_BUTTON,
+
 
 	KEY_SIZE
 };
@@ -44,7 +46,8 @@ class KeyManager
 
 	// 2. 다양한 상황에서 키 이벤트 처리
 private:
-	vector<KeyInfo>	keyInfo;
+	vector<KeyInfo>	mKeyInfo;
+	Vector2f		mMousePosition;
 
 	KeyManager();
 	~KeyManager();
@@ -63,7 +66,12 @@ public:
 	// get
 	KEY_STATE GetKeyState(KEY _index)
 	{
-		return this->keyInfo[(int)_index].state;
+		return this->mKeyInfo[(int)_index].state;
+	}
+
+	Vector2f GetMousePosition()
+	{
+		return this->mMousePosition;
 	}
 };
 

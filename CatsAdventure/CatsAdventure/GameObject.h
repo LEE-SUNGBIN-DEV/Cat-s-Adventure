@@ -51,7 +51,7 @@ public:
 	virtual GameObject* Clone() = 0;
 
 	// get
-	const wstring& GetObjectName() { return this->mObjectName; }
+	const wstring&	GetObjectName() { return this->mObjectName; }
 	OBJECT_TYPE		GetObjectType() { return this->mObjectType; }
 	Vector2f		GetPosition() { return this->mOffset; }
 	Vector2f		GetScale() { return this->mScale; }

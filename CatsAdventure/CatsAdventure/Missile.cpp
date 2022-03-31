@@ -52,13 +52,14 @@ void Missile::Update()
 		if (!gameObjectList.empty())
 		{
 			Vector2f targetPosition = gameObjectList[0]->GetPosition();
-			targetPosition = targetPosition - updatePosition;
-			this->SetDirection(targetPosition);
+			targetPosition = (targetPosition - updatePosition);
+			targetPosition.x = targetPosition.x * 0.8f;
+			this->SetDirection(targetPosition.Normalize());
 		}
 		
 		else
 		{
-			this->SetDirection(Vector2f(1.f, 0.f));
+			this->SetDirection(this->GetDirection());
 		}
 
 		updatePosition.x += this->GetDirection().x * missileGuidedSpeed * (float)DELTA_TIME;
@@ -100,6 +101,7 @@ void Missile::OnCollisionEnter(Collider* _opponent)
 	{
 		Monster* monster = (Monster*)_opponent->GetOwner();
 		monster->SetHP(monster->GetHP() - this->mDamage);
+
 		RemoveGameObject(this);
 	}
 	break;

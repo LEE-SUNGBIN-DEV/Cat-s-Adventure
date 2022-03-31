@@ -37,10 +37,10 @@ void SceneStart::Enter()
 	GameCamera::GetInstance()->SetTargetObject(player);
 
 	// Set Monster
-	MonsterMouse* monsterMouse = new MonsterMouse;
-	monsterMouse->SetPosition(Vector2f(900.f, 621.f));
-	monsterMouse->SetOriginalPosition(monsterMouse->GetPosition());
-	AddGameObject(monsterMouse, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
+	MonsterMouse* monsterMouse00 = new MonsterMouse;
+	monsterMouse00->SetPosition(Vector2f(900.f, 621.f));
+	monsterMouse00->SetOriginalPosition(monsterMouse00->GetPosition());
+	AddGameObject(monsterMouse00, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 
 	MonsterSpider* monsterSpider00 = new MonsterSpider;
 	monsterSpider00->SetPosition(Vector2f(900.f, 25.f));
@@ -61,7 +61,6 @@ void SceneStart::Enter()
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
 	// Set Camera
 	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
@@ -81,6 +80,12 @@ void SceneStart::Update()
 	if (KEY_CHECK(KEY::KEY_ENTER, KEY_STATE::KEY_STATE_DOWN))
 	{
 		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_STAGE_01);
+	}
+
+	if (KEY_CHECK(KEY::KEY_MOUSE_LEFT_BUTTON, KEY_STATE::KEY_STATE_DOWN))
+	{
+		Vector2f lookAt = GameCamera::GetInstance()->GetRealPosition(GET_MOUSE_POSITION);
+		GameCamera::GetInstance()->SetLookAtPosition(lookAt);
 	}
 		
 }

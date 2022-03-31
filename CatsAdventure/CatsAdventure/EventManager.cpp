@@ -19,12 +19,14 @@ void EventManager::Init()
 void EventManager::Update()
 {
 	// 이전 프레임에서 등록해둔 Remove Object들을 삭제 처리
-	for (size_t i = 0; i < this->mRemoveObjectList.size(); ++i)
+	size_t listSize = this->mRemoveObjectList.size();
+	for (size_t i = 0; i < listSize; ++i)
 	{
 		delete this->mRemoveObjectList[i];
 	}
 	this->mRemoveObjectList.clear();
 
+	// 이벤트 처리
 	for (size_t i = 0; i < mEventList.size(); ++i)
 	{
 		this->Execute(mEventList[i]);
@@ -72,4 +74,21 @@ void EventManager::Execute(const EventMessage& _eventMessage)
 	}
 		break;
 	}
+}
+
+void EventManager::AddEvent(const EventMessage& _eventMessage)
+{
+	// 동일한 오브젝트에 대한 삭제 요청이 이미 존재할 경우 (여러 번 지우는거 방지)
+	if (_eventMessage.mEventType == EVENT_TYPE::EVENT_TYPE_REMOVE_OBJECT)
+	{
+		for (UINT i = 0; i < this->mEventList.size(); ++i)
+		{
+			if (this->mEventList[i].lParameter == _eventMessage.lParameter)
+			{
+				return;
+			}
+		}
+	}
+
+	mEventList.push_back(_eventMessage);
 }

@@ -13,7 +13,7 @@ private:
 
 public:
     Projectile();
-    ~Projectile();
+    virtual ~Projectile();
 
     virtual void Update() = 0;
     virtual void Render(HDC _bitmapDC) = 0;

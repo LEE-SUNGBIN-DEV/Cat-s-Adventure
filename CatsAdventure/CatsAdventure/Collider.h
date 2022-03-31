@@ -10,9 +10,11 @@ private:
 	UINT		mID;
 	GameObject*	mOwner;	// 이 컴포넌트의 소유자
 
-	Vector2f mPosition;
-	Vector2f mOffset;
-	Vector2f mScale;
+	Vector2f	mPosition;
+	Vector2f	mOffset;
+	Vector2f	mScale;
+
+	int			mIsCollision;
 
 public:
 	Collider();

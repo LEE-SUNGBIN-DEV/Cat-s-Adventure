@@ -11,6 +11,7 @@
 
 MonsterSpider::MonsterSpider()
 {
+	this->SetObjectName(L"Spider");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	this->SetScale(monsterSpiderBitmapScale);
 

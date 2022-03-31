@@ -36,7 +36,7 @@ public:
 	float	GetPatrolDistance() { return this->mPatrolDistance; }
 
 	// set
-	void SetHP(int _hp)
+	void inline SetHP(int _hp)
 	{
 		this->mHP = _hp;
 		if (this->mHP <= 0)

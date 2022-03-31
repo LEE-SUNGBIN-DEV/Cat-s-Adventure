@@ -28,9 +28,12 @@ public:
 	void Init();
 	void Update();
 	void Execute(const EventMessage& _eventMessage);
-	void AddEvent(const EventMessage& _eventMessage)
-	{
-		mEventList.push_back(_eventMessage);
-	}
+	void AddEvent(const EventMessage& _eventMessage);
+
+	// get
+	vector<GameObject*> GetRemoveObjectList() { return this->mRemoveObjectList; }
+	vector<EventMessage> GetEventMessageList() { return this->mEventList; }
+
+	// set
 };
 

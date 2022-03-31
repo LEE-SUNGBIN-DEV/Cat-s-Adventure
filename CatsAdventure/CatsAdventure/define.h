@@ -2,6 +2,7 @@
 
 #define DELTA_TIME TimeManager::GetInstance()->GetDeltaTime()
 #define KEY_CHECK(_keyInput, _keyState) KeyManager::GetInstance()->GetKeyState(_keyInput) == _keyState
+#define GET_MOUSE_POSITION KeyManager::GetInstance()->GetMousePosition()
 #define PI 3.141592f
 
 enum class OBJECT_TYPE
