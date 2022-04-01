@@ -3,7 +3,7 @@
 
 const Vector2f webScale = { 30.f, 30.f };
 const float webSpeed = 400.f;
-const int webDamage = 20;
+const int webDamage = 15;
 
 class Web :
 	public Projectile

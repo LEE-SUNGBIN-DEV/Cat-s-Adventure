@@ -26,12 +26,10 @@ SceneStage01::~SceneStage01()
 
 void SceneStage01::Enter()
 {
-	// Set Camera
 	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
-	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f, false);
 
 	// 타일 생성
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 200; ++i)
 	{
 		for (int j = 0; j < 1; ++j)
 		{
@@ -61,7 +59,9 @@ void SceneStage01::Enter()
 	player->SetPosition(Vector2f(100.f, mainResolution.y - (TILE_SIZE + playerScale.y)));
 	AddGameObject(player, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
-	GameCamera::GetInstance()->SetTargetOffset(Vector2f(0.f, player->GetPosition().y - mainResolution.y / 2.f));
+	// Set Camera
+	GameCamera::GetInstance()->SetLookAtPosition(Vector2f(player->GetPosition().x, mainResolution.y/2.0f), false);
+	//GameCamera::GetInstance()->SetTargetOffset(Vector2f(0.f, player->GetPosition().y - mainResolution.y / 2.f));
 
 	// Set Monster
 	MonsterMouse* monsterMouse00 = new MonsterMouse;

@@ -146,6 +146,12 @@
     <Filter Include="Engine\04. Game Object\05. Game UI\03. Exit Button">
       <UniqueIdentifier>{64824a69-0839-4a03-b9e6-74bb804eed85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\03. Frog">
+      <UniqueIdentifier>{36798d30-4474-445e-a818-346ab5e32427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\03. Projectile\04. Acid">
+      <UniqueIdentifier>{7cea23a2-cd52-4e84-a6a7-17206b2e365d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -280,6 +286,12 @@
     <ClInclude Include="TitleUI.h">
       <Filter>Engine\04. Game Object\05. Game UI\01. Title UI</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterFrog.h">
+      <Filter>Engine\04. Game Object\02. Monster\03. Frog</Filter>
+    </ClInclude>
+    <ClInclude Include="Acid.h">
+      <Filter>Engine\04. Game Object\03. Projectile\04. Acid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameCore.cpp">
@@ -395,6 +407,12 @@
     </ClCompile>
     <ClCompile Include="TitleUI.cpp">
       <Filter>Engine\04. Game Object\05. Game UI\01. Title UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterFrog.cpp">
+      <Filter>Engine\04. Game Object\02. Monster\03. Frog</Filter>
+    </ClCompile>
+    <ClCompile Include="Acid.cpp">
+      <Filter>Engine\04. Game Object\03. Projectile\04. Acid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
