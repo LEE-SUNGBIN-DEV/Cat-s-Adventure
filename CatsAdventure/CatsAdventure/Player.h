@@ -1,8 +1,8 @@
 #pragma once
 #include "GameObject.h"
 
-const float		playerJumpPower = 150.f;
-const float		playerJumpSpeed = 400.f;
+const float		playerJumpPower = 300.f;
+const float		playerJumpSpeed = 700.f;
 const Vector2f	playerScale = { 64.f, 64.f };
 
 enum

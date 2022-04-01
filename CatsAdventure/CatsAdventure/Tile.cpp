@@ -14,8 +14,8 @@ Tile::Tile()
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"Tile Stone", L"\\texture\\tile\\tile_stone.bmp"));
 
 	this->AddCollider();
-	this->GetCollider()->SetPosition(this->GetPosition() + Vector2f(TILE_SIZE/2, TILE_SIZE/2));
 	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetOffset(Vector2f(TILE_SIZE / 2.0f, TILE_SIZE / 2.0f));
 }
 
 Tile::~Tile()

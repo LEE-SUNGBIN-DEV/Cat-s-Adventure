@@ -42,6 +42,7 @@ void Monster::Update()
 
 void Monster::Render(HDC _bitmapDC)
 {
+	this->ComponentRender(_bitmapDC);
 }
 
 void Monster::OnCollision(Collider* _opponent)

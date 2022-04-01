@@ -19,7 +19,7 @@
 #include "Gravity.h"
 
 Player::Player()
-	: mHP(100),
+	: mHP(150),
 	mSpeed(300.f),
 	mJumpHeight(0.f),
 	mIsJump(PLAYER_JUMP_NONE)
@@ -55,6 +55,8 @@ Player::Player()
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(this->GetScale());
+	this->GetCollider()->SetOffset(Vector2f(0.f, 0.f));
+	this->GetCollider()->SetOffset(Vector2f(0.f, this->GetScale().y / 2.f));
 
 	// =================== Gravity
 	this->AddGravity();
@@ -207,7 +209,6 @@ void Player::CreateBullet()
 	bulletPosition.x += this->GetScale().x;
 
 	bullet->SetPosition(bulletPosition);
-	bullet->SetScale(Vector2f(20.0f, 20.0f));
 	bullet->SetTheta(0);
 	bullet->SetDirection(Vector2f(1.f, 0.f));
 
@@ -217,12 +218,11 @@ void Player::CreateBullet()
 void Player::CreateMissile()
 {
 	Missile* missile = new Missile;
-	Vector2f bulletPosition = this->GetPosition();
+	Vector2f missilePosition = this->GetPosition();
 
-	bulletPosition.x += this->GetScale().x;
+	missilePosition.y -= this->GetScale().y;
 
-	missile->SetPosition(bulletPosition);
-	missile->SetScale(Vector2f(20.0f, 20.0f));
+	missile->SetPosition(missilePosition);
 	missile->SetTheta(0);
 	missile->SetDirection(Vector2f(1.f, 0.f));
 

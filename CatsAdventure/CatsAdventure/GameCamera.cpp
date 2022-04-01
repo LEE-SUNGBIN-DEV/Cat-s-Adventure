@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "GameCamera.h"
+
+#include "GameCore.h"
 #include "GameObject.h"
 #include "GameCore.h"
 #include "KeyManager.h"
@@ -10,9 +12,9 @@ GameCamera::GameCamera()
 	mTargetOffset(Vector2f(0.f, 0.f)),
 	mTargetMode(false),
 	mDiffrence(0.f, 0.f),
-	mLookAtPosition(Vector2f(0.f, 0.f)),
-	mCurrentLookAtPosition(Vector2f(0.f, 0.f)),
-	mPrevLookAtPosition(Vector2f(0.f, 0.f)),
+	mLookAtPosition(Vector2f(GameCore::GetInstance()->GetMainResolution())/2.f),
+	mCurrentLookAtPosition(Vector2f(GameCore::GetInstance()->GetMainResolution()) / 2.f),
+	mPrevLookAtPosition(Vector2f(GameCore::GetInstance()->GetMainResolution()) / 2.f),
 	mCameraSpeedByMouse(0.f),
 	mCameraMoveTimeByMouse(1.0f),
 	mAccumulatedTime(0.f)
@@ -40,11 +42,12 @@ void GameCamera::Update()
 		}
 	}
 
-	if (KEY_CHECK(KEY::KEY_MOUSE_LEFT_BUTTON, KEY_STATE::KEY_STATE_DOWN))
+	// Mouse Mode
+	/*if (KEY_CHECK(KEY::KEY_MOUSE_LEFT_BUTTON, KEY_STATE::KEY_STATE_DOWN))
 	{
 		Vector2f lookAt = GameCamera::GetInstance()->GetRealPosition(GET_MOUSE_POSITION);
 		this->SetLookAtPosition(lookAt, false);
-	}
+	}*/
 
 	// 화면 중앙 좌표와 카메라 LookAt 좌표간의 차이값을 계산
 	CalculateDifference();
@@ -99,6 +102,7 @@ void GameCamera::SetLookAtPosition(Vector2f _lookAtPosition, bool _targetMode)
 
 	switch (this->mTargetMode)
 	{
+	// 마우스 모드
 	case false:
 	{
 		this->mLookAtPosition = _lookAtPosition;
@@ -108,9 +112,13 @@ void GameCamera::SetLookAtPosition(Vector2f _lookAtPosition, bool _targetMode)
 	}
 	break;
 
+	// 키보드 모드
 	case true:
 	{
-		this->mLookAtPosition = _lookAtPosition;
+		// this->mLookAtPosition = _lookAtPosition;
+
+		// Y축 고정
+		this->mLookAtPosition.x = _lookAtPosition.x;
 		this->mAccumulatedTime = 0.f;
 	}
 	break;

@@ -74,12 +74,6 @@
     <Filter Include="Engine\04. Game Object\02. Monster">
       <UniqueIdentifier>{26dac3f6-2685-47c0-80ce-6765cef46e1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Game Object\02. Monster\Mouse">
-      <UniqueIdentifier>{3b6a6641-d4e7-45fd-b34d-fbce91897392}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\04. Game Object\02. Monster\Spider">
-      <UniqueIdentifier>{c8a2e22c-2448-443a-9a60-76912cd5f87a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04. Game Object\03. Projectile">
       <UniqueIdentifier>{1a8f4487-5293-4aaf-b0a2-00995c4ad341}</UniqueIdentifier>
     </Filter>
@@ -98,14 +92,8 @@
     <Filter Include="Engine\05. Game Scene\00. Game Scene">
       <UniqueIdentifier>{94046def-5506-4c10-89e7-2cfd85129821}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Game Scene\01. Scene Tool">
-      <UniqueIdentifier>{a156484d-cf04-4ca4-ae21-318290d008ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\05. Game Scene\01. Scene Start">
       <UniqueIdentifier>{2a3bd4fb-8436-4709-ae01-2749cd85e3c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\05. Game Scene\02. Scene Stage 01">
-      <UniqueIdentifier>{4d4301f0-b542-4937-a5c1-da54d76929a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\06. Game Resource\00. Game Resource">
       <UniqueIdentifier>{b28c121c-5196-4b3d-89fc-4adb82eb149f}</UniqueIdentifier>
@@ -124,6 +112,39 @@
     </Filter>
     <Filter Include="Engine\07. Game Component\04. Gravity">
       <UniqueIdentifier>{144c6e02-a632-41ca-b94f-5bd5e32c1bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\03. Scene Tool">
+      <UniqueIdentifier>{a156484d-cf04-4ca4-ae21-318290d008ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\02. Scene Stage 01">
+      <UniqueIdentifier>{4d4301f0-b542-4937-a5c1-da54d76929a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\03. Scene End">
+      <UniqueIdentifier>{8247e759-ec21-49f7-b0c4-8403f3a7aaaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\05. Game UI">
+      <UniqueIdentifier>{25d7589a-275e-48cc-96da-c8ce59d48f4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\00. Monster">
+      <UniqueIdentifier>{7b4d35c4-01ab-4f9b-8af5-e882dd8ddcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\01. Mouse">
+      <UniqueIdentifier>{3b6a6641-d4e7-45fd-b34d-fbce91897392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\02. Monster\02. Spider">
+      <UniqueIdentifier>{c8a2e22c-2448-443a-9a60-76912cd5f87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\05. Game UI\01. Title UI">
+      <UniqueIdentifier>{6aec2f6e-ac61-4f3f-85eb-e7854300b6cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\05. Game UI\00. Game UI">
+      <UniqueIdentifier>{56968288-6c5f-4285-b084-23eb9a411b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\05. Game UI\02. Start Button">
+      <UniqueIdentifier>{8fa6d072-f8d5-439e-a482-03f0ee8127e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\05. Game UI\03. Exit Button">
+      <UniqueIdentifier>{64824a69-0839-4a03-b9e6-74bb804eed85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +175,6 @@
     <ClInclude Include="Player.h">
       <Filter>Engine\04. Game Object\01. Player</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Engine\04. Game Object\02. Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Engine\04. Game Object\03. Projectile</Filter>
     </ClInclude>
@@ -170,10 +188,10 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="MonsterMouse.h">
-      <Filter>Engine\04. Game Object\02. Monster\Mouse</Filter>
+      <Filter>Engine\04. Game Object\02. Monster\01. Mouse</Filter>
     </ClInclude>
     <ClInclude Include="MonsterSpider.h">
-      <Filter>Engine\04. Game Object\02. Monster\Spider</Filter>
+      <Filter>Engine\04. Game Object\02. Monster\02. Spider</Filter>
     </ClInclude>
     <ClInclude Include="Web.h">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
@@ -221,7 +239,7 @@
       <Filter>Engine\04. Game Object\04. Tile</Filter>
     </ClInclude>
     <ClInclude Include="SceneTool.h">
-      <Filter>Engine\05. Game Scene\01. Scene Tool</Filter>
+      <Filter>Engine\05. Game Scene\03. Scene Tool</Filter>
     </ClInclude>
     <ClInclude Include="SceneStart.h">
       <Filter>Engine\05. Game Scene\01. Scene Start</Filter>
@@ -244,6 +262,24 @@
     <ClInclude Include="Gravity.h">
       <Filter>Engine\07. Game Component\04. Gravity</Filter>
     </ClInclude>
+    <ClInclude Include="SceneEnd.h">
+      <Filter>Engine\05. Game Scene\03. Scene End</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>Engine\04. Game Object\05. Game UI\00. Game UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>Engine\04. Game Object\05. Game UI\02. Start Button</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitButton.h">
+      <Filter>Engine\04. Game Object\05. Game UI\03. Exit Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Engine\04. Game Object\02. Monster\00. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleUI.h">
+      <Filter>Engine\04. Game Object\05. Game UI\01. Title UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameCore.cpp">
@@ -251,9 +287,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Engine\04. Game Object\01. Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Engine\04. Game Object\02. Monster</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>Engine\04. Game Object\03. Projectile</Filter>
@@ -268,10 +301,10 @@
       <Filter>Engine\01. Header</Filter>
     </ClCompile>
     <ClCompile Include="MonsterMouse.cpp">
-      <Filter>Engine\04. Game Object\02. Monster\Mouse</Filter>
+      <Filter>Engine\04. Game Object\02. Monster\01. Mouse</Filter>
     </ClCompile>
     <ClCompile Include="MonsterSpider.cpp">
-      <Filter>Engine\04. Game Object\02. Monster\Spider</Filter>
+      <Filter>Engine\04. Game Object\02. Monster\02. Spider</Filter>
     </ClCompile>
     <ClCompile Include="Web.cpp">
       <Filter>Engine\04. Game Object\03. Projectile\03. Web</Filter>
@@ -319,7 +352,7 @@
       <Filter>Engine\04. Game Object\04. Tile</Filter>
     </ClCompile>
     <ClCompile Include="SceneTool.cpp">
-      <Filter>Engine\05. Game Scene\01. Scene Tool</Filter>
+      <Filter>Engine\05. Game Scene\03. Scene Tool</Filter>
     </ClCompile>
     <ClCompile Include="SceneStart.cpp">
       <Filter>Engine\05. Game Scene\01. Scene Start</Filter>
@@ -344,6 +377,24 @@
     </ClCompile>
     <ClCompile Include="Gravity.cpp">
       <Filter>Engine\07. Game Component\04. Gravity</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneEnd.cpp">
+      <Filter>Engine\05. Game Scene\03. Scene End</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>Engine\04. Game Object\05. Game UI\00. Game UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>Engine\04. Game Object\05. Game UI\02. Start Button</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitButton.cpp">
+      <Filter>Engine\04. Game Object\05. Game UI\03. Exit Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Engine\04. Game Object\02. Monster\00. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleUI.cpp">
+      <Filter>Engine\04. Game Object\05. Game UI\01. Title UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
