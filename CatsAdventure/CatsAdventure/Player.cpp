@@ -16,6 +16,7 @@
 #include "Collider.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "Gravity.h"
 
 Player::Player()
 	: mHP(100),
@@ -24,7 +25,7 @@ Player::Player()
 	mIsJump(PLAYER_JUMP_NONE)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
-	this->SetScale(playerBitmapScale);
+	this->SetScale(playerScale);
 
 	//======================================== Init Component
 	// ==================== Animator
@@ -38,16 +39,25 @@ Player::Player()
 	// jump
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_JUMP", L"\\texture\\cat\\cat_jump.bmp"));
 	this->GetAnimator()->CreateAnimation(L"JUMP", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 8);
+	// fall
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_FALL", L"\\texture\\cat\\cat_fall.bmp"));
+	this->GetAnimator()->CreateAnimation(L"FALL", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
 	// hurt
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_HURT", L"\\texture\\cat\\cat_hurt.bmp"));
 	this->GetAnimator()->CreateAnimation(L"HURT", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
-	
+	// dead
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_DEAD", L"\\texture\\cat\\cat_dead.bmp"));
+	this->GetAnimator()->CreateAnimation(L"DEAD", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
+
 	this->GetAnimator()->Play(L"IDLE", true);
 
 	// ==================== Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(playerColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
+
+	// =================== Gravity
+	this->AddGravity();
 
 	// Camera
 	GameCamera::GetInstance()->SetTargetObject(this);
@@ -65,8 +75,8 @@ void Player::Update()
 	// Player Move Position
 	Vector2f updatePosition = this->GetPosition();
 
-	// 점프 테스트 버전
-	JumpChecking(&updatePosition);
+	if(this->mIsJump == PLAYER_JUMP_NONE)
+		this->GetAnimator()->Play(L"IDLE", true);
 
 	// Left
 	if (KEY_CHECK(KEY::KEY_LEFT, KEY_STATE::KEY_STATE_HOLD))
@@ -88,12 +98,15 @@ void Player::Update()
 	if (KEY_CHECK(KEY::KEY_C, KEY_STATE::KEY_STATE_DOWN))
 	{
 		GameCamera::GetInstance()->SetCameraMode(true);
+
 		if (mIsJump == PLAYER_JUMP_NONE)
 		{
 			this->GetAnimator()->Play(L"JUMP", true);
 			mIsJump = PLAYER_JUMP_PROGRESS;
 		}
 	}
+	JumpChecking(&updatePosition);
+
 	this->SetPosition(updatePosition);
 
 	// Player Attack
@@ -132,6 +145,12 @@ void Player::OnCollisionEnter(Collider* _opponent)
 	{
 		this->GetAnimator()->Play(L"HURT", true);
 	}
+
+	case OBJECT_TYPE::OBJECT_TYPE_TILE:
+	{
+
+	}
+
 	break;
 	}
 }
@@ -142,27 +161,40 @@ void Player::OnCollisionExit(Collider* _opponent)
 
 void Player::JumpChecking(Vector2f* _updatePosition)
 {
+	// 점프 상태면
 	if (this->mIsJump == PLAYER_JUMP_PROGRESS)
 	{
+		if (this->GetGravity() != nullptr)
+		{
+			// Ground 상태 해제
+			this->GetGravity()->SetIsGround(false);
+		}
+
+		// 점프 진행
 		this->mJumpHeight += playerJumpSpeed * (float)DELTA_TIME;
 		_updatePosition->y -= playerJumpSpeed * (float)DELTA_TIME;
 
+		// 최대 점프 거리에 도달하면
 		if (this->mJumpHeight >= playerJumpPower)
 		{
+			// 낙하 상태로 변경, 점프 높이 초기화
 			this->mIsJump = PLAYER_JUMP_FALL;
+			this->mJumpHeight = 0;
 		}
 	}
 
+	// 낙하 상태
 	else if (this->mIsJump == PLAYER_JUMP_FALL)
 	{
-		this->mJumpHeight -= playerJumpSpeed * (float)DELTA_TIME;
-		_updatePosition->y += playerJumpSpeed * (float)DELTA_TIME;
-
-		if (this->mJumpHeight <= 0)
+		this->GetAnimator()->Play(L"FALL", true);
+		if (this->GetGravity() != nullptr)
 		{
-			this->mJumpHeight = 0;
-			this->mIsJump = PLAYER_JUMP_NONE;
-			this->GetAnimator()->Play(L"IDLE", true);
+			// 땅에 닿으면
+			if (this->GetGravity()->IsGround() == true)
+			{
+				// 낙하 상태 해제
+				this->mIsJump = PLAYER_JUMP_NONE;
+			}
 		}
 	}
 }

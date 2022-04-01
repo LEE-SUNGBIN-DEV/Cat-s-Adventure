@@ -1,8 +1,7 @@
 #pragma once
 #include "Monster.h"
 
-const Vector2f monsterSpiderBitmapScale = { 50.f, 50.f };
-const Vector2f monsterSpiderColliderScale = { 25.f, 25.f };
+const Vector2f monsterSpiderScale = { 50.f, 50.f };
 const float spiderAttackDelay = 3.0f;
 
 class MonsterSpider :

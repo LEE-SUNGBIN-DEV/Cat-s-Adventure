@@ -1,8 +1,7 @@
 #pragma once
 #include "Projectile.h"
 
-const Vector2f webBitmapScale = { 30.f, 30.f };
-const Vector2f webColliderScale = { 15.f, 15.f };
+const Vector2f webScale = { 30.f, 30.f };
 const float webSpeed = 400.f;
 const int webDamage = 20;
 

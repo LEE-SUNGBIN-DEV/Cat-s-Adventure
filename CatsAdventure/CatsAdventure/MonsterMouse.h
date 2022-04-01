@@ -1,8 +1,7 @@
 #pragma once
 #include "Monster.h"
 
-const Vector2f monsterMouseBitmapScale = { 50.f, 50.f };
-const Vector2f monsterMouseColliderScale = { 25.f, 25.f };
+const Vector2f monsterMouseScale = { 50.f, 50.f };
 
 class MonsterMouse :
 	public Monster

@@ -11,7 +11,7 @@ Bullet::Bullet()
 {
 	this->SetObjectName(L"Bullet");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	this->SetScale(bulletBitmapScale);
+	this->SetScale(bulletScale);
 	this->SetSpeed(bulletSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FISH_BULLET", L"\\texture\\fishBullet_right.bmp"));
@@ -19,7 +19,7 @@ Bullet::Bullet()
 	// Create Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(bulletColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
 }
 
 Bullet::~Bullet()
@@ -44,11 +44,12 @@ void Bullet::Render(HDC _bitmapDC)
 	Vector2f position = GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
+	Vector2f halfScale = this->GetScale() / 2.0f;
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		(int)position.x - (int)bulletBitmapScale.x / 2,
-		(int)position.y - (int)bulletBitmapScale.y / 2,
-		(int)bulletBitmapScale.x, (int)bulletBitmapScale.y,
+		(int)position.x - (int)halfScale.x,
+		(int)position.y - (int)halfScale.y,
+		(int)bulletScale.x, (int)bulletScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

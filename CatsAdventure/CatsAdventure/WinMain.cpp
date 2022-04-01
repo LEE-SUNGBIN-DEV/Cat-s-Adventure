@@ -48,7 +48,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 	
-	// gameCore 초기화
+	// GameCore 초기화
 	if (FAILED(GameCore::GetInstance()->Init(gMainHWND, POINT{1280, 720})))
 	{
 		MessageBox(nullptr, L"Core Init Failed", L"ERROR", MB_OK);
@@ -176,19 +176,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	break;
 
-	// 마우스
-	case WM_LBUTTONDOWN:
-	{
-		break;
-	}
-	case WM_MOUSEMOVE:
-	{
-		break;
-	}
-	case WM_LBUTTONUP:
-	{
-		break;
-	}
 	case WM_PAINT:
 	{
 		PAINTSTRUCT ps;

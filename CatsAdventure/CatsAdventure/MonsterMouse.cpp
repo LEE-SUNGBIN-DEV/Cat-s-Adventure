@@ -11,7 +11,7 @@ MonsterMouse::MonsterMouse()
 {
 	this->SetObjectName(L"Mouse");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
-	this->SetScale(monsterMouseBitmapScale);
+	this->SetScale(monsterMouseScale);
 
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
@@ -19,7 +19,7 @@ MonsterMouse::MonsterMouse()
 	// Create Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(monsterMouseColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
 }
 MonsterMouse::~MonsterMouse()
 {
@@ -40,12 +40,13 @@ void MonsterMouse::Render(HDC _bitmapDC)
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
+	Vector2f halfScale = this->GetScale() / 2.0f;
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		(int)position.x - (int)monsterMouseBitmapScale.x / 2,
-		(int)position.y - (int)monsterMouseBitmapScale.y / 2,
-		(int)monsterMouseBitmapScale.x, (int)monsterMouseBitmapScale.y,
+		(int)position.x - (int)halfScale.x,
+		(int)position.y - (int)halfScale.y,
+		(int)monsterMouseScale.x, (int)monsterMouseScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

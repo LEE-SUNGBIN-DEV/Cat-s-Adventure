@@ -1,8 +1,7 @@
 #pragma once
 #include "Projectile.h"
 
-const Vector2f bulletBitmapScale = { 40.f, 40.f };
-const Vector2f bulletColliderScale = { 20.f, 20.f };
+const Vector2f bulletScale = { 40.f, 40.f };
 const float bulletSpeed = 800.f;
 const int bulletDamage = 2;
 

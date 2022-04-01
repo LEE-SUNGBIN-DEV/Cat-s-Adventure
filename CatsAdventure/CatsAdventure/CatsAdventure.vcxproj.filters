@@ -122,6 +122,9 @@
     <Filter Include="Engine\07. Game Component\03. Timer">
       <UniqueIdentifier>{2ac0f84c-aa57-4feb-bd1b-0972adcdf4c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Game Component\04. Gravity">
+      <UniqueIdentifier>{144c6e02-a632-41ca-b94f-5bd5e32c1bba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -238,6 +241,9 @@
     <ClInclude Include="Sound.h">
       <Filter>Engine\06. Game Resource\02. Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>Engine\07. Game Component\04. Gravity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameCore.cpp">
@@ -335,6 +341,9 @@
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>Engine\00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>Engine\07. Game Component\04. Gravity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

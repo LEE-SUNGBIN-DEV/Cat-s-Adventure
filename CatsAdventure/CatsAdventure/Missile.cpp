@@ -15,7 +15,7 @@ Missile::Missile()
 {
 	this->SetObjectName(L"Missile");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	this->SetScale(missileBitmapScale);
+	this->SetScale(missileScale);
 	this->SetSpeed(missileSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SHARK_MISSILE", L"\\texture\\sharkMissile_right.bmp"));
@@ -23,7 +23,7 @@ Missile::Missile()
 	// Create Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(missileColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
 }
 
 Missile::~Missile()
@@ -75,12 +75,14 @@ void Missile::Render(HDC _bitmapDC)
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
+	
+	Vector2f halfScale = this->GetScale() / 2.0f;
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		(int)position.x - (int)missileBitmapScale.x / 2,
-		(int)position.y - (int)missileBitmapScale.y / 2,
-		(int)missileBitmapScale.x, (int)missileBitmapScale.y,
+		(int)position.x - (int)halfScale.x,
+		(int)position.y - (int)halfScale.y,
+		(int)missileScale.x, (int)missileScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

@@ -55,12 +55,14 @@ void Collider::Render(HDC _bitmapDC)
 
 	Vector2f position = this->GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
+	
+	Vector2f halfScale = this->mScale / 2.0f;
 
 	Rectangle(_bitmapDC,
-		int(position.x - mScale.x),
-		int(position.y - mScale.y),
-		int(position.x + mScale.x),
-		int(position.y + mScale.y));
+		int(position.x - halfScale.x),
+		int(position.y - halfScale.y),
+		int(position.x + halfScale.x),
+		int(position.y + halfScale.y));
 
 	SelectObject(_bitmapDC, prevPen);
 	SelectObject(_bitmapDC, prevBrush);

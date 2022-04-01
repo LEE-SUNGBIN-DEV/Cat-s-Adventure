@@ -167,6 +167,7 @@
     <ClInclude Include="GameResource.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="Gravity.h" />
     <ClInclude Include="MonsterMouse.h" />
     <ClInclude Include="MonsterSpider.h" />
     <ClInclude Include="SceneStart.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="GameResource.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameTimer.cpp" />
+    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="MonsterMouse.cpp" />
     <ClCompile Include="MonsterSpider.cpp" />
     <ClCompile Include="SceneStart.cpp" />

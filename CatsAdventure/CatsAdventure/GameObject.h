@@ -6,6 +6,7 @@ class Texture;
 class Collider;
 class GameTimer;
 class Animator;
+class Gravity;
 
 class GameObject
 {
@@ -17,13 +18,12 @@ private:
 	Vector2f	mScale;
 	bool		mIsAlive;
 
-	// Texture
-	Texture*	mTexture;
-
 	// Component
+	Texture*	mTexture;
 	Collider*	mCollider;
 	GameTimer*	mTimer;
 	Animator*	mAnimator;
+	Gravity*	mGravity;
 
 	// EventManager 클래스를 통해서만 조작 가능
 	void SetIsAlive(bool _isAlive) { this->mIsAlive = _isAlive; }
@@ -47,6 +47,7 @@ public:
 	void AddCollider();
 	void AddTimer();
 	void AddAnimator();
+	void AddGravity();
 
 	virtual GameObject* Clone() = 0;
 
@@ -60,6 +61,7 @@ public:
 	Collider*		GetCollider() { return this->mCollider; }
 	GameTimer*		GetTimer() { return this->mTimer; }
 	Animator*		GetAnimator() { return this->mAnimator; }
+	Gravity*		GetGravity() { return this->mGravity; }
 
 	// set
 	void SetPosition(Vector2f _position) { this->mOffset = _position; return; }

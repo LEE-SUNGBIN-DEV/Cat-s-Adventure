@@ -134,11 +134,11 @@ bool CollisionManager::IsCollision(Collider* _objectA, Collider* _objectB)
 {
 	Vector2f positionA = _objectA->GetPosition();
 	Vector2f positionB = _objectB->GetPosition();
-	Vector2f scaleA = _objectA->GetScale();
-	Vector2f scaleB = _objectB->GetScale();
+	Vector2f halfScaleA = _objectA->GetScale() / 2.f;
+	Vector2f halfScaleB = _objectB->GetScale() / 2.f;
 
-	if (abs(positionA.x - positionB.x) < abs(scaleA.x + scaleB.x)
-		&& abs(positionA.y - positionB.y) < abs(scaleA.y + scaleB.y))
+	if (abs(positionA.x - positionB.x) < abs(halfScaleA.x + halfScaleB.x)
+		&& abs(positionA.y - positionB.y) < abs(halfScaleA.y + halfScaleB.y))
 	{
 		return true;
 	}

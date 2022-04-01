@@ -13,7 +13,7 @@ Web::Web()
 {
 	this->SetObjectName(L"Web");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE);
-	this->SetScale(webBitmapScale);
+	this->SetScale(webScale);
 	this->SetSpeed(webSpeed);
 	// Load Texture
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER_WEB", L"\\texture\\spider_web.bmp"));
@@ -21,7 +21,7 @@ Web::Web()
 	// Create Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(webColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
 }
 
 Web::~Web()
@@ -45,11 +45,13 @@ void Web::Render(HDC _bitmapDC)
 	Vector2f position = GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
 
+	Vector2f halfScale = this->GetScale() / 2.0f;
+
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		(int)position.x - (int)webBitmapScale.x / 2,
-		(int)position.y - (int)webBitmapScale.y / 2,
-		(int)webBitmapScale.x, (int)webBitmapScale.y,
+		(int)position.x - (int)halfScale.x,
+		(int)position.y - (int)halfScale.y,
+		(int)webScale.x, (int)webScale.y,
 		this->GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

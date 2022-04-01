@@ -13,7 +13,7 @@ MonsterSpider::MonsterSpider()
 {
 	this->SetObjectName(L"Spider");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
-	this->SetScale(monsterSpiderBitmapScale);
+	this->SetScale(monsterSpiderScale);
 
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER", L"\\texture\\spider.bmp"));
@@ -21,7 +21,7 @@ MonsterSpider::MonsterSpider()
 	// Create Collider
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
-	this->GetCollider()->SetScale(monsterSpiderColliderScale);
+	this->GetCollider()->SetScale(this->GetScale());
 
 	// Create TImer
 	this->AddTimer();
@@ -51,12 +51,13 @@ void MonsterSpider::Render(HDC _bitmapDC)
 	int height = (int)this->GetTexture()->GetBitmapInfoHeight();
 	Vector2f position = GetPosition();
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
+	Vector2f halfScale = this->GetScale() / 2.0f;
 
 	// 특정 색상 제외하고 복사
 	TransparentBlt(_bitmapDC,
-		(int)position.x - (int)monsterSpiderBitmapScale.x / 2,
-		(int)position.y - (int)monsterSpiderBitmapScale.y / 2,
-		(int)monsterSpiderBitmapScale.x, (int)monsterSpiderBitmapScale.y,
+		(int)position.x - (int)halfScale.x,
+		(int)position.y - (int)halfScale.y,
+		(int)monsterSpiderScale.x, (int)monsterSpiderScale.y,
 		GetTexture()->GetDC(),
 		0, 0, width, height,
 		RGB(255, 0, 255)

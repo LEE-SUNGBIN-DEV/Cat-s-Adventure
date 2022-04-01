@@ -1,8 +1,7 @@
 #pragma once
 #include "Projectile.h"
 
-const Vector2f missileBitmapScale = { 60.f, 60.f };
-const Vector2f missileColliderScale = { 30.f, 30.f };
+const Vector2f missileScale = { 60.f, 60.f };
 const float missileSpeed = 300.f;
 const int missileDamage = 10;
 

@@ -5,6 +5,7 @@
 #include "Collider.h"
 #include "GameTimer.h"
 #include "Animator.h"
+#include "Gravity.h"
 
 // »ý¼ºÀÚ
 GameObject::GameObject()
@@ -16,7 +17,8 @@ GameObject::GameObject()
 	mTexture(nullptr),
 	mCollider(nullptr),
 	mTimer(nullptr),
-	mAnimator(nullptr)
+	mAnimator(nullptr),
+	mGravity(nullptr)
 {
 }
 GameObject::GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition)
@@ -39,7 +41,8 @@ GameObject::GameObject(const GameObject& _origin)
 	mTexture(_origin.mTexture),
 	mCollider(nullptr),
 	mTimer(nullptr),
-	mAnimator(nullptr)
+	mAnimator(nullptr),
+	mGravity(nullptr)
 {
 	if (_origin.mCollider)
 	{
@@ -57,6 +60,12 @@ GameObject::GameObject(const GameObject& _origin)
 	{
 		this->mAnimator = new Animator(*_origin.mAnimator);
 		this->mAnimator->SetOwner(this);
+	}
+
+	if (_origin.mGravity)
+	{
+		this->mGravity = new Gravity(*_origin.mGravity);
+		this->mGravity->SetOwner(this);
 	}
 }
 
@@ -83,6 +92,11 @@ void GameObject::LateUpdate()
 	if (this->mCollider != nullptr)
 	{
 		this->mCollider->LateUpdate();
+	}
+
+	if (this->mGravity != nullptr)
+	{
+		this->mGravity->LateUpdate();
 	}
 }
 
@@ -144,4 +158,10 @@ void GameObject::AddAnimator()
 {
 	this->mAnimator = new Animator;
 	this->mAnimator->SetOwner(this);
+}
+
+void GameObject::AddGravity()
+{
+	this->mGravity = new Gravity;
+	this->mGravity->SetOwner(this);
 }
