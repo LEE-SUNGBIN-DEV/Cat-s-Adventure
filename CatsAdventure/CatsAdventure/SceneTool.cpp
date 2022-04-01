@@ -17,16 +17,14 @@ SceneTool::~SceneTool()
 
 void SceneTool::Enter()
 {	
-
-
 	// Set Camera
 	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
-	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f);
+	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f, false);
 
 	// 타일 생성
 	for (UINT i = 0; i < 20; ++i)
 	{
-		for (UINT j = 0; j < 2; ++j)
+		for (UINT j = 0; j < 1; ++j)
 		{
 			Vector2f tilePosition;
 			tilePosition.x = TILE_SIZE * i;
@@ -42,9 +40,16 @@ void SceneTool::Enter()
 
 void SceneTool::Exit()
 {
+	RemoveAll();
+	CollisionManager::GetInstance()->ClearCollisionMatrix();
 }
 
 void SceneTool::Update()
 {
 	GameScene::Update();
+
+	if (KEY_CHECK(KEY::KEY_ENTER, KEY_STATE::KEY_STATE_DOWN))
+	{
+		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_START);
+	}
 }

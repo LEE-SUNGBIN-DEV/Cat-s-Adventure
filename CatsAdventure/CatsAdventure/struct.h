@@ -74,6 +74,22 @@ struct Vector2f
 		return Vector2f(this->x / _vector.x, this->y / _vector.y);
 	}
 
+	bool operator == (Vector2f _vector)
+	{
+		if (this->x == _vector.x && this->y == _vector.y)
+			return true;
+		else
+			return false;
+	}
+
+	bool operator != (Vector2f _vector)
+	{
+		if (this->x != _vector.x || this->y != _vector.y)
+			return true;
+		else
+			return false;
+	}
+
 	// Vector2f <-> int operator
 	Vector2f operator * (int _int)
 	{

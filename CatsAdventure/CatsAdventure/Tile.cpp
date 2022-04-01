@@ -24,6 +24,7 @@ void Tile::Render(HDC _bitmapDC)
 	{
 		Vector2f renderPosition = this->GetPosition();
 		Vector2f tileScale = this->GetScale();
+		renderPosition = GameCamera::GetInstance()->GetRenderPosition(renderPosition);
 
 		BitBlt(_bitmapDC,
 			(int)renderPosition.x, (int)renderPosition.y,

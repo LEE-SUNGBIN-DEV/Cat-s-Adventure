@@ -10,7 +10,9 @@ private:
 	Vector2f	mDiffrence;
 	GameObject*	mTargetObject;
 
-	float		mCameraSpeedByKeyboard;
+	// true: 타겟을 추적, false: 마우스 입력
+	bool		mTargetMode;
+	Vector2f	mTargetOffset;
 
 	float		mCameraSpeedByMouse;
 	float		mCameraMoveTimeByMouse;
@@ -34,14 +36,9 @@ public:
 	Vector2f GetCurrentLookAtPosition(){ return this->mCurrentLookAtPosition; }
 
 	//set
-	void SetLookAtPosition(Vector2f _lookAtPosition)
-	{
-		this->mLookAtPosition = _lookAtPosition;
-		float length = (this->mLookAtPosition - this->mPrevLookAtPosition).Length();
-		this->mCameraSpeedByMouse = length / this->mCameraMoveTimeByMouse;
-		this->mAccumulatedTime = 0.f;
-	}
+	void SetLookAtPosition(Vector2f _lookAtPosition, bool _targetMode);
 	void SetTargetObject(GameObject* _gameObject) { this->mTargetObject = _gameObject; }
-	void SetCameraSpeed(float _cameraSpeed) { this->mCameraSpeedByKeyboard = _cameraSpeed; }
+	void SetCameraMode(bool _mode) { this->mTargetMode = _mode; }
+	void SetTargetOffset(Vector2f _offset) { this->mTargetOffset = _offset; }
 };
 

@@ -7,6 +7,7 @@
 #include "Monster.h"
 #include "MonsterMouse.h"
 #include "MonsterSpider.h"
+#include "Tile.h"
 
 #include "PathManager.h"
 #include "ResourceManager.h"
@@ -29,12 +30,31 @@ SceneStart::~SceneStart()
 
 void SceneStart::Enter()
 {
+	// Set Camera
+	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
+	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f, false);
+	
+	// 타일 생성
+	for (UINT i = 0; i < 20; ++i)
+	{
+		for (UINT j = 0; j < 1; ++j)
+		{
+			Vector2f tilePosition;
+			tilePosition.x = TILE_SIZE * i;
+			tilePosition.y = mainResolution.y - (TILE_SIZE * j) - TILE_SIZE;
+
+			Tile* tile = new Tile;
+			tile->SetPosition(tilePosition);
+			AddGameObject(tile, OBJECT_TYPE::OBJECT_TYPE_TILE);
+		}
+	}
+
 	// Set Player
 	GameObject* player = new Player;
-	player->SetPosition(Vector2f(100.f, 621.f));
+	player->SetPosition(Vector2f(100.f, mainResolution.y - (TILE_SIZE + playerBitmapScale.y)));
 	AddGameObject(player, OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
-	GameCamera::GetInstance()->SetTargetObject(player);
+	GameCamera::GetInstance()->SetTargetOffset(Vector2f(0.f, player->GetPosition().y - mainResolution.y / 2.f));
 
 	// Set Monster
 	MonsterMouse* monsterMouse00 = new MonsterMouse;
@@ -61,10 +81,6 @@ void SceneStart::Enter()
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_PLAYER, OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE);
 	CollisionManager::GetInstance()->ConnectCollisionMatrix(OBJECT_TYPE::OBJECT_TYPE_MONSTER, OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-
-	// Set Camera
-	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
-	GameCamera::GetInstance()->SetLookAtPosition(mainResolution / 2.f);
 }
 
 void SceneStart::Exit()
@@ -81,13 +97,6 @@ void SceneStart::Update()
 	{
 		ChangeGameScene(SCENE_TYPE::SCENE_TYPE_TOOL);
 	}
-
-	if (KEY_CHECK(KEY::KEY_MOUSE_LEFT_BUTTON, KEY_STATE::KEY_STATE_DOWN))
-	{
-		Vector2f lookAt = GameCamera::GetInstance()->GetRealPosition(GET_MOUSE_POSITION);
-		GameCamera::GetInstance()->SetLookAtPosition(lookAt);
-	}
-		
 }
 
 void SceneStart::Render(HDC _bitmapDC)

@@ -32,9 +32,15 @@ Player::Player()
 	// idel
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_IDLE", L"\\texture\\cat\\cat_idle.bmp"));
 	this->GetAnimator()->CreateAnimation(L"IDLE", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
+	// walk
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_WALK", L"\\texture\\cat\\cat_walk.bmp"));
+	this->GetAnimator()->CreateAnimation(L"WALK", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
 	// jump
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_JUMP", L"\\texture\\cat\\cat_jump.bmp"));
 	this->GetAnimator()->CreateAnimation(L"JUMP", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 8);
+	// hurt
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"CAT_HURT", L"\\texture\\cat\\cat_hurt.bmp"));
+	this->GetAnimator()->CreateAnimation(L"HURT", this->GetTexture(), Vector2f(0.f, 0.f), Vector2f(562.f, 494.f), Vector2f(562.f, 0.f), 0.1f, 10);
 	
 	this->GetAnimator()->Play(L"IDLE", true);
 
@@ -43,8 +49,8 @@ Player::Player()
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(playerColliderScale);
 
-	// camera
-	GameCamera::GetInstance()->SetCameraSpeed(this->mSpeed);
+	// Camera
+	GameCamera::GetInstance()->SetTargetObject(this);
 }
 
 Player::~Player()
@@ -65,18 +71,23 @@ void Player::Update()
 	// Left
 	if (KEY_CHECK(KEY::KEY_LEFT, KEY_STATE::KEY_STATE_HOLD))
 	{
+		GameCamera::GetInstance()->SetCameraMode(true);
+		this->GetAnimator()->Play(L"WALK", true);
 		updatePosition.x -= mSpeed * (float)DELTA_TIME;
 	}
 
 	// Right
 	if (KEY_CHECK(KEY::KEY_RIGHT, KEY_STATE::KEY_STATE_HOLD))
 	{
+		GameCamera::GetInstance()->SetCameraMode(true);
+		this->GetAnimator()->Play(L"WALK", true);
 		updatePosition.x += mSpeed * (float)DELTA_TIME;
 	}
 
 	// Jump
 	if (KEY_CHECK(KEY::KEY_C, KEY_STATE::KEY_STATE_DOWN))
 	{
+		GameCamera::GetInstance()->SetCameraMode(true);
 		if (mIsJump == PLAYER_JUMP_NONE)
 		{
 			this->GetAnimator()->Play(L"JUMP", true);
@@ -109,6 +120,20 @@ void Player::OnCollision(Collider* _opponent)
 
 void Player::OnCollisionEnter(Collider* _opponent)
 {
+	switch (_opponent->GetOwner()->GetObjectType())
+	{
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
+	{
+		this->GetAnimator()->Play(L"HURT", true);
+	}
+	break;
+
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
+	{
+		this->GetAnimator()->Play(L"HURT", true);
+	}
+	break;
+	}
 }
 
 void Player::OnCollisionExit(Collider* _opponent)
