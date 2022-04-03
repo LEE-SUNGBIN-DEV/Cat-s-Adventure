@@ -8,14 +8,29 @@ class GameTimer;
 class Animator;
 class Gravity;
 
+enum
+{
+	MOVE_DIRECTION_LEFT = -1,
+	MOVE_DIRECTION_RIGHT = 1
+};
+
+enum
+{
+	JUMP_DIRECTION_UP = -1,
+	JUMP_DIRECTION_NONE = 0,
+	JUMP_DIRECTION_DOWN = 1
+};
+
 class GameObject
 {
 private:
 	OBJECT_TYPE	mObjectType;
 	wstring		mObjectName;
 
-	Vector2f	mOffset;
+	Vector2f	mPosition;
 	Vector2f	mScale;
+	Vector2f	mDirection;
+
 	bool		mIsAlive;
 
 	// Component
@@ -54,8 +69,9 @@ public:
 	// get
 	const wstring&	GetObjectName() { return this->mObjectName; }
 	OBJECT_TYPE		GetObjectType() { return this->mObjectType; }
-	Vector2f		GetPosition() { return this->mOffset; }
+	Vector2f		GetPosition() { return this->mPosition; }
 	Vector2f		GetScale() { return this->mScale; }
+	Vector2f		GetDirection() { return this->mDirection; }
 	bool			IsAlive() { return this->mIsAlive; }
 	Texture*		GetTexture() { return this->mTexture; }
 	Collider*		GetCollider() { return this->mCollider; }
@@ -64,8 +80,14 @@ public:
 	Gravity*		GetGravity() { return this->mGravity; }
 
 	// set
-	void SetPosition(Vector2f _position) { this->mOffset = _position; return; }
-	void SetScale(Vector2f _scale) { this->mScale = _scale;	return; }
+	void SetPosition(Vector2f _position) { this->mPosition = _position; }
+	void SetScale(Vector2f _scale) { this->mScale = _scale;	}
+	void SetDirection(Vector2f _direction)
+	{
+		this->mDirection = _direction;
+		this->mDirection.Normalize();
+	}
+	void SetDirectionNotNormalize(Vector2f _direction) { this->mDirection = _direction; }
 	void SetTexture(Texture* _texture) { this->mTexture = _texture; }
 	void SetCollider(Collider* _collider) { this->mCollider = _collider; }
 	void SetObjectType(OBJECT_TYPE _objectType) { this->mObjectType = _objectType; }

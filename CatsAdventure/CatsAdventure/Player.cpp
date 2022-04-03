@@ -20,12 +20,14 @@
 
 Player::Player()
 	: mHP(150),
-	mSpeed(300.f),
+	mSpeed(1000.f),
 	mJumpHeight(0.f),
-	mIsJump(PLAYER_JUMP_NONE)
+	mState(PLAYER_STATE_IDLE),
+	mIsJump(false), mIsFall(false), mIsHurt(false)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 	this->SetScale(playerScale);
+	this->SetDirectionNotNormalize(Vector2f((float)MOVE_DIRECTION_RIGHT, (float)JUMP_DIRECTION_DOWN));
 
 	//======================================== Init Component
 	// ==================== Animator
@@ -72,42 +74,54 @@ Player::~Player()
 }
 
 void Player::Update()
-{
+{	
 	// ====================== Key Input Control
 	// Player Move Position
 	Vector2f updatePosition = this->GetPosition();
+	Vector2f moveDirection = this->GetDirection();
 
-	if(this->mIsJump == PLAYER_JUMP_NONE)
-		this->GetAnimator()->Play(L"IDLE", true);
-
-	// Left
+	// WALK - Left
 	if (KEY_CHECK(KEY::KEY_LEFT, KEY_STATE::KEY_STATE_HOLD))
 	{
 		GameCamera::GetInstance()->SetCameraMode(true);
-		this->GetAnimator()->Play(L"WALK", true);
-		updatePosition.x -= mSpeed * (float)DELTA_TIME;
-	}
 
-	// Right
+		this->mState = PLAYER_STATE_WALK;
+		moveDirection.x = (float)MOVE_DIRECTION_LEFT;
+		this->SetDirectionNotNormalize(moveDirection);
+		updatePosition.x += this->GetDirection().x * mSpeed * (float)DELTA_TIME;
+	}
+	else if (KEY_CHECK(KEY::KEY_LEFT, KEY_STATE::KEY_STATE_UP))
+	{
+		this->mState = PLAYER_STATE_IDLE;
+	}
+	
+	// WALK - Right
 	if (KEY_CHECK(KEY::KEY_RIGHT, KEY_STATE::KEY_STATE_HOLD))
 	{
 		GameCamera::GetInstance()->SetCameraMode(true);
-		this->GetAnimator()->Play(L"WALK", true);
-		updatePosition.x += mSpeed * (float)DELTA_TIME;
+
+		this->mState = PLAYER_STATE_WALK;
+		moveDirection.x = (float)MOVE_DIRECTION_RIGHT;
+		this->SetDirectionNotNormalize(moveDirection);
+		updatePosition.x += this->GetDirection().x * mSpeed * (float)DELTA_TIME;
+	}
+	else if (KEY_CHECK(KEY::KEY_RIGHT, KEY_STATE::KEY_STATE_UP))
+	{
+		this->mState = PLAYER_STATE_IDLE;
 	}
 
-	// Jump
+	// JUMP
 	if (KEY_CHECK(KEY::KEY_C, KEY_STATE::KEY_STATE_DOWN))
 	{
-		GameCamera::GetInstance()->SetCameraMode(true);
-
-		if (mIsJump == PLAYER_JUMP_NONE)
+		if (this->mIsJump == false && this->mIsFall == false)
 		{
-			this->GetAnimator()->Play(L"JUMP", true);
-			mIsJump = PLAYER_JUMP_PROGRESS;
+			GameCamera::GetInstance()->SetCameraMode(true);
+
+			// 점프 상태로 변경
+			this->mIsJump = true;
 		}
 	}
-	JumpChecking(&updatePosition);
+	UpdateJumpState(&updatePosition);
 
 	this->SetPosition(updatePosition);
 
@@ -121,7 +135,92 @@ void Player::Update()
 		CreateMissile();
 	}
 
+	// Animating
+	this->UpdateAnimation();
+}
+
+void Player::UpdateAnimation()
+{
+	// Animating
+	// Animating Priority
+	// FALL > JUMP > HURT > WALK > IDLE
+	if (mIsFall == true)
+	{
+		this->GetAnimator()->Play(L"FALL", true);
+	}
+
+	else if (mIsJump == true)
+	{
+		this->GetAnimator()->Play(L"JUMP", true);
+	}
+
+	else if (mIsHurt == true)
+	{
+		this->GetAnimator()->Play(L"HURT", true);
+	}
+
+	else if (mState == PLAYER_STATE_WALK)
+	{
+		this->GetAnimator()->Play(L"WALK", true);
+	}
+
+	else if (mState == PLAYER_STATE_IDLE)
+	{
+		this->GetAnimator()->Play(L"IDLE", true);
+	}
+
 	this->GetAnimator()->Update();
+}
+
+void Player::UpdateJumpState(Vector2f* _updatePosition)
+{
+	Vector2f moveDirection = this->GetDirection();
+
+	// 점프 상태면
+	if (this->mIsJump == true)
+	{
+		moveDirection.y = (float)JUMP_DIRECTION_UP;
+		this->SetDirectionNotNormalize(moveDirection);
+		// 점프 진행
+		this->mJumpHeight += playerJumpSpeed * (float)DELTA_TIME;
+		_updatePosition->y += this->GetDirection().y * playerJumpSpeed * (float)DELTA_TIME;
+
+		if (this->GetGravity() != nullptr)
+		{
+			// Ground 상태 해제
+			this->GetGravity()->SetIsGround(false);
+		}
+
+		// 최대 점프 거리에 도달하면
+		if (this->mJumpHeight >= playerJumpPower)
+		{
+			// 낙하 상태로 변경, 점프 높이 초기화
+			this->mIsJump = false;
+			this->mIsFall = true;
+			this->mJumpHeight = 0;
+
+			moveDirection.y = (float)JUMP_DIRECTION_DOWN;
+			this->SetDirectionNotNormalize(moveDirection);
+		}
+	}
+
+	// 낙하 상태
+	if (this->mIsFall == true)
+	{
+		if (this->GetGravity() != nullptr)
+		{
+			// 땅에 닿으면
+			if (this->GetGravity()->IsGround() == true)
+			{
+				// 낙하 상태 해제
+				this->mIsFall = false;
+				this->mState = PLAYER_STATE_IDLE;
+
+				moveDirection.y = (float)JUMP_DIRECTION_NONE;
+				this->SetDirectionNotNormalize(moveDirection);
+			}
+		}
+	}
 }
 
 void Player::Render(HDC _bitmapDC)
@@ -139,65 +238,49 @@ void Player::OnCollisionEnter(Collider* _opponent)
 	{
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
 	{
-		this->GetAnimator()->Play(L"HURT", true);
+		this->mIsHurt = true;
+
+		break;
 	}
-	break;
 
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
 	{
-		this->GetAnimator()->Play(L"HURT", true);
+		this->mIsHurt = true;
+
+		break;
 	}
 
 	case OBJECT_TYPE::OBJECT_TYPE_TILE:
 	{
-
+		this->mIsFall = false;
+		break;
 	}
-
-	break;
 	}
 }
 
 void Player::OnCollisionExit(Collider* _opponent)
 {
-}
-
-void Player::JumpChecking(Vector2f* _updatePosition)
-{
-	// 점프 상태면
-	if (this->mIsJump == PLAYER_JUMP_PROGRESS)
+	switch (_opponent->GetOwner()->GetObjectType())
 	{
-		if (this->GetGravity() != nullptr)
-		{
-			// Ground 상태 해제
-			this->GetGravity()->SetIsGround(false);
-		}
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
+	{
+		this->mIsHurt = false;
 
-		// 점프 진행
-		this->mJumpHeight += playerJumpSpeed * (float)DELTA_TIME;
-		_updatePosition->y -= playerJumpSpeed * (float)DELTA_TIME;
-
-		// 최대 점프 거리에 도달하면
-		if (this->mJumpHeight >= playerJumpPower)
-		{
-			// 낙하 상태로 변경, 점프 높이 초기화
-			this->mIsJump = PLAYER_JUMP_FALL;
-			this->mJumpHeight = 0;
-		}
+		break;
 	}
 
-	// 낙하 상태
-	else if (this->mIsJump == PLAYER_JUMP_FALL)
+	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
 	{
-		this->GetAnimator()->Play(L"FALL", true);
-		if (this->GetGravity() != nullptr)
-		{
-			// 땅에 닿으면
-			if (this->GetGravity()->IsGround() == true)
-			{
-				// 낙하 상태 해제
-				this->mIsJump = PLAYER_JUMP_NONE;
-			}
-		}
+		this->mIsHurt = false;
+
+		break;
+	}
+
+	case OBJECT_TYPE::OBJECT_TYPE_TILE:
+	{
+
+		break;
+	}
 	}
 }
 

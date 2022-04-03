@@ -3,6 +3,7 @@
 #include "SceneStart.h"
 #include "SceneStage01.h"
 #include "SceneEnd.h"
+#include "SceneLose.h"
 #include "SceneTool.h"
 
 SceneManager::SceneManager()
@@ -25,6 +26,9 @@ SceneManager::~SceneManager()
 void SceneManager::Init()
 {
 	// Scene 생성
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL] = new SceneTool;
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL]->SetName(L"Scene Tool");
+
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START] = new SceneStart;
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START]->SetName(L"Game Start");
 	
@@ -34,8 +38,8 @@ void SceneManager::Init()
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_END] = new SceneEnd;
 	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_END]->SetName(L"Game End");
 
-	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL] = new SceneTool;
-	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_TOOL]->SetName(L"Scene Tool");
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_LOSE] = new SceneLose;
+	this->mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_LOSE]->SetName(L"Game Over");
 
 	// 현재 씬 저장
 	this->mCurrentScene = mGameSceneList[(UINT)SCENE_TYPE::SCENE_TYPE_START];

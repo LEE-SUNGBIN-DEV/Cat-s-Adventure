@@ -19,7 +19,7 @@
 SceneStart::SceneStart()
 {
 	// Load Texture
-	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"BACKGROUND", L"\\texture\\background_start.bmp"));
+	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"BACKGROUND_MAIN", L"\\texture\\background\\background_main.bmp"));
 }
 SceneStart::~SceneStart()
 {
@@ -30,25 +30,26 @@ void SceneStart::Enter()
 {
 	Vector2f mainResolution = GameCore::GetInstance()->GetMainResolution();
 	Vector2f offsetPosition = {};
+	GameCamera::GetInstance()->SetLookAtPosition(Vector2f(mainResolution.x, mainResolution.y)/2.0f, false);
 
 	// Title UI
 	TitleUI* titleUI = new TitleUI;
 	offsetPosition.x = mainResolution.x / 2.0f;
-	offsetPosition.y = mainResolution.y / 2.0f - 110.f;
+	offsetPosition.y = titleUI->GetScale().y / 2.0f;
 	titleUI->SetPosition(offsetPosition);
 	AddGameObject(titleUI, OBJECT_TYPE::OBJECT_TYPE_UI);
 
 	// Start Button
 	StartButton* startButton = new StartButton;
-	offsetPosition.x = mainResolution.x / 2.0f - 110.f;
-	offsetPosition.y = mainResolution.y / 2.0f + 110.f;
+	offsetPosition.x = startButton->GetScale().x /2.f;
+	offsetPosition.y = mainResolution.y - startButton->GetScale().y / 2.f;
 	startButton->SetPosition(offsetPosition);
 	AddGameObject(startButton, OBJECT_TYPE::OBJECT_TYPE_UI);
 
 	// Exit Button
 	ExitButton* exitButton = new ExitButton;
-	offsetPosition.x = mainResolution.x / 2.0f + 110.f;
-	offsetPosition.y = mainResolution.y / 2.0f + 110.f;
+	offsetPosition.x = mainResolution.x - exitButton->GetScale().x /2.f;
+	offsetPosition.y = exitButton->GetScale().y / 2.f;
 	exitButton->SetPosition(offsetPosition);
 	AddGameObject(exitButton, OBJECT_TYPE::OBJECT_TYPE_UI);
 }

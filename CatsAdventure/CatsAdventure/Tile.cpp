@@ -4,9 +4,10 @@
 #include "Texture.h"
 #include "Collider.h"
 #include "Gravity.h"
+#include "GameObject.h"
 
 Tile::Tile()
-	:mTargetTextureIndex(15)
+	:mTargetTextureIndex(TILE_TEXTURE_MAX_INDEX)
 {
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_TILE);
 	this->SetObjectName(L"Tile");
@@ -14,8 +15,8 @@ Tile::Tile()
 	this->SetTexture(ResourceManager::GetInstance()->LoadTexture(L"Tile Stone", L"\\texture\\tile\\tile_stone.bmp"));
 
 	this->AddCollider();
+	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(this->GetScale());
-	this->GetCollider()->SetOffset(Vector2f(TILE_SIZE / 2.0f, TILE_SIZE / 2.0f));
 }
 
 Tile::~Tile()
@@ -47,7 +48,8 @@ void Tile::Render(HDC _bitmapDC)
 		assert(targetTextureRow < originalTextureMaxRow);
 
 		BitBlt(_bitmapDC,
-			(int)renderPosition.x, (int)renderPosition.y,
+			(int)renderPosition.x - this->GetScale().x / 2.f,
+			(int)renderPosition.y - this->GetScale().y / 2.f,
 			TILE_SIZE, TILE_SIZE,
 			this->GetTexture()->GetDC(),
 			TILE_SIZE * targetTextureRow,
@@ -62,51 +64,77 @@ void Tile::Update()
 
 void Tile::OnCollision(Collider* _opponent)
 {
+	GameObject* opponentObject = _opponent->GetOwner();
+	Vector2f position = opponentObject->GetPosition();
+	Vector2f scale = opponentObject->GetScale();
+	Vector2f direction = opponentObject->GetDirection();
+
 	switch (_opponent->GetOwner()->GetObjectType())
 	{
 	case OBJECT_TYPE::OBJECT_TYPE_PLAYER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
+
 		_opponent->GetOwner()->GetGravity()->SetIsGround(true);
-
+		
+		break;
 	}
-
-	break;
 
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
+
 		_opponent->GetOwner()->GetGravity()->SetIsGround(true);
-	}
-	break;
 
-	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
-	{
+		break;
 	}
-	break;
-
 	}
 }
 
 void Tile::OnCollisionEnter(Collider* _opponent)
 {
+	GameObject* opponentObject = _opponent->GetOwner();
+	Vector2f position = opponentObject->GetPosition();
+	Vector2f scale = opponentObject->GetScale();
+	Vector2f direction = opponentObject->GetDirection();
+
 	switch (_opponent->GetOwner()->GetObjectType())
 	{
 	case OBJECT_TYPE::OBJECT_TYPE_PLAYER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
+
 		_opponent->GetOwner()->GetGravity()->SetIsGround(true);
+		
+		break;
 	}
 
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
 		_opponent->GetOwner()->GetGravity()->SetIsGround(true);
+
+		break;
 	}
-	break;
 
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
 	{
 		RemoveGameObject(_opponent->GetOwner());
-	}
 
-	break;
+		break;
+	}
 	}
 }
 
@@ -116,22 +144,26 @@ void Tile::OnCollisionExit(Collider* _opponent)
 	{
 	case OBJECT_TYPE::OBJECT_TYPE_PLAYER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
 		_opponent->GetOwner()->GetGravity()->SetIsGround(false);
+
+		break;
 	}
 
-	break;
 
 	case OBJECT_TYPE::OBJECT_TYPE_MONSTER:
 	{
+		if (_opponent->GetOwner()->GetGravity() == nullptr)
+		{
+			return;
+		}
 		_opponent->GetOwner()->GetGravity()->SetIsGround(false);
-	}
-	break;
 
-	case OBJECT_TYPE::OBJECT_TYPE_MONSTER_PROJECTILE:
-	{
+		break;
 	}
-	break;
-	
 	}
 }
 

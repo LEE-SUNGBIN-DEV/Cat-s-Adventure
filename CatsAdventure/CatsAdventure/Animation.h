@@ -7,7 +7,7 @@ struct AnimationFrame
 {
 	Vector2f	mLeftTop;
 	Vector2f	mSliceSize;
-	Vector2f	mOffset;
+	Vector2f	mPosition;
 	float		mDuration;
 };
 

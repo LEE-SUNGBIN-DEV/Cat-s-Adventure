@@ -1,15 +1,14 @@
 #pragma once
 #include "GameObject.h"
 
-const float		playerJumpPower = 300.f;
+const float		playerJumpPower = 250.f;
 const float		playerJumpSpeed = 700.f;
 const Vector2f	playerScale = { 64.f, 64.f };
 
 enum
 {
-	PLAYER_JUMP_NONE,
-	PLAYER_JUMP_PROGRESS,
-	PLAYER_JUMP_FALL
+	PLAYER_STATE_IDLE,
+	PLAYER_STATE_WALK,
 };
 
 class Texture;
@@ -20,7 +19,12 @@ class Player :
 private:
 	int		mHP;
 
-	int		mIsJump; // 0: 동작 없음, 1: 점프 중, 2: 하강 중
+	int		mState; // 0: 동작 없음, 1: 걷기
+
+	bool	mIsJump;
+	bool	mIsFall;
+	bool	mIsHurt;
+
 	float	mSpeed;
 	float	mJumpHeight;
 
@@ -38,7 +42,8 @@ public:
 
 	virtual Player* Clone() { return new Player(*this); }
 
-	void JumpChecking(Vector2f* _updatePosition);
+	void UpdateAnimation();
+	void UpdateJumpState(Vector2f* _updatePosition);
 	void CreateBullet();
 	void CreateMissile();
 

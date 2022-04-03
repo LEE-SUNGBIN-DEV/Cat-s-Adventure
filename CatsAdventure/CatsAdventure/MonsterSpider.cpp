@@ -1,19 +1,23 @@
 #include "pch.h"
 #include "MonsterSpider.h"
-#include "ResourceManager.h"
-#include "Texture.h"
-#include "TimeManager.h"
-#include "Collider.h"
-#include "Web.h"
+
 #include "SceneManager.h"
+#include "ResourceManager.h"
+#include "TimeManager.h"
+
 #include "GameScene.h"
 #include "GameTimer.h"
+#include "Texture.h"
+#include "Collider.h"
+
+#include "Web.h"
 
 MonsterSpider::MonsterSpider()
 {
 	this->SetObjectName(L"Spider");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	this->SetScale(monsterSpiderScale);
+	this->SetDirection(Vector2f((float)MOVE_DIRECTION_LEFT, 0.f));
 
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"SPIDER", L"\\texture\\spider.bmp"));

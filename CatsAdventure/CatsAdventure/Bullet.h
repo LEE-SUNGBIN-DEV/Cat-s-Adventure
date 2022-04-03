@@ -3,7 +3,7 @@
 
 const Vector2f bulletScale = { 40.f, 40.f };
 const float bulletSpeed = 800.f;
-const int bulletDamage = 2;
+const int bulletDamage = 5;
 
 class Bullet :
     public Projectile

@@ -1,14 +1,14 @@
 #include "pch.h"
 #include "MonsterFrog.h"
 
+#include "SceneManager.h"
 #include "ResourceManager.h"
 #include "TimeManager.h"
-#include "SceneManager.h"
-#include "GameScene.h"
 
+#include "GameTimer.h"
+#include "GameScene.h"
 #include "Texture.h"
 #include "Collider.h"
-#include "GameTimer.h"
 
 #include "Acid.h"
 
@@ -17,6 +17,7 @@ MonsterFrog::MonsterFrog()
 	this->SetObjectName(L"Frog");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	this->SetScale(monsterFrogScale);
+	this->SetDirection(Vector2f((float)MOVE_DIRECTION_LEFT, 0.f));
 
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"FROG", L"\\texture\\gold_frog.bmp"));
@@ -29,6 +30,9 @@ MonsterFrog::MonsterFrog()
 	// Create TImer
 	this->AddTimer();
 	this->GetTimer()->SetTargetTime(frogAttackDelay);
+
+	// =================== Gravity
+	this->AddGravity();
 }
 
 MonsterFrog::~MonsterFrog()
@@ -87,7 +91,7 @@ void MonsterFrog::CreateAcid()
 	Vector2f acidPosition = this->GetPosition();
 	const vector<GameObject*>& gameObjectList = SceneManager::GetInstance()->GetCurrentScene()->GetGameObjectList(OBJECT_TYPE::OBJECT_TYPE_PLAYER);
 
-	acidPosition.y += this->GetScale().y;
+	acidPosition.x -= this->GetScale().x;
 
 	acid->SetPosition(acidPosition);
 	acid->SetTheta(0);

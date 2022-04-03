@@ -174,7 +174,9 @@
     <ClInclude Include="MonsterFrog.h" />
     <ClInclude Include="MonsterMouse.h" />
     <ClInclude Include="MonsterSpider.h" />
+    <ClInclude Include="RandomManager.h" />
     <ClInclude Include="SceneEnd.h" />
+    <ClInclude Include="SceneLose.h" />
     <ClInclude Include="SceneStart.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Missile.h" />
@@ -220,7 +222,9 @@
     <ClCompile Include="MonsterFrog.cpp" />
     <ClCompile Include="MonsterMouse.cpp" />
     <ClCompile Include="MonsterSpider.cpp" />
+    <ClCompile Include="RandomManager.cpp" />
     <ClCompile Include="SceneEnd.cpp" />
+    <ClCompile Include="SceneLose.cpp" />
     <ClCompile Include="SceneStart.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Missile.cpp" />

@@ -50,7 +50,7 @@ void Animation::Render(HDC _bitmapDC)
 
 	GameObject* object = this->GetAnimator()->GetOwner();
 	Vector2f position = object->GetPosition();
-	position += this->mFrameList[this->mCurrentFrame].mOffset;
+	position += this->mFrameList[this->mCurrentFrame].mPosition;
 
 	// ·»´õ¸µ ÁÂÇ¥(Ä«¸Þ¶ó ±âÁØ)
 	position = GameCamera::GetInstance()->GetRenderPosition(position);
@@ -80,7 +80,7 @@ void Animation::Create(Texture* _texture, Vector2f _leftTop, Vector2f _sliceSize
 		animationFrame.mDuration = _duration;
 		animationFrame.mLeftTop = _leftTop + _interval * (int)i;
 		animationFrame.mSliceSize = _sliceSize;
-		animationFrame.mOffset = Vector2f(0.f, 0.f);
+		animationFrame.mPosition = Vector2f(0.f, 0.f);
 
 		this->mFrameList.push_back(animationFrame);
 	}

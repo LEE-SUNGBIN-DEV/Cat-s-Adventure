@@ -113,9 +113,6 @@
     <Filter Include="Engine\07. Game Component\04. Gravity">
       <UniqueIdentifier>{144c6e02-a632-41ca-b94f-5bd5e32c1bba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Game Scene\03. Scene Tool">
-      <UniqueIdentifier>{a156484d-cf04-4ca4-ae21-318290d008ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\05. Game Scene\02. Scene Stage 01">
       <UniqueIdentifier>{4d4301f0-b542-4937-a5c1-da54d76929a6}</UniqueIdentifier>
     </Filter>
@@ -152,6 +149,18 @@
     <Filter Include="Engine\04. Game Object\03. Projectile\04. Acid">
       <UniqueIdentifier>{7cea23a2-cd52-4e84-a6a7-17206b2e365d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Game Manager\09. Random Manager">
+      <UniqueIdentifier>{a9471677-5947-420d-b6a0-91d2335f9ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\04. Scene Lose">
+      <UniqueIdentifier>{05b01abf-ff45-4386-9631-dcc9857c6d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Game Scene\00. Scene Tool">
+      <UniqueIdentifier>{a156484d-cf04-4ca4-ae21-318290d008ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Game Object\03. Projectile\00. Projectile">
+      <UniqueIdentifier>{6b2d61f4-c0b8-429c-b373-bfc3392f0db4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -180,9 +189,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Engine\04. Game Object\01. Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Engine\04. Game Object\03. Projectile</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Engine\04. Game Object\03. Projectile\01. Bullet</Filter>
@@ -245,7 +251,7 @@
       <Filter>Engine\04. Game Object\04. Tile</Filter>
     </ClInclude>
     <ClInclude Include="SceneTool.h">
-      <Filter>Engine\05. Game Scene\03. Scene Tool</Filter>
+      <Filter>Engine\05. Game Scene\00. Scene Tool</Filter>
     </ClInclude>
     <ClInclude Include="SceneStart.h">
       <Filter>Engine\05. Game Scene\01. Scene Start</Filter>
@@ -292,6 +298,15 @@
     <ClInclude Include="Acid.h">
       <Filter>Engine\04. Game Object\03. Projectile\04. Acid</Filter>
     </ClInclude>
+    <ClInclude Include="RandomManager.h">
+      <Filter>Engine\03. Game Manager\09. Random Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLose.h">
+      <Filter>Engine\05. Game Scene\04. Scene Lose</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Engine\04. Game Object\03. Projectile\00. Projectile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameCore.cpp">
@@ -299,9 +314,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Engine\04. Game Object\01. Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Engine\04. Game Object\03. Projectile</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Engine\04. Game Object\03. Projectile\01. Bullet</Filter>
@@ -364,7 +376,7 @@
       <Filter>Engine\04. Game Object\04. Tile</Filter>
     </ClCompile>
     <ClCompile Include="SceneTool.cpp">
-      <Filter>Engine\05. Game Scene\03. Scene Tool</Filter>
+      <Filter>Engine\05. Game Scene\00. Scene Tool</Filter>
     </ClCompile>
     <ClCompile Include="SceneStart.cpp">
       <Filter>Engine\05. Game Scene\01. Scene Start</Filter>
@@ -413,6 +425,15 @@
     </ClCompile>
     <ClCompile Include="Acid.cpp">
       <Filter>Engine\04. Game Object\03. Projectile\04. Acid</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomManager.cpp">
+      <Filter>Engine\03. Game Manager\09. Random Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLose.cpp">
+      <Filter>Engine\05. Game Scene\04. Scene Lose</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Engine\04. Game Object\03. Projectile\00. Projectile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

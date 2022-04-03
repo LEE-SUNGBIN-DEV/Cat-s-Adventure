@@ -12,6 +12,7 @@ MonsterMouse::MonsterMouse()
 	this->SetObjectName(L"Mouse");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_MONSTER);
 	this->SetScale(monsterMouseScale);
+	this->SetDirection(Vector2f((float)MOVE_DIRECTION_LEFT, 0.f));
 
 	// Load Texture
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"MOUSE", L"\\texture\\mouse_left.bmp"));
@@ -20,6 +21,9 @@ MonsterMouse::MonsterMouse()
 	this->AddCollider();
 	this->GetCollider()->SetPosition(this->GetPosition());
 	this->GetCollider()->SetScale(this->GetScale());
+
+	// =================== Gravity
+	this->AddGravity();
 }
 MonsterMouse::~MonsterMouse()
 {
@@ -30,7 +34,7 @@ void MonsterMouse::Update()
 {
 	Vector2f currentPosition = GetPosition();
 
-	currentPosition.x -= this->GetSpeed() * this->GetMoveDirection() * (float)DELTA_TIME;
+	currentPosition.x += this->GetDirection().x * this->GetSpeed() * (float)DELTA_TIME;
 	SetPosition(currentPosition);
 }
 

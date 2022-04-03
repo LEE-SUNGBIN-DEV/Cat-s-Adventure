@@ -11,8 +11,9 @@
 GameObject::GameObject()
 	: mObjectName{},
 	mObjectType(OBJECT_TYPE::OBJECT_TYPE_DEFALUT),
-	mOffset(),
+	mPosition(),
 	mScale(),
+	mDirection(Vector2f((float)MOVE_DIRECTION_RIGHT, 0.f)),
 	mIsAlive(true),
 	mTexture(nullptr),
 	mCollider(nullptr),
@@ -27,16 +28,17 @@ GameObject::GameObject(Vector2f _LeftTopPosition, Vector2f _RightBottomPosition)
 	this->mScale.x = (_RightBottomPosition.x - _LeftTopPosition.x) / 2.0f;
 	this->mScale.y = (_RightBottomPosition.y - _LeftTopPosition.y) / 2.0f;
 
-	this->mOffset.x = _LeftTopPosition.x + this->mScale.x;
-	this->mOffset.y = _LeftTopPosition.y + this->mScale.y;
+	this->mPosition.x = _LeftTopPosition.x + this->mScale.x;
+	this->mPosition.y = _LeftTopPosition.y + this->mScale.y;
 }
 
 // 복사 생성자
 GameObject::GameObject(const GameObject& _origin)
 	:mObjectType(_origin.mObjectType),
 	mObjectName(_origin.mObjectName),
-	mOffset(_origin.mOffset),
+	mPosition(_origin.mPosition),
 	mScale(_origin.mScale),
+	mDirection(_origin.mDirection),
 	mIsAlive(true),
 	mTexture(_origin.mTexture),
 	mCollider(nullptr),

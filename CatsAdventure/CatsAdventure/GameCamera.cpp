@@ -10,7 +10,7 @@
 GameCamera::GameCamera()
 	:mTargetObject(nullptr),
 	mTargetOffset(Vector2f(0.f, 0.f)),
-	mTargetMode(false),
+	mTargetMode(true),
 	mDiffrence(0.f, 0.f),
 	mLookAtPosition(Vector2f(GameCore::GetInstance()->GetMainResolution())/2.f),
 	mCurrentLookAtPosition(Vector2f(GameCore::GetInstance()->GetMainResolution()) / 2.f),
@@ -79,8 +79,9 @@ void GameCamera::CalculateDifference()
 
 		this->mDiffrence = this->mCurrentLookAtPosition - centerPosition;
 		this->mPrevLookAtPosition = this->mCurrentLookAtPosition;
+
+		break;
 	}
-	break;
 
 	case true:
 	{
@@ -90,8 +91,9 @@ void GameCamera::CalculateDifference()
 		this->mCurrentLookAtPosition = this->mLookAtPosition;
 		this->mDiffrence = this->mCurrentLookAtPosition - centerPosition;
 		this->mPrevLookAtPosition = this->mCurrentLookAtPosition;
+
+		break;
 	}
-	break;
 
 	}
 }

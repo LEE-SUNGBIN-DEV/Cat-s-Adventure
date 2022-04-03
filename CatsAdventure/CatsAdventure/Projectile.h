@@ -9,8 +9,6 @@ private:
     float mTheta;
     float mSpeed;
 
-    Vector2f mDirection;
-
 public:
     Projectile();
     virtual ~Projectile();
@@ -25,11 +23,9 @@ public:
     // get
     float       GetTheta() { return this->mTheta; }
     float       GetSpeed() { return this->mSpeed; }
-    Vector2f    GetDirection() { return this->mDirection; }
 
     // set
     void SetTheta(float _theta) { this->mTheta = _theta; }
     void SetSpeed(float _speed) { this->mSpeed = _speed; }
-    void SetDirection(Vector2f _direction);
 };
 

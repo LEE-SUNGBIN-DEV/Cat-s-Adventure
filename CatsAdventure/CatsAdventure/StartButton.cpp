@@ -10,7 +10,7 @@ StartButton::StartButton()
 	SetTexture(ResourceManager::GetInstance()->LoadTexture(L"START_BUTTON", L"\\texture\\ui\\play_button.bmp"));
 
 	this->SetUIName(L"Start Button");
-	this->SetScale(Vector2f((float)this->GetTexture()->GetBitmapInfoWidth(), (float)this->GetTexture()->GetBitmapInfoHeight()));
+	this->SetScale(Vector2f(200.f, 200.f));
 }
 
 StartButton::~StartButton()

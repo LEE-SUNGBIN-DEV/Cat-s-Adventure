@@ -1,10 +1,13 @@
 #pragma once
 #include "GameScene.h"
 
+const int tileWidthNumber = 150;
+
 class SceneStage01 :
 	public GameScene
 {
 private:
+	float mMapWidth;
 
 public:
 	SceneStage01();

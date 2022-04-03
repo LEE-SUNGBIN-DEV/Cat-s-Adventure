@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 const int TILE_SIZE = 64;
+const int TILE_TEXTURE_MAX_INDEX = 15;
 
 class Tile :
     public GameObject
@@ -21,5 +22,10 @@ public:
     virtual void OnCollisionExit(Collider* _opponent);
 
     virtual Tile* Clone() { return new Tile(*this); }
+
+    // get
+
+    // set
+    void SetTargetTextureIndex(int _index) { this->mTargetTextureIndex = _index; }
 };
 

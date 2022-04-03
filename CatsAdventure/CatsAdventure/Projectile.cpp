@@ -3,11 +3,12 @@
 #include "TimeManager.h"
 
 Projectile::Projectile()
-	: mTheta(0.f), mSpeed(100.f), mDirection(Vector2f(1.f, 1.f))
+	: mTheta(0.f), mSpeed(100.f)
 {
 	this->SetObjectName(L"Projectile");
 	this->SetObjectType(OBJECT_TYPE::OBJECT_TYPE_PLAYER_PROJECTILE);
-	this->mDirection.Normalize();
+	this->GetDirection().Normalize();
+	this->SetDirection(Vector2f(1.f, 1.f));
 }
 
 Projectile::~Projectile()
@@ -24,10 +25,4 @@ void Projectile::OnCollisionEnter(Collider* _opponent)
 
 void Projectile::OnCollisionExit(Collider* _opponent)
 {
-}
-
-void Projectile::SetDirection(Vector2f _direction)
-{
-	this->mDirection = _direction;
-	this->mDirection.Normalize();
 }

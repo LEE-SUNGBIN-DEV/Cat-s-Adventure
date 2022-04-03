@@ -31,7 +31,7 @@ void Gravity::LateUpdate()
 
 		// ³«ÇÏ ¼Óµµ ÁßÃ¸
 		this->mFallSpeed += GRAVITY_ACCELERATION;
-		gravityPosition.y = gravityPosition.y + (this->mFallSpeed * (float)DELTA_TIME);
+		gravityPosition.y += (this->mFallSpeed * (float)DELTA_TIME);
 		this->mOwner->SetPosition(gravityPosition);
 	}
 }

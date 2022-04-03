@@ -2,7 +2,7 @@
 
 class GameObject;
 
-const float GRAVITY_ACCELERATION = 1.2f;
+const float GRAVITY_ACCELERATION = 2.2f;
 
 class Gravity
 {

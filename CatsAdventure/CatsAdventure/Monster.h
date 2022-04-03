@@ -7,7 +7,6 @@ class Monster :
 {
 private:
 	int	mHP;
-	int	mMoveDirection;
 
 	float mSpeed;
 	float mPatrolDistance;
@@ -31,7 +30,6 @@ public:
 
 	// get
 	int		GetHP() { return this->mHP; }
-	int		GetMoveDirection() { return this->mMoveDirection; }
 	float	GetSpeed() { return this->mSpeed; }
 	float	GetPatrolDistance() { return this->mPatrolDistance; }
 
@@ -45,7 +43,6 @@ public:
 		}
 	};
 	void SetSpeed(float _speed) { this->mSpeed = _speed; }
-	void SetMoveDirection(int _moveDirection) { this->mMoveDirection = _moveDirection; }
 	void SetOriginalPosition(Vector2f _originalPosition) { this->mOriginalPosition = _originalPosition; }
 	void SetPatrolDistance(float _patrolDistance) { this->mPatrolDistance = _patrolDistance; }
 };
